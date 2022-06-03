@@ -1,0 +1,117 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+footer {
+  background-color: orange;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 400px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.footer-top {
+  background-size: cover;
+  background-position: center;
+}
+
+.footer-brand-wrapper {
+  position: relative;
+  padding-bottom: 30px;
+  border-bottom: 1px solid hsl(220, 14%, 8%);
+  margin-bottom: 50px;
+}
+
+.footer-brand-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: hsla(0, 0%, 50%, 0.2);
+}
+
+.footer-top .logo {
+  width: max-content;
+  margin-inline: auto;
+  margin-bottom: 50px;
+}
+
+.footer-menu-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5px 40px;
+  margin-bottom: 20px;
+}
+
+.footer-menu-link {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 5px 10px;
+}
+
+.footer-menu-link:is(:hover, :focus) {
+  color: red;
+}
+
+.quicklink-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.quicklink-item {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 5px 10px;
+}
+
+.quicklink-item:is(:hover, :focus) {
+  color: red;
+}
+
+.footer-social-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-social-link {
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  border-radius: 50%;
+}
+
+.footer-social-link:is(:hover, :focus) {
+  color: red;
+}
+
+.footer-bottom {
+  padding: 25px 0;
+  background: honeydew;
+  text-align: center;
+}
+
+.copyright {
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.footer-bottom-img img {
+  width: max-content;
+  max-width: 100%;
+  margin-inline: auto;
+}
