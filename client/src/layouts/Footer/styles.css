@@ -1,14 +1,16 @@
 html {
   position: relative;
   min-height: 100%;
+  text-decoration: none !important;
 }
 
 footer {
   background-color: orange;
   position: absolute;
+  text-decoration: none;
   left: 0;
   bottom: 0;
-  height: 400px;
+  height: 300px;
   width: 100%;
   overflow: hidden;
 }
@@ -20,9 +22,14 @@ footer {
 
 .footer-brand-wrapper {
   position: relative;
+  height: 60px;
   padding-bottom: 30px;
   border-bottom: 1px solid hsl(220, 14%, 8%);
   margin-bottom: 50px;
+}
+
+.footer-quicklinks {
+  height: 80px;
 }
 
 .footer-brand-wrapper::after {
@@ -42,6 +49,7 @@ footer {
 }
 
 .footer-menu-list {
+  list-style-type: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -61,6 +69,7 @@ footer {
 }
 
 .quicklink-list {
+  list-style-type: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -80,6 +89,7 @@ footer {
 }
 
 .footer-social-list {
+  list-style-type: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -90,6 +100,7 @@ footer {
   width: 35px;
   height: 35px;
   display: grid;
+  padding: 15px;
   place-items: center;
   font-size: 14px;
   border-radius: 50%;
@@ -100,18 +111,45 @@ footer {
 }
 
 .footer-bottom {
-  padding: 25px 0;
+  height: 20px;
+  margin-top: 40px;
+  padding: 10px 0;
   background: honeydew;
   text-align: center;
 }
 
 .copyright {
   text-transform: uppercase;
-  margin-bottom: 15px;
+  padding: 10px;
+  margin-top: -10px;
 }
 
-.footer-bottom-img img {
-  width: max-content;
-  max-width: 100%;
-  margin-inline: auto;
+/* responsive larger than 768px */
+
+@media (max-width: 768px) {
+  .footer-menu-wrapper,
+  .footer-quicklinks,
+  .footer-bottom .container {
+    display: flex;
+    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer-menu-list {
+    max-width: 50%;
+    justify-content: center;
+    column-gap: 16px;
+    margin-bottom: 0;
+  }
+
+  .quicklink-list {
+    margin-bottom: 0;
+    column-gap: 15px;
+  }
+
+  .copyright {
+    margin-bottom: 0;
+    text-align: center;
+  }
 }

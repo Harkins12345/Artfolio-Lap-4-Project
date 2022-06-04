@@ -64,13 +64,13 @@ const Footer = () => {
             <ul class="footer-social-list">
               <li>
                 <a href="#" class="footer-social-link">
-                  <ion-icon name="logo-discord"></ion-icon>
+                  Facebook icon
                 </a>
               </li>
 
               <li>
                 <a href="#" class="footer-social-link">
-                  <ion-icon name="logo-youtube"></ion-icon>
+                  Youtube icon
                 </a>
               </li>
             </ul>
