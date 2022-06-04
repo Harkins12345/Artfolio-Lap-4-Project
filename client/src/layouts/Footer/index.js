@@ -4,29 +4,29 @@ import "./styles.css";
 const Footer = () => {
   return (
     <footer>
-      <div class="footer-top">
-        <div class="container">
-          <div class="footer-brand-wrapper">
-            <a href="#" class="logo">
+      <div className="footer-top">
+        <div className="footer-container">
+          <div className="footer-brand-wrapper">
+            <a href="#" className="logo">
               <img src="" alt="Artfolio logo" />
             </a>
 
-            <div class="footer-menu-wrapper">
-              <ul class="footer-menu-list">
+            <div className="footer-menu-wrapper">
+              <ul className="footer-menu-list">
                 <li>
-                  <a href="#hero" class="footer-menu-link">
+                  <a href="#hero" className="footer-menu-link">
                     Home
                   </a>
                 </li>
 
                 <li>
-                  <a href="#about" class="footer-menu-link">
+                  <a href="#about" className="footer-menu-link">
                     About
                   </a>
                 </li>
 
                 <li>
-                  <a href="#" class="footer-menu-link">
+                  <a href="#" className="footer-menu-link">
                     Contact
                   </a>
                 </li>
@@ -34,43 +34,43 @@ const Footer = () => {
             </div>
           </div>
 
-          <div class="footer-quicklinks">
-            <ul class="quicklink-list">
+          <div className="footer-quicklinks">
+            <ul className="quicklink-list">
               <li>
-                <a href="#" class="quicklink-item">
+                <a href="#" className="quicklink-item">
                   Faq
                 </a>
               </li>
 
               <li>
-                <a href="#" class="quicklink-item">
+                <a href="#" className="quicklink-item">
                   Help center
                 </a>
               </li>
 
               <li>
-                <a href="#" class="quicklink-item">
+                <a href="#" className="quicklink-item">
                   Terms of use
                 </a>
               </li>
 
               <li>
-                <a href="#" class="quicklink-item">
+                <a href="#" className="quicklink-item">
                   Privacy
                 </a>
               </li>
             </ul>
 
-            <ul class="footer-social-list">
+            <ul className="footer-social-list">
               <li>
-                <a href="#" class="footer-social-link">
-                  <ion-icon name="logo-discord"></ion-icon>
+                <a href="#" className="footer-social-link">
+                  Facebook icon
                 </a>
               </li>
 
               <li>
-                <a href="#" class="footer-social-link">
-                  <ion-icon name="logo-youtube"></ion-icon>
+                <a href="#" className="footer-social-link">
+                  Youtube icon
                 </a>
               </li>
             </ul>
@@ -78,9 +78,11 @@ const Footer = () => {
         </div>
       </div>
 
-      <div class="footer-bottom">
-        <div class="container">
-          <p class="copyright">Copyright &copy; 2022. all rights reserved</p>
+      <div className="footer-bottom">
+        <div className="footer-container">
+          <p className="copyright">
+            Copyright &copy; 2022. all rights reserved
+          </p>
         </div>
       </div>
     </footer>
