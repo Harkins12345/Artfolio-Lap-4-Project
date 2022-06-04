@@ -1,0 +1,26 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pytest-cov = "*"
+pytest = "*"
+
+[packages]
+flask = "*"
+flask-cors = "*"
+flask-mail = "*"
+pytest = "*"
+pytest-cov = "*"
+gunicorn = "*"
+pymongo = "*"
+dnspython = "*"
+
+[requires]
+python_version = "3"
+
+[scripts]
+dev = "bash -c \"export FLASK_ENV='development' && flask run --host=0.0.0.0\""
+test = "pytest ."
+coverage = "pytest --cov-report term-missing --cov=."
