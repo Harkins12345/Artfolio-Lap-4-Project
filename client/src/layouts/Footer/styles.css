@@ -1,7 +1,14 @@
 html {
   position: relative;
   min-height: 100%;
-  text-decoration: none !important;
+}
+.footer-menu-wrapper,
+.footer-quicklinks,
+.footer-bottom .footer-container {
+  display: flex;
+  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
 
 footer {
@@ -129,7 +136,7 @@ footer {
 @media (max-width: 768px) {
   .footer-menu-wrapper,
   .footer-quicklinks,
-  .footer-bottom .container {
+  .footer-bottom .footer-container {
     display: flex;
     justify-content: space-between;
     justify-content: center;
@@ -141,6 +148,10 @@ footer {
     justify-content: center;
     column-gap: 16px;
     margin-bottom: 0;
+  }
+
+  .footer-menu-link {
+    padding: 10px;
   }
 
   .quicklink-list {

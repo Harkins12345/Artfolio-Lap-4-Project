@@ -1,0 +1,106 @@
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar-track {
+  background: gray;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: orange;
+  border-radius: 10px;
+}
+
+.gallery {
+  padding: 60px 0;
+}
+
+.gallery-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  margin: -15px;
+  overflow-x: auto;
+  padding-bottom: 15px;
+  scroll-snap-type: inline mandatory;
+  padding-inline: 15px;
+  list-style-type: none;
+}
+
+.gallery-list li {
+  min-width: 95%;
+  scroll-snap-align: center;
+}
+
+.gallery-item img {
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px hsla(0, 0%, 0%, 0.2);
+}
+
+.btn-link:is(:hover, :focus) {
+  color: orange;
+}
+
+.has-scrollbar::-webkit-scrollbar {
+  height: 16px;
+}
+
+.has-scrollbar::-webkit-scrollbar-button {
+  color: orange;
+  width: 40px;
+}
+
+/* responsive larger than 575px */
+
+@media (min-width: 575px) {
+  .gallery .container {
+    max-width: unset;
+  }
+
+  .gallery-list li {
+    min-width: 80%;
+  }
+}
+
+/* responsive larger than 768px */
+
+@media (min-width: 768px) {
+  .gallery-list {
+    padding-bottom: 30px;
+  }
+
+  .gallery-list li {
+    min-width: 70%;
+  }
+  .container {
+    max-width: 700px;
+  }
+
+  .has-scrollbar::-webkit-scrollbar-button {
+    width: 150px;
+  }
+}
+
+/* responsive larger than 1024px */
+
+@media (min-width: 1024px) {
+  .gallery-list {
+    gap: 30px;
+    padding-inline: 40px;
+  }
+
+  .gallery-list li {
+    min-width: 50%;
+  }
+  .container {
+    max-width: 1000px;
+  }
+
+  .has-scrollbar::-webkit-scrollbar-button {
+    width: 200px;
+  }
+}
