@@ -5,11 +5,6 @@ from pymongo.server_api import ServerApi
 
 
 app = Flask(__name__, static_url_path='', static_folder='react-build')
-try:
-    client = MongoClient("mongodb+srv://admin:ArtfolioPassword123@cluster0.wjcbz.mongodb.net/?retryWrites=true&w=majority", server_api=ServerApi('1'))
-    print("DB connected!")
-except:
-    print("DB not connected...")
 mail = Mail
 
 # Need to create email for project
@@ -31,4 +26,9 @@ def serve(path):
 
 
 if __name__ == "__main__":
+    try:
+        client = MongoClient("mongodb+srv://admin:ArtfolioPassword123@cluster0.wjcbz.mongodb.net/?retryWrites=true&w=majority", server_api=ServerApi('1'))
+        print("DB connected!")
+    except:
+        print("DB not connected...")
     app.run(debug=True)
