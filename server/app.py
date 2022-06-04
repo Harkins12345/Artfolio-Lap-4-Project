@@ -28,7 +28,7 @@ def serve(path):
 if __name__ == "__main__":
     try:
         client = MongoClient("mongodb+srv://admin:ArtfolioPassword123@cluster0.wjcbz.mongodb.net/?retryWrites=true&w=majority", server_api=ServerApi('1'))
-        print("DB connected!")
+        print(" * DB connected!")
     except:
-        print("DB not connected...")
+        print(" * ERROR DB NOT connected...")
     app.run(debug=True)
