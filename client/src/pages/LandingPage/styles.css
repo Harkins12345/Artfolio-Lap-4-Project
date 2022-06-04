@@ -46,7 +46,7 @@ html {
 }
 
 .has-scrollbar::-webkit-scrollbar {
-  height: 16px;
+  height: 8px;
 }
 
 .has-scrollbar::-webkit-scrollbar-button {
