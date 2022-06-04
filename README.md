@@ -24,15 +24,12 @@ Team Artfolio:
 
 ### Installation
 
-- Clone or download the repo.
+- 
 
 ### Usage
 
-- Run `./_scripts/startDev.sh` to launch server.
-- Run `./_scripts/startDev.sh` to launch test suite.
-- Run `./_scripts/teardown.sh` to reset environment.
-
-- DO NOT run Dev and Test suite at the same time!
+- 
+- 
 
 # Technologies 
 
