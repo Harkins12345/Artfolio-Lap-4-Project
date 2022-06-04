@@ -1,6 +1,6 @@
 # Artfolio-Lap-4-Project
 # website - url.com
-# Artfolio - 
+# Artfolio
 
 Futureproof LAP 2 Portfolio Week Project<br>
 
