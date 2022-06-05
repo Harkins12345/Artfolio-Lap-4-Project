@@ -1,6 +1,8 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  overflow-y: scroll;
+  min-height: calc(100vh - 340px); /*content minus nav and footer*/
 }
 
 ::-webkit-scrollbar-track {
@@ -15,6 +17,10 @@ html {
 
 .gallery {
   padding: 60px 0;
+}
+
+.gig-gallery {
+  background-color: lightgray;
 }
 
 .gallery-list {
