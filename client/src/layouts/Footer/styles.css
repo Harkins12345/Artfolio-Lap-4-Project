@@ -11,12 +11,19 @@ html {
   align-items: center;
 }
 
+body {
+  margin: 0 0 300px;
+  /* bottom = footer height */
+  padding: 25px;
+}
+
 footer {
   background-color: orange;
   position: absolute;
   text-decoration: none;
   left: 0;
   bottom: 0;
+  margin-bottom: 0;
   height: 300px;
   width: 100%;
   overflow: hidden;
