@@ -15,7 +15,7 @@ const LandingPage = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eleifend
             viverra dictumst posuere aliquet sem nullam in diam.
           </h3>
-          <button class="btn btn-primary">Sign In</button>
+          <button className="btn btn-primary">Sign In</button>
         </div>
         <p>Haven't got an account? Create one now!</p>
       </section>
@@ -24,7 +24,7 @@ const LandingPage = () => {
 
       <section className="gallery gig-gallery">
         <div className="container">
-          <button class="btn btn-primary">See All Gigs</button>
+          <button className="btn btn-primary">See All Gigs</button>
 
           <ul className="gallery-list has-scrollbar">
             <li>
@@ -59,7 +59,7 @@ const LandingPage = () => {
       <section className="gallery">
         <div className="container">
           <ul className="gallery-list has-scrollbar">
-            <button class="btn btn-primary">See All Artists</button>
+            <button className="btn btn-primary">See All Artists</button>
             <li>
               <figure className="gallery-item">
                 <img src="" alt="Artist image" />
