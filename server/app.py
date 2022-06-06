@@ -1,22 +1,16 @@
+import requests as r
 from flask import Flask, request, send_from_directory, jsonify
 from flask_mail import Message, Mail
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
+from flask_pymongo import PyMongo
 
 from models.user import User, UserException, bcrypt
 
+# File path to serve up react-build
 
 app = Flask(__name__, static_url_path='', static_folder='react-build')
-mail = Mail
-
-try:
-    client = MongoClient("mongodb+srv://admin:ArtfolioPassword123@cluster0.wjcbz.mongodb.net/?retryWrites=true&w=majority", server_api=ServerApi('1'))
-    db = client['Cluster0']
-    print(" * DB connected!")
-except:
-    print(" * ERROR DB NOT connected...")
 
 # Set up email config
+
 app.config.update(dict(
     DEBUG = 2,
     MAIL_SERVER = 'smtp.aol.com',
@@ -26,6 +20,16 @@ app.config.update(dict(
     MAIL_USERNAME = 'michaelhmeloy@aol.com',
     MAIL_PASSWORD = 'crhlpasjzpounbzv',
 ))
+
+mail = Mail(app)
+
+# Set up MongoDB config
+
+app.config.update(dict(
+    MONGO_URI = "mongodb+srv://admin:ArtfolioPassword123@cluster0.wjcbz.mongodb.net/artfolio?retryWrites=true&w=majority"
+))
+
+db = PyMongo(app).db
 
 # Endpoints
 
