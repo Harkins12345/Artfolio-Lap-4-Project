@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles.css";
+import "../../styles/index.css";
 
 const Footer = () => {
   return (
@@ -60,21 +60,20 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-
-            <ul className="footer-social-list">
-              <li>
-                <a href="#" className="footer-social-link">
-                  Facebook icon
-                </a>
-              </li>
-
-              <li>
-                <a href="#" className="footer-social-link">
-                  Youtube icon
-                </a>
-              </li>
-            </ul>
           </div>
+          <ul className="footer-social-list">
+            <li>
+              <a href="#" className="footer-social-link">
+                Facebook icon
+              </a>
+            </li>
+
+            <li>
+              <a href="#" className="footer-social-link">
+                Youtube icon
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
 

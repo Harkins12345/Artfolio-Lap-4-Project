@@ -1,13 +1,16 @@
-from flask import Flask, request, send_from_directory
+import requests as r
+from flask import Flask, request, send_from_directory, jsonify
 from flask_mail import Message, Mail
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
+from flask_pymongo import PyMongo
 
+from models.user import User, UserException, bcrypt
+
+# File path to serve up react-build
 
 app = Flask(__name__, static_url_path='', static_folder='react-build')
-mail = Mail
 
-# Need to create email for project
+# Set up email config
+
 app.config.update(dict(
     DEBUG = 2,
     MAIL_SERVER = 'smtp.aol.com',
@@ -18,17 +21,110 @@ app.config.update(dict(
     MAIL_PASSWORD = 'crhlpasjzpounbzv',
 ))
 
+mail = Mail(app)
+
+# Set up MongoDB config
+
+app.config.update(dict(
+    MONGO_URI = "mongodb+srv://admin:ArtfolioPassword123@cluster0.wjcbz.mongodb.net/artfolio?retryWrites=true&w=majority"
+))
+
+db = PyMongo(app).db
+
 # Endpoints
 
-@app.route('/', defaults={'path':''})
+@app.route('/', defaults={'path':''}, methods=['GET'])
 def serve(path):
     return send_from_directory(app.static_folder,'index.html')
 
+@app.route('/register', methods=['POST'])
+def register():
+    email = request.json.get('email', None)
+    username = request.json.get('username', None)
+    password = request.json.get('password', None)
+
+    if not email:
+        return jsonify({'error': 'Email is required.'}), 400
+    
+    if not username:
+        return jsonify({'error': 'Username is required.'}), 400
+    
+    if not password:
+        return jsonify({'error': 'Password is required.'}), 400
+
+    try:
+        User(db, username, email, password)
+        return jsonify({'message': 'User created successfully.'}), 201
+
+    except UserException as e:
+        return jsonify({'error': str(e)}), 400
+
+    except Exception as e:
+        print(e)
+        return jsonify({'error': 'An unexpected error occurred.'}), 500
+
+@app.route('/login', methods=['POST'])
+def login():
+    email = request.json.get('email', None)
+    password = request.json.get('password', None)
+
+    if not email:
+        return jsonify({'error': 'Email is required.'}), 400
+    
+    if not password:
+        return jsonify({'error': 'Password is required.'}), 400
+
+    try:
+        user = User.get_by_email(db, email)
+        if bcrypt.checkpw(password.encode('utf-8'), user['password']):
+            return jsonify({'message': 'Welcome back ' + user['display_username'] + '.'}), 200
+        return jsonify({'error': f'Incorrect login credentials'}), 400
+
+    except UserException as e:
+        return jsonify({'error': str(e)}), 404
+
+    except Exception as e:
+        print(e)
+        return jsonify({'error': 'An unexpected error occurred.'}), 500
+
+@app.route('/user/update', methods=['POST'])
+def update():
+    username = request.json.get('username', None)
+    data_type = request.json.get('data_type', None)
+    new_data = request.json.get('new_data', None)
+
+    if not username:
+        return jsonify({'error': 'username is required.'}), 400
+    
+    if not data_type:
+        return jsonify({'error': 'data_type is required.'}), 400
+    
+    if not new_data:
+        return jsonify({'error': 'new_data is required.'}), 400
+    
+    if data_type not in ['email', 'password']:
+        return jsonify({'error': 'invalid data_type.'}), 400
+
+    try:
+        User.update(db, username, data_type, new_data)
+        return jsonify({'message' : f'{data_type.capitalize()} updated successfully.'})
+
+    except UserException as e:
+        return jsonify({'error': str(e)}), 400
+
+    except Exception as e:
+        return jsonify({'error': 'An unexpected error occurred.'}), 500
+
+@app.route('/user/delete', methods=['POST'])
+def delete():
+    username = request.json.get('username', None)
+
+    if not username:
+        return jsonify({'error': 'username is required.'}), 400
+    
+    User.delete(db, username)
+
+    return jsonify({'message': f'User {username} deleted successfully.'}), 204
 
 if __name__ == "__main__":
-    try:
-        client = MongoClient("mongodb+srv://admin:ArtfolioPassword123@cluster0.wjcbz.mongodb.net/?retryWrites=true&w=majority", server_api=ServerApi('1'))
-        print(" * DB connected!")
-    except:
-        print(" * ERROR DB NOT connected...")
     app.run(debug=True)

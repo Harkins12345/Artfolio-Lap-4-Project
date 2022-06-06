@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+
+:root {
+  --green: #105652;
+  --red: #b91646;
+  --yellow: #f9c041;
+  --beige: #fbf3e4;
+  --beige-darker: #dfd8ca;
+  --text-dark: #0c413e;
+  --text-light: #fbf3e4;
+
+  --opacity: rgba(255, 255, 255, 0.5);
+  --font-accent: "Bebas Neue", cursive;
+  --font-primary: "Poppins", sans-serif;
+}
