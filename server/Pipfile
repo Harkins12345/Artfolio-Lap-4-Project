@@ -16,8 +16,8 @@ pytest = "*"
 pytest-cov = "*"
 pymongo = "*"
 dnspython = "*"
-flask-pymongo = "*"
 python-dotenv = "*"
+bcrypt = "*"
 
 [requires]
 python_version = "3"
