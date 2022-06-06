@@ -1,7 +1,8 @@
 import React from "react";
-import "../../styles/index.css";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <footer>
       <div className="footer-top">
@@ -17,11 +18,17 @@ const Footer = () => {
         <hr></hr>
 
         <ul className="footer-sitemap">
-          <li className="footer-menu-link">Home</li>
+          <li onClick={() => navigate("/")} className="footer-menu-link">
+            Home
+          </li>
 
-          <li className="footer-menu-link">All Artists</li>
+          <li onClick={() => navigate("/artists")} className="footer-menu-link">
+            All Artists
+          </li>
 
-          <li className="footer-menu-link">All Gigs</li>
+          <li onClick={() => navigate("/gigs")} className="footer-menu-link">
+            All Gigs
+          </li>
 
           <li className="footer-menu-link">Contact us</li>
 
