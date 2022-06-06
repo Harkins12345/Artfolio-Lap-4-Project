@@ -1,6 +1,6 @@
 import React from "react";
 import { default as Layout } from "../../layouts";
-import "./styles.css";
+import "../../styles/index.css";
 
 const LandingPage = () => {
   return (
