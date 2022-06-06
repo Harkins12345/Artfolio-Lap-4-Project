@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { NotFoundPage, LandingPage, ArtistPortfolioPage, AuthPage } from "./pages";
+import { NotFoundPage, LandingPage, ArtistPortfolioPage, AuthPage, AllArtistsPage } from "./pages";
 import Layout from "./layouts";
 
 const App = () => {
@@ -11,7 +11,7 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="/sign-in" element={<AuthPage />} />
           <Route path="/artists">
-            <Route path="/artists" />
+            <Route path="/artists" element={<AllArtistsPage />} />
             <Route path="/artists/:name" element={<ArtistPortfolioPage />} />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
