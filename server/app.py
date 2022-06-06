@@ -1,7 +1,7 @@
 import requests as r
 from flask import Flask, request, send_from_directory, jsonify
 from flask_mail import Message, Mail
-from flask_pymongo import PyMongo
+from wrappers.pymongoFixed import PyMongoFixed
 
 from models.user import User, UserException, bcrypt
 
@@ -12,13 +12,13 @@ app = Flask(__name__, static_url_path='', static_folder='react-build')
 # Set up email config
 
 app.config.update(dict(
-    DEBUG = 2,
-    MAIL_SERVER = 'smtp.aol.com',
-    MAIL_PORT = 465,
-    MAIL_USE_SSL = True,
-    MAIL_DEFAULT_SENDER = 'michaelhmeloy@aol.com',
-    MAIL_USERNAME = 'michaelhmeloy@aol.com',
-    MAIL_PASSWORD = 'crhlpasjzpounbzv',
+    DEBUG=2,
+    MAIL_SERVER='smtp.aol.com',
+    MAIL_PORT=465,
+    MAIL_USE_SSL=True,
+    MAIL_DEFAULT_SENDER='michaelhmeloy@aol.com',
+    MAIL_USERNAME='michaelhmeloy@aol.com',
+    MAIL_PASSWORD='crhlpasjzpounbzv',
 ))
 
 mail = Mail(app)
@@ -26,16 +26,37 @@ mail = Mail(app)
 # Set up MongoDB config
 
 app.config.update(dict(
-    MONGO_URI = "mongodb+srv://admin:ArtfolioPassword123@cluster0.wjcbz.mongodb.net/artfolio?retryWrites=true&w=majority"
+    MONGO_URI="mongodb+srv://admin:ArtfolioPassword123@cluster0.wjcbz.mongodb.net/artfolio?retryWrites=true&w=majority"
 ))
 
-db = PyMongo(app).db
+mongo = PyMongoFixed(app)
+db = mongo.db
 
 # Endpoints
 
-@app.route('/', defaults={'path':''}, methods=['GET'])
+
+@app.route('/', defaults={'path': ''}, methods=['GET'])
 def serve(path):
-    return send_from_directory(app.static_folder,'index.html')
+    return '''<h1>Home</h1>
+    <form method="POST" action="/upload" enctype="multipart/form-data" />
+  <input type="file" id="myFile" name="photo_upload" accept=".jpg,.png,.jpeg" />
+  <input type="submit" />
+    </form>
+    '''
+    # return send_from_directory(app.static_folder,'index.html')
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    if 'photo_upload' in request.files:
+        photo_upload = request.files['photo_upload']
+        print(photo_upload)
+        mongo.save_file(photo_upload.filename, photo_upload)
+    return 'File saved', 201
+
+@app.route('/media/<filename>')
+def get_media(filename):
+
+    return mongo.send_file(filename, 'fs')
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -45,10 +66,10 @@ def register():
 
     if not email:
         return jsonify({'error': 'Email is required.'}), 400
-    
+
     if not username:
         return jsonify({'error': 'Username is required.'}), 400
-    
+
     if not password:
         return jsonify({'error': 'Password is required.'}), 400
 
@@ -63,6 +84,7 @@ def register():
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
+
 @app.route('/login', methods=['POST'])
 def login():
     email = request.json.get('email', None)
@@ -70,7 +92,7 @@ def login():
 
     if not email:
         return jsonify({'error': 'Email is required.'}), 400
-    
+
     if not password:
         return jsonify({'error': 'Password is required.'}), 400
 
@@ -87,6 +109,7 @@ def login():
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
+
 @app.route('/user/update', methods=['POST'])
 def update():
     username = request.json.get('username', None)
@@ -95,19 +118,19 @@ def update():
 
     if not username:
         return jsonify({'error': 'username is required.'}), 400
-    
+
     if not data_type:
         return jsonify({'error': 'data_type is required.'}), 400
-    
+
     if not new_data:
         return jsonify({'error': 'new_data is required.'}), 400
-    
+
     if data_type not in ['email', 'password']:
         return jsonify({'error': 'invalid data_type.'}), 400
 
     try:
         User.update(db, username, data_type, new_data)
-        return jsonify({'message' : f'{data_type.capitalize()} updated successfully.'})
+        return jsonify({'message': f'{data_type.capitalize()} updated successfully.'})
 
     except UserException as e:
         return jsonify({'error': str(e)}), 400
@@ -115,16 +138,18 @@ def update():
     except Exception as e:
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
+
 @app.route('/user/delete', methods=['POST'])
 def delete():
     username = request.json.get('username', None)
 
     if not username:
         return jsonify({'error': 'username is required.'}), 400
-    
+
     User.delete(db, username)
 
     return jsonify({'message': f'User {username} deleted successfully.'}), 204
+
 
 if __name__ == "__main__":
     app.run(debug=True)
