@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import { useState } from "react";
 import { useJwt } from "react-jwt";
-import { default as Layout } from "../../layouts";
+
 import "./style.css";
 
 const AuthPage = () => {
@@ -81,13 +81,13 @@ const AuthPage = () => {
           <form onSubmit={requestRegistration} id="SignUp" method="POST">
             <h1>Create Account</h1>
             <div className="social-container">
-              <a href="#" className="social">
+              <a href="/" className="social">
                 <i className="fab fa-facebook-f"></i>
               </a>
-              <a href="#" className="social">
+              <a href="/" className="social">
                 <i className="fab fa-google-plus-g"></i>
               </a>
-              <a href="#" className="social">
+              <a href="/" className="social">
                 <i className="fab fa-linkedin-in"></i>
               </a>
             </div>
@@ -108,20 +108,20 @@ const AuthPage = () => {
           <form onSubmit={requestLogin} id="SignIn" method="POST">
             <h1>SIGN IN</h1>
             <div className="social-container">
-              <a href="#" className="social">
+              <a href="/" className="social">
                 <i className="fab fa-facebook-f"></i>
               </a>
-              <a href="#" className="social">
+              <a href="/" className="social">
                 <i className="fab fa-google-plus-g"></i>
               </a>
-              <a href="#" className="social">
+              <a href="/" className="social">
                 <i className="fab fa-linkedin-in"></i>
               </a>
             </div>
             <span>or use your account</span>
             <input type="email" name="email" placeholder="Email" />
             <input type="password" name="password" placeholder="Password" />
-            <a className="social" href="#">
+            <a className="social" href="/">
               Forgot your password?
             </a>
             <input
