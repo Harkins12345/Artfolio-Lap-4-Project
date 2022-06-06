@@ -6,7 +6,7 @@ import { default as Layout } from "../../layouts";
 import "./style.css";
 
 const AuthPage = () => {
-  const { decodedToken, isExpired } = useJwt(token);
+  // const { decodedToken, isExpired } = useJwt(token);
   const [swapPanel, setSwapPanel] = useState(false);
 
   const signUpButton = () => {
@@ -31,7 +31,7 @@ const AuthPage = () => {
       if (!data.success) {
         throw new Error("Login not authorised");
       }
-      login(data.token);
+      // login(data.token);
     } catch (err) {
       console.warn(err);
     }
@@ -56,21 +56,21 @@ const AuthPage = () => {
     }
   };
 
-  const login = (token) => {
-    const user = jwt_decode(token);
-    localStorage.setItem("token", token);
-    localStorage.setItem("username", user.username);
-    localStorage.setItem("userEmail", user.email);
-  };
+  // const login = (token) => {
+  //   const user = jwt_decode(token);
+  //   localStorage.setItem("token", token);
+  //   localStorage.setItem("username", user.username);
+  //   localStorage.setItem("userEmail", user.email);
+  // };
 
-  const currentUser = () => {
-    const username = localStorage.getItem("username");
-    return username;
-  };
+  // const currentUser = () => {
+  //   const username = localStorage.getItem("username");
+  //   return username;
+  // };
 
   return (
     <>
-      <Layout />
+      {/* <Layout /> */}
       <div
         className={classnames("containerF", {
           "right-panel-active": swapPanel,
