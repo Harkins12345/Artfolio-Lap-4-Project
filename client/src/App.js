@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { NotFoundPage, LandingPage, ArtistPortfolioPage } from "./pages";
-import { default as Layout } from "./layouts";
+import { NotFoundPage, LandingPage, ArtistPortfolioPage, AuthPage } from "./pages";
+import Layout from "./layouts";
 
 const App = () => {
   return (
@@ -9,6 +9,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/sign-in" element={<AuthPage />} />
           <Route path="/artists">
             <Route path="/artists" />
             <Route path="/artists/:name" element={<ArtistPortfolioPage />} />
@@ -19,5 +20,4 @@ const App = () => {
     </>
   );
 };
-
 export default App;
