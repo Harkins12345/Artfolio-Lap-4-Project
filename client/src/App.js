@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { NotFoundPage, AuthPage } from "./pages";
 import { default as Layout } from "./layouts";
 import LandingPage from "./pages/LandingPage";
+import Footer from "./layouts/Footer";
 
 const App = () => {
   return (
@@ -13,5 +14,4 @@ const App = () => {
     </Routes>
   );
 };
-
 export default App;
