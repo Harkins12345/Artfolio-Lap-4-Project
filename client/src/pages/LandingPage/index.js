@@ -1,7 +1,6 @@
 import React from "react";
-import { default as Layout } from "../../layouts";
 import { SignInFooter } from "../../components";
-import "../../styles/index.css";
+
 
 const LandingPage = () => {
   return (
