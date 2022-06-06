@@ -205,29 +205,34 @@ footer {
 /************************************************************************/
 
 /************************************************************************/
-/* FooterCTA */
+/* Footer-CTA */
 /************************************************************************/
 
-#FooterCTA {
+#footer-cta {
   background-color: var(--beige-darker);
   justify-content: center;
   text-align: center;
-  min-width: 100%;
 }
 
-.FooterCTA-btn {
-  margin: 0 50%;
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-#createAccount {
-  padding-bottom: 20px;
-}
-
-.ready {
+#footer-cta-title {
   font-family: var(--font-accent);
   color: var(--text-dark);
   font-size: 36px;
   padding-top: 15px;
+  padding-bottom: 20px;
+}
+
+#create-account {
+  padding-bottom: 20px;
+  padding-top: 20px;
+  margin-bottom: 0;
 }
 
 /************************************************************************/
