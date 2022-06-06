@@ -1,1 +1,1 @@
-export { default as SignInFooter } from "./SignInFooter";
+export { default as FooterCTA } from "./FooterCTA";
