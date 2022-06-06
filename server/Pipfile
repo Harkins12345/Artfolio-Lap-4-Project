@@ -12,12 +12,14 @@ flask = "*"
 flask-cors = "*"
 flask-mail = "*"
 flask-bcrypt = "*"
+flask-pymongo = "*"
 pytest = "*"
 pytest-cov = "*"
-pymongo = "*"
 dnspython = "*"
 python-dotenv = "*"
 bcrypt = "*"
+requests = "*"
+pymongo = {extras = ["srv"], version = "*"}
 
 [requires]
 python_version = "3"
