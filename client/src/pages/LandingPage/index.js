@@ -1,11 +1,8 @@
 import React from "react";
-import { default as Layout } from "../../layouts";
-import "./styles.css";
 
 const LandingPage = () => {
   return (
     <>
-      <Layout />
       <section className="sign-in">
         <div className="container">
           <figure className="gallery-item">
