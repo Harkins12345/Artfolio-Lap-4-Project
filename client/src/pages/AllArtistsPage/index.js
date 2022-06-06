@@ -35,7 +35,6 @@ const AllArtistsPage = () => {
 
     return (
         <div>
-            <Layout />
             {/* need a blank space for navbar */}
 
             {/* section for description */}
