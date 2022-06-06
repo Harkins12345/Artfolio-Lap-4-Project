@@ -32,31 +32,24 @@ app.config.update(dict(
 mongo = PyMongoFixed(app)
 db = mongo.db
 
-# Endpoints
 
+# Endpoints
 
 @app.route('/', defaults={'path': ''}, methods=['GET'])
 def serve(path):
-    return '''<h1>Home</h1>
-    <form method="POST" action="/upload" enctype="multipart/form-data" />
-  <input type="file" id="myFile" name="photo_upload" accept=".jpg,.png,.jpeg" />
-  <input type="submit" />
-    </form>
-    '''
-    # return send_from_directory(app.static_folder,'index.html')
+#     return '''<h1>Home</h1>
+#     <form method="POST" action="/upload" enctype="multipart/form-data" />
+#   <input type="file" id="myFile" name="photo_upload"  accept=".jpg,.png,.jpeg" />
+#   <input type="submit" />
+#     </form>
 
-@app.route('/upload', methods=['POST'])
-def upload():
-    if 'photo_upload' in request.files:
-        photo_upload = request.files['photo_upload']
-        print(photo_upload)
-        mongo.save_file(photo_upload.filename, photo_upload)
-    return 'File saved', 201
+#     <video id="video1" width="420" controls>
+#     <source src="/media/mov_bbb.mp4" type="video/mp4">
+#     Your browser does not support HTML video.
+#   </video>
+#     '''
+    return send_from_directory(app.static_folder,'index.html')
 
-@app.route('/media/<filename>')
-def get_media(filename):
-
-    return mongo.send_file(filename, 'fs')
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -149,6 +142,20 @@ def delete():
     User.delete(db, username)
 
     return jsonify({'message': f'User {username} deleted successfully.'}), 204
+
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    if 'photo_upload' in request.files:
+        photo_upload = request.files['photo_upload']
+        mongo.save_file(photo_upload.filename, photo_upload)
+    return 'File saved', 201
+
+
+@app.route('/media/<filename>', methods=['GET'])
+def get_media(filename):
+
+    return mongo.send_file(filename)
 
 
 if __name__ == "__main__":
