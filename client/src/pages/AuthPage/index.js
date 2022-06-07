@@ -115,7 +115,6 @@ const AuthPage = () => {
               placeholder="Sign up"
             >
               Sign up
-            </button>
           </form>
         </div>
         <div className="form-container sign-in-container">
