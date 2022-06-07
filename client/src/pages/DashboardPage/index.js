@@ -19,14 +19,14 @@ const DashboardPage = () => {
       </div>
       {/*  GIG REQUESTS  */}
       <div className="gig-requests">
-        <div class="projects-status">
-          <div class="item-status">
-            <span class="status-number">5</span>
-            <span class="status-type">Gig Requests</span>
+        <div className="projects-status">
+          <div className="item-status">
+            <span className="status-number">5</span>
+            <span className="status-type">Gig Requests</span>
           </div>
-          <div class="item-status">
-            <span class="status-number">7</span>
-            <span class="status-type">Upcomig Gigs</span>
+          <div className="item-status">
+            <span className="status-number">7</span>
+            <span className="status-type">Upcomig Gigs</span>
           </div>
         </div>
         {/* {renderGigs()} */}
