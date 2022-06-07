@@ -13,6 +13,7 @@ COMPONENTS
 
 PAGES
 -LandingPage
+-AuthPage
 -ArtistPortfolioPage
 
 Media Queries 
@@ -46,12 +47,13 @@ Media Queries
 /**********************************************************************/
 body {
   background-color: var(--beige);
+  color: var(--text-dark);
   font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
 }
 
-.sign-in-btn {
+.primary-cta-btn {
   background-color: var(--yellow);
   border-radius: 50px;
   width: 130px;
@@ -62,7 +64,7 @@ body {
   font-weight: 700;
 }
 
-.sign-in-btn:hover {
+.primary-cta-btn:hover {
   box-shadow: 1px 1px 1px 0;
 }
 
@@ -153,10 +155,24 @@ footer {
   padding-bottom: 5px;
 }
 
+.footer-line-container {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-line {
+  width: 80%;
+  background-color: var(--beige-darker);
+  opacity: 1;
+  height: 2px;
+  border-radius: 2px;
+}
+
 .footer-sitemap {
   list-style-type: none;
   line-height: 250%;
   font-size: 16px;
+  padding-bottom: 20px;
 }
 
 .footer-menu-link {
@@ -172,6 +188,7 @@ footer {
   list-style-type: none;
   display: flex;
   justify-content: space-evenly;
+  padding-bottom: 20px;
 }
 
 .footer-facebook-link,
@@ -258,6 +275,15 @@ footer {
   padding-bottom: 20px;
   padding-top: 20px;
   margin-bottom: 0;
+}
+
+.createAccountNow {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.createAccountNow:hover {
+  text-decoration: none;
 }
 
 /************************************************************************/
@@ -361,10 +387,16 @@ html {
 }
 
 /**********************************************************************/
+/* AuthPage */
+/**********************************************************************/
+
+/**********************************************************************/
 /* ArtistPortfolioPage */
 /**********************************************************************/
-#artist-intro {
-  background-color: #e9ecef;
+#artist-intro-section {
+  background-color: var(--beige-darker);
+  padding-top: 10px;
+  padding-bottom: 20px;
 }
 
 .back-to-all-artists {
@@ -372,7 +404,13 @@ html {
   display: inline;
 }
 
-.artist-name {
+.back-to-all-artists:hover {
+  text-decoration: underline;
+}
+
+.artist-name,
+.artist-media-title,
+.artist-review-title {
   font-size: 24px;
   font-weight: 700;
 }
@@ -387,11 +425,22 @@ html {
   font-weight: 700;
 }
 
+.artist-stars,
+.review-stars {
+  color: var(--green);
+}
+
+.artist-stars-average {
+  color: var(--text-dark);
+  font-size: 14px;
+}
+
 .artist-image {
   width: 100px;
   height: 100px;
   border-radius: 100px;
-  background-color: #abb5be;
+  background-color: var(--beige);
+  color: var(--green);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -399,6 +448,64 @@ html {
 
 .artist-icon {
   font-size: 3rem;
+}
+
+.artist-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#artist-media {
+  background-color: var(--beige);
+}
+
+.media-audio {
+  background-color: var(--beige-darker);
+  border-radius: 25px;
+}
+
+.play-btn {
+  margin-left: 10px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.play-btn:hover {
+  color: var(--red);
+}
+.audio-name {
+  display: flex;
+  align-items: center;
+}
+
+.artist-review-section {
+  background-color: var(--beige-darker);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.review {
+  background-color: var(--beige-darker);
+  padding: 20px;
+  border-radius: 25px;
+}
+.review-title {
+  font-weight: 700;
+}
+
+.review-title,
+.review-text {
+  font-size: 16px;
+}
+
+.review-from-name {
+  display: flex;
+  justify-content: end;
+  font-style: italic;
 }
 
 /* Media Queries */

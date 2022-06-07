@@ -4,7 +4,6 @@ import { useState } from "react";
 import "./style.css";
 
 const AuthPage = () => {
-
   const [swapPanel, setSwapPanel] = useState(false);
 
   const signUpButton = () => {
@@ -25,7 +24,7 @@ const AuthPage = () => {
       >
         <div className="form-container sign-up-container">
           <form id="SignUp" method="POST">
-            <h1>Create Account</h1>
+            <h1>Sign up</h1>
             <div className="social-container">
               <a href="/" className="social">
                 <i className="fab fa-facebook-f"></i>
@@ -38,22 +37,22 @@ const AuthPage = () => {
               </a>
             </div>
             <span>or use your email for registration</span>
-            <input type="text" name="username" placeholder="Username" />
+            {/* <input type="text" name="username" placeholder="Username" /> */}
             <input type="text" name="name" placeholder="Name" />
             <input type="email" name="email" placeholder="Email" />
             <input type="password" name="password" placeholder="Password" />
-            <input
-              className="auth"
-              type="submit"
-              placeholder="SIGN UP"
+            <button
+              className="btn auth-btn"
+              type="sumbit"
               onClick={signUpButton}
-            />
+            >
+              Sign up
+            </button>
           </form>
         </div>
         <div className="form-container sign-in-container">
-
           <form id="SignIn" method="POST">
-            <h1>SIGN IN</h1>
+            <h1>Sign in</h1>
 
             <div className="social-container">
               <a href="/" className="social">
@@ -72,12 +71,14 @@ const AuthPage = () => {
             <a className="social" href="/">
               Forgot your password?
             </a>
-            <input
-              className="auth"
-              type="submit"
-              placeholder="Sign in"
+
+            <button
+              className="btn auth-btn"
+              type="sumbit"
               onClick={signInButton}
-            />
+            >
+              Sign in
+            </button>
           </form>
         </div>
         <div className="overlay-container">

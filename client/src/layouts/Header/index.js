@@ -13,6 +13,13 @@ const Header = () => {
             alt="Artfolio logo"
             className="navbar-logo"
           />
+
+
+//           <div
+//             onClick={() => navigate("/sign-in")}
+//             className="btn primary-cta-btn"
+//           >
+
           <div className="navIcons"> 
           <div onClick={() => navigate("/dashboard")} className="dashboard">
           <i className="fa-regular fa-address-card"></i>
@@ -20,6 +27,7 @@ const Header = () => {
           </div>
           <div onClick={() => navigate("/sign-in")} className="btn sign-in-btn">
             <i className="fa-regular fa-user"></i>
+
             Sign In
           </div>
           </div>
