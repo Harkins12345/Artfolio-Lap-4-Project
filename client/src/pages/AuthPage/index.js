@@ -12,6 +12,7 @@ const AuthPage = () => {
   const signUpButton = () => {
     setSwapPanel(true);
   };
+
   const signInButton = () => {
     setSwapPanel(false);
   };
@@ -53,8 +54,10 @@ const AuthPage = () => {
           </form>
         </div>
         <div className="form-container sign-in-container">
+
           <form id="SignIn" method="POST">
             <h1>SIGN IN</h1>
+
             <div className="social-container">
               <a href="/" className="social">
                 <i className="fab fa-facebook-f"></i>
@@ -75,7 +78,7 @@ const AuthPage = () => {
             <input
               className="auth"
               type="submit"
-              placeholder="SIGN IN"
+              placeholder="Sign in"
               onClick={signInButton}
             />
           </form>
@@ -85,7 +88,7 @@ const AuthPage = () => {
             <div className="overlay-panel overlay-left">
               <h1>Welcome Back!</h1>
               <button className="ghost" id="signIn" onClick={signInButton}>
-                SIGN IN
+                Sign In
               </button>
             </div>
             <div className="overlay-panel overlay-right">
