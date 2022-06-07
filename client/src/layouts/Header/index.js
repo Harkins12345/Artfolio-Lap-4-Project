@@ -18,11 +18,6 @@ const Header = () => {
             className="navbar-logo"
           />
 
-          {/* <div
-            onClick={() => navigate("/sign-in")}
-            className="btn primary-cta-btn"
-          > */}
-
           <div className="navbar-btns">
             {username ? <div onClick={() => navigate("/dashboard")} className="btn primary-cta-btn dashboard-btn"><i className="fa-regular fa-address-card"></i>Dashboard</div> : <div onClick={() => navigate("/sign-in")} className="btn primary-cta-btn"><i className="fa-regular fa-user"></i>Sign In</div>}
           </div>
