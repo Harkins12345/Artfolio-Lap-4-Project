@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { setUsername } from './actions';
+import axios from "axios";
 import { Routes, Route } from "react-router-dom";
 import {
   NotFoundPage,
@@ -13,6 +16,17 @@ import {
 import Layout from "./layouts";
 
 const App = () => {
+
+  const username = useSelector(state => state.username);
+
+  useEffect(() => {
+    axios.post(`${window.origin}/validate`)
+    .then(resp => resp.data)
+    .then(data => useDispatch(setUsername(data['username'])))
+    .catch(err => console.log(err))
+  }, []);
+
+
   return (
     <>
       <Routes>

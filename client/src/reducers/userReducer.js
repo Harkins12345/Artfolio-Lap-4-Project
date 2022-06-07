@@ -1,4 +1,4 @@
-const initState = {username: "", error: false};
+const initState = {username: null, error: false};
 
 const userReducer = (state = initState, action) => {
     switch (action.type) {
