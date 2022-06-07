@@ -1,9 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux"
 import FooterCTA from "../../components/FooterCTA";
 import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
+
+  const username = useSelector(state => state.username)
+
   const navigate = useNavigate();
+  
   return (
     <>
       <section className="hero-section">
@@ -238,7 +243,7 @@ const LandingPage = () => {
           ß
         </div>
       </section>
-      <FooterCTA />
+      {username ? null : <FooterCTA />}
     </>
   );
 };
