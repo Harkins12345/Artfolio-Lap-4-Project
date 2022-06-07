@@ -1,8 +1,10 @@
-from crypt import methods
 import requests as r
 from flask import Flask, request, send_from_directory, jsonify
 from flask_mail import Message, Mail
+from flask_session import Session
 from wrappers.pymongoFixed import PyMongoFixed
+from wrappers.flask_sessions_fixed import SessionFixed
+from wrappers.decorators import authenticate
 
 from models.user import User, UserException, bcrypt
 
@@ -10,7 +12,7 @@ from models.user import User, UserException, bcrypt
 
 app = Flask(__name__, static_url_path='', static_folder='react-build')
 
-# Set up email config
+# Set up Email config
 
 app.config.update(dict(
     DEBUG=2,
@@ -33,10 +35,22 @@ app.config.update(dict(
 mongo = PyMongoFixed(app)
 db = mongo.db
 
+# Set up Session config
+
+app.config.update(dict(
+    SESSION_TYPE="mongodb",
+    SESSION_MONGODB=mongo,
+    SESSION_MONGODB_DB="cluster0",
+    SESSION_MONGODB_COLLECTION="sessions"
+))
+
+sess = SessionFixed(app)
+
 
 # Endpoints
 
 @app.route('/', defaults={'path': ''}, methods=['GET'])
+#@authenticate
 def serve(path):
     return '''<h1>Home</h1>
     <form method="POST" action="/upload" enctype="multipart/form-data" />
@@ -49,7 +63,7 @@ def serve(path):
     Your browser does not support HTML video.
   </video>
     '''
-    #return send_from_directory(app.static_folder,'index.html')
+    # return send_from_directory(app.static_folder,'index.html')
 
 
 @app.route('/register', methods=['POST'])
@@ -103,6 +117,7 @@ def login():
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
+
 @app.route('/users', methods=['GET'])
 def get_all():
     try:
@@ -110,10 +125,10 @@ def get_all():
         for user in users:
             del user['active_chats']
         return jsonify(users)
-    
+
     except UserException as e:
         return jsonify({'error': str(e)}), 404
-    
+
     except Exception as e:
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
@@ -128,10 +143,11 @@ def get_user(username):
 
     except UserException as e:
         return jsonify({'error': str(e)}), 404
-    
+
     except Exception as e:
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
+
 
 @app.route('/users/update', methods=['POST'])
 def update():

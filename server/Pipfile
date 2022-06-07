@@ -13,6 +13,8 @@ flask-cors = "*"
 flask-mail = "*"
 flask-bcrypt = "*"
 flask-pymongo = "*"
+flask-socketio = "*"
+flask-session = "*"
 pytest = "*"
 pytest-cov = "*"
 dnspython = "*"
@@ -20,7 +22,6 @@ python-dotenv = "*"
 bcrypt = "*"
 requests = "*"
 pymongo = {extras = ["srv"], version = "*"}
-flask-socketio = "*"
 
 [requires]
 python_version = "3"
