@@ -896,3 +896,8 @@ all artists list
   text-decoration: none;
   font-weight: bold;
 }
+
+.no-effect-btn {
+  border: none;
+  background-color: transparent;
+}

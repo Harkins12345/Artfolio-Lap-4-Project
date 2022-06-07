@@ -44,7 +44,7 @@ const AllArtistsPage = () => {
     const renderListCard = () => {
 
     }
-
+    
     // render artists
     const renderArtists = () => {
 
@@ -60,10 +60,16 @@ const AllArtistsPage = () => {
             <div className="artist-card">
                 <div className="artist-image-card">
                     <div className="play-button">
-                        <audio controls="false">
+                        <audio id="audio">
                             <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg"></source>
                             <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg"></source>
                         </ audio>
+                        <button type="button" className="no-effect-btn">
+                            <div className="play-btn">
+                                <h1 class="bi bi-play-circle-fill"></h1>
+                                {/* <h1 class="bi bi-pause-circle-fill"></h1> */}
+                            </div>
+                        </button>
                     </div>
                     <div className="flair-section">
                         <p>Rock</p>
@@ -78,7 +84,7 @@ const AllArtistsPage = () => {
                             £50-60/hour
                         </div>
                         <div className="artist-view-more">
-                            <a href="#">View more</a>
+                            <a href="artists/prop">View more</a>
                         </div>
                     </div>
                 </div>
