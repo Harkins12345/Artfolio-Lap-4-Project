@@ -12,7 +12,7 @@ const GigPage = () => {
               className="back-to-all-artists"
               onClick={() => navigate("/artists")}
             >
-              <i class="bi bi-arrow-left"></i>&nbsp; Back to all artists
+              <i className="bi bi-arrow-left"></i>&nbsp; Back to all artists
             </span>
           </div>
 

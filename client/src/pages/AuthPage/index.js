@@ -1,10 +1,8 @@
 import React from "react";
 import classnames from "classnames";
 import { useState } from "react";
-import "./style.css";
 
 const AuthPage = () => {
-
   const [swapPanel, setSwapPanel] = useState(false);
 
   const signUpButton = () => {
@@ -24,8 +22,8 @@ const AuthPage = () => {
         id="container"
       >
         <div className="form-container sign-up-container">
-          <form id="SignUp" method="POST">
-            <h1>Create Account</h1>
+          <form className="auth-form" id="SignUp" method="POST">
+            <h1 className="header-authpage">Create Account</h1>
             <div className="social-container">
               <a href="/" className="social">
                 <i className="fab fa-facebook-f"></i>
@@ -38,21 +36,42 @@ const AuthPage = () => {
               </a>
             </div>
             <span>or use your email for registration</span>
-            <input type="text" name="username" placeholder="Username" />
-            <input type="text" name="name" placeholder="Name" />
-            <input type="email" name="email" placeholder="Email" />
-            <input type="password" name="password" placeholder="Password" />
             <input
+              className="auth-info"
+              type="text"
+              name="username"
+              placeholder="Username"
+            />
+            <input
+              className="auth-info"
+              type="text"
+              name="name"
+              placeholder="Name"
+            />
+            <input
+              className="auth-info"
+              type="email"
+              name="email"
+              placeholder="Email"
+            />
+            <input
+              className="auth-info"
+              type="password"
+              name="password"
+              placeholder="Password"
+            />
+            <button
               className="auth"
               type="submit"
-              placeholder="SIGN UP"
+              placeholder="Sign up"
               onClick={signUpButton}
-            />
+            >
+              Sign up
+            </button>
           </form>
         </div>
         <div className="form-container sign-in-container">
-
-          <form id="SignIn" method="POST">
+          <form className="auth-form" id="SignIn" method="POST">
             <h1>SIGN IN</h1>
 
             <div className="social-container">
@@ -67,17 +86,29 @@ const AuthPage = () => {
               </a>
             </div>
             <span>or use your account</span>
-            <input type="email" name="email" placeholder="Email" />
-            <input type="password" name="password" placeholder="Password" />
+            <input
+              className="auth-info"
+              type="email"
+              name="email"
+              placeholder="Email"
+            />
+            <input
+              className="auth-info"
+              type="password"
+              name="password"
+              placeholder="Password"
+            />
             <a className="social" href="/">
               Forgot your password?
             </a>
-            <input
-              className="auth"
-              type="submit"
-              placeholder="Sign in"
+
+            <button
+              className="btn auth-btn"
+              type="sumbit"
               onClick={signInButton}
-            />
+            >
+              Sign in
+            </button>
           </form>
         </div>
         <div className="overlay-container">
