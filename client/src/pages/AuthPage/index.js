@@ -36,22 +36,40 @@ const AuthPage = () => {
               </a>
             </div>
             <span>or use your email for registration</span>
-            <input className="auth-info" type="text" name="username" placeholder="Username" />
-            <input className="auth-info" type="text" name="name" placeholder="Name" />
-            <input className="auth-info" type="email" name="email" placeholder="Email" />
-            <input className="auth-info" type="password" name="password" placeholder="Password" />
             <input
+              className="auth-info"
+              type="text"
+              name="username"
+              placeholder="Username"
+            />
+            <input
+              className="auth-info"
+              type="text"
+              name="name"
+              placeholder="Name"
+            />
+            <input
+              className="auth-info"
+              type="email"
+              name="email"
+              placeholder="Email"
+            />
+            <input
+              className="auth-info"
+              type="password"
+              name="password"
+              placeholder="Password"
+            />
+            <button
               className="auth"
               type="submit"
-              placeholder="SIGN UP"
+              placeholder="Sign up"
               onClick={signUpButton}
-            >
+            />
               Sign up
-            </button>
           </form>
         </div>
         <div className="form-container sign-in-container">
-
           <form className="auth-form" id="SignIn" method="POST">
             <h1>SIGN IN</h1>
 
@@ -67,8 +85,18 @@ const AuthPage = () => {
               </a>
             </div>
             <span>or use your account</span>
-            <input className="auth-info" type="email" name="email" placeholder="Email" />
-            <input className="auth-info" type="password" name="password" placeholder="Password" />
+            <input
+              className="auth-info"
+              type="email"
+              name="email"
+              placeholder="Email"
+            />
+            <input
+              className="auth-info"
+              type="password"
+              name="password"
+              placeholder="Password"
+            />
             <a className="social" href="/">
               Forgot your password?
             </a>
