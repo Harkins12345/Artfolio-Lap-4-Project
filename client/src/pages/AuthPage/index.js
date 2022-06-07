@@ -1,15 +1,14 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setUsername } from '../../actions';
+import { setUsername } from "../../actions";
 import axios from "axios";
 import classnames from "classnames";
 import { useState } from "react";
 
 const AuthPage = () => {
-
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [swapPanel, setSwapPanel] = useState(false);
 
   const [username, setUser] = useState("");
@@ -17,46 +16,47 @@ const AuthPage = () => {
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
 
-  const toggleBtn = () => swapPanel ? setSwapPanel(false) : setSwapPanel(true);
+  const toggleBtn = () =>
+    swapPanel ? setSwapPanel(false) : setSwapPanel(true);
 
   const login = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const data = {
       email: email,
-      password: password
-    }
+      password: password,
+    };
 
-    axios.post(`${window.origin}/login`, data)
-    .then(resp => resp.data)
-    .then(data => {
-      dispatch(setUsername(data['username']));
-      useNavigate("/", { replace: true })
-    })
-    .catch(err => console.log(err))
-  }
+    axios
+      .post(`${window.origin}/login`, data)
+      .then((resp) => resp.data)
+      .then((data) => {
+        dispatch(setUsername(data["username"]));
+        navigate("/", { replace: true });
+      })
+      .catch((err) => console.log(err));
+  };
 
   const register = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    if (password == confPassword){
+    if (password == confPassword) {
       const data = {
         username: username,
         email: email,
-        password: password
-      }
-  
-      axios.post(`${window.origin}/register`, data)
-      .then(resp => resp.data)
-      .then(data => {
-        dispatch(setUsername(data['username']));
-        useNavigate("/", { replace: true })
-      })
-      .catch(err => console.log(err))
+        password: password,
+      };
 
+      axios
+        .post(`${window.origin}/register`, data)
+        .then((resp) => resp.data)
+        .then((data) => {
+          dispatch(setUsername(data["username"]));
+          navigate("/", { replace: true });
+        })
+        .catch((err) => console.log(err));
     }
-  }
-
+  };
 
   return (
     <>
@@ -77,7 +77,7 @@ const AuthPage = () => {
             data-testid="auth-form"
           >
             <h1 className="header-authpage" data-testid="header-authpage">
-              Create Account
+              Sign up
             </h1>
             <div className="social-container" data-testid="social">
               <a href="/" className="social" data-testid="social">
@@ -107,10 +107,6 @@ const AuthPage = () => {
             />
             <input
               className="auth-info"
-              type="text"
-              name="name"
-              placeholder="Name"
-              />
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -136,14 +132,20 @@ const AuthPage = () => {
               data-testid="auth-btn"
               type="submit"
               placeholder="Sign up"
-              onClick={signUpButton}
+              onClick={toggleBtn}
             >
               Sign up
+            </button>
           </form>
         </div>
         <div className="form-container sign-in-container">
-          <form className="auth-form" data-testid="sign-in-form" id="SignIn" onSubmit={login}>
-            <h1>SIGN IN</h1>
+          <form
+            className="auth-form"
+            data-testid="sign-in-form"
+            id="SignIn"
+            onSubmit={login}
+          >
+            <h1>Sign in</h1>
 
             <div className="social-container">
               <a href="/" className="social">
@@ -175,10 +177,7 @@ const AuthPage = () => {
               Forgot your password?
             </a>
 
-            <button
-              className="btn auth-btn"
-              type="sumbit"
-            >
+            <button className="btn auth-btn" type="sumbit">
               Sign in
             </button>
           </form>
