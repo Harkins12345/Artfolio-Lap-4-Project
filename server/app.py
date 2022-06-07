@@ -87,7 +87,8 @@ def register():
 
     try:
         User(db, username, email, password)
-        return jsonify({'message': 'User created successfully.'}), 201
+        session['username'] = username
+        return jsonify({'username': username}), 201
 
     except UserException as e:
         return jsonify({'error': str(e)}), 400

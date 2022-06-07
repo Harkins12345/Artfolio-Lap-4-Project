@@ -37,7 +37,24 @@ const AuthPage = () => {
   }
 
   const register = (e) => {
-    console.log()
+    e.preventDefault()
+
+    if (password == confPassword){
+      const data = {
+        username: username,
+        email: email,
+        password: password
+      }
+  
+      axios.post(`${window.origin}/register`, data)
+      .then(resp => resp.data)
+      .then(data => {
+        dispatch(setUsername(data['username']));
+        useNavigate("/", { replace: true })
+      })
+      .catch(err => console.log(err))
+
+    }
   }
 
 
