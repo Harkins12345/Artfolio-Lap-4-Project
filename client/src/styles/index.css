@@ -174,11 +174,13 @@ footer {
   border-radius: 2px;
 }
 
-.footer-sitemap {
-  list-style-type: none;
-  line-height: 250%;
-  font-size: 16px;
+.footer-sitemap-2 {
   padding-bottom: 20px;
+}
+
+.footer-sitemap-1,
+.footer-sitemap-2 {
+  line-height: 250%;
 }
 
 .footer-menu-link {
@@ -191,9 +193,9 @@ footer {
 }
 
 .footer-social-links {
-  list-style-type: none;
   display: flex;
   justify-content: space-evenly;
+  gap: 20px;
   padding-bottom: 20px;
 }
 
@@ -258,11 +260,9 @@ footer {
 
 #footer-cta {
   background-color: var(--beige-darker);
-  justify-content: center;
-  text-align: center;
 }
 
-.footer-container {
+.footer-cta-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -299,6 +299,7 @@ footer {
 /************************************************************************/
 /* LandingPage */
 /************************************************************************/
+
 .hero-section {
   padding-top: 10px;
   padding-bottom: 20px;
@@ -320,20 +321,15 @@ footer {
   margin-top: 10px;
 }
 
-.gig-section {
-  background-color: var(--beige-darker);
-}
-
-.gig-section,
 .artist-section {
   padding-top: 20px;
   padding-bottom: 20px;
 }
 
-.all-gig-btn-container,
 .all-artist-btn-container {
   display: flex;
   justify-content: flex-end;
+  padding-top: 40px;
 }
 
 .gallery-list {
@@ -343,6 +339,7 @@ footer {
   gap: 15px;
   margin: -15px;
   overflow-x: auto;
+  scrollbar-color: var(--beige-darker) var(--green);
   scroll-snap-type: inline mandatory;
   list-style-type: none;
   padding-top: 25px;
@@ -402,17 +399,17 @@ footer {
 /* Note for Prishal: above has been checked */
 
 ::-webkit-scrollbar-track {
-  background: var(--green);
+  background: var(--beige-darker);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--yellow);
+  background: var(--green);
   border-radius: 10px;
 }
 
 .has-scrollbar::-webkit-scrollbar {
-  height: 8px;
+  height: 3px;
 }
 
 .has-scrollbar::-webkit-scrollbar-button {
@@ -861,90 +858,6 @@ AllArtistsPage
   font-style: italic;
 }
 
-/* Media Queries */
-/************************************************************************/
-
-/* responsive larger than 575px */
-@media (min-width: 575px) {
-  .gallery .container {
-    max-width: unset;
-  }
-
-  .gallery-list li {
-    min-width: 80%;
-  }
-}
-
-/* responsive larger than 768px */
-@media (min-width: 768px) {
-  .gallery-list {
-    padding-bottom: 30px;
-  }
-
-  .gallery-list li {
-    min-width: 70%;
-  }
-
-  .container {
-    max-width: 700px;
-  }
-
-  .has-scrollbar::-webkit-scrollbar-button {
-    width: 150px;
-  }
-
-  .footer-menu-wrapper,
-  .footer-quicklinks,
-  .footer-bottom .footer-container {
-    display: flex;
-    justify-content: space-between;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .footer-menu-list {
-    max-width: 50%;
-    justify-content: center;
-    column-gap: 16px;
-    margin-bottom: 0;
-  }
-
-  .footer-menu-link {
-    padding: 10px;
-  }
-
-  .quicklink-list {
-    margin-bottom: 0;
-    column-gap: 15px;
-  }
-
-  .copyright {
-    margin-bottom: 0;
-    text-align: center;
-  }
-}
-
-/* responsive larger than 1024px */
-@media (min-width: 1024px) {
-  .gallery-list {
-    gap: 30px;
-    padding: 40px;
-  }
-
-  .gallery-list li {
-    min-width: 50%;
-  }
-
-  .container {
-    max-width: 1000px;
-  }
-
-  .has-scrollbar::-webkit-scrollbar-button {
-    width: 200px;
-  }
-}
-
-
 /*********************************************
 all artists list
 *********************************************/
@@ -1046,3 +959,60 @@ all artists list
   background-color: transparent;
 }
 
+/* Media Queries */
+/************************************************************************/
+
+/* responsive larger than 575px */
+@media (min-width: 575px) {
+}
+
+/* responsive larger than 768px */
+@media (min-width: 768px) {
+  .gallery-list li {
+    min-width: 40%;
+  }
+}
+
+/* responsive larger than 1024px */
+@media (min-width: 1024px) {
+  .hero-section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .hero-container {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .hero-image {
+    width: 75%;
+  }
+
+  .hero-content {
+    margin: 20px;
+    line-height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .gallery-list li {
+    min-width: 25%;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+  }
+
+  .footer-logo {
+    margin: 0;
+    display: inline-flex;
+  }
+
+  .footer-sitemap-1 {
+    padding-bottom: 20px;
+  }
+}
