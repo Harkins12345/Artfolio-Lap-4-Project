@@ -43,16 +43,14 @@ h1 {
   margin: 15px 0;
 }
 
-.auth {
-  border-radius: 20px;
-  border: #4e0d21 solid;
+.auth-btn {
+  border-radius: 25px;
+  border: 1px var(--red) solid;
   background-color: var(--red);
-  color: black;
-  font-weight: bolder;
+  color: var(--beige);
+  font-weight: 700;
   padding: 10px 30px;
-  width: 50%;
   letter-spacing: 2px;
-  text-transform: uppercase;
   text-align: center;
   transition: transform 80ms ease-in;
 }
@@ -74,7 +72,6 @@ button.ghost {
   font-weight: bold;
   padding: 10px 30px;
   letter-spacing: 2px;
-  text-transform: uppercase;
   transition: transform 80ms ease-in;
 }
 
@@ -159,13 +156,11 @@ input {
 }
 
 .overlay {
-  background: #edcc84;
-  background: -webkit-linear-gradient(to right, #edcc84, #edcc84);
-  background: linear-gradient(to right, #edcc84, #edcc84);
+  background: var(--yellow);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
-  color: black;
+  color: var(--text-dark);
   position: relative;
   left: -100%;
   height: 100%;
@@ -228,5 +223,6 @@ input {
 .social-container a:hover {
   color: var(--red);
   text-decoration: none;
-  background-color: #1056525e;
+  background-color: var(--green);
+  opacity: 50%;
 }

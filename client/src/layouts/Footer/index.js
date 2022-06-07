@@ -44,13 +44,13 @@ const Footer = () => {
 
         <div className="footer-social-links">
           <div className="footer-facebook-link">
-            <i class="fa-brands fa-facebook-f"></i>
+            <i className="fa-brands fa-facebook-f"></i>
           </div>
           <div className="footer-instagram-link">
-            <i class="fa-brands fa-instagram"></i>
+            <i className="fa-brands fa-instagram"></i>
           </div>
           <div className="footer-soundcloud-link">
-            <i class="fa-brands fa-soundcloud"></i>
+            <i className="fa-brands fa-soundcloud"></i>
           </div>
         </div>
       </div>
