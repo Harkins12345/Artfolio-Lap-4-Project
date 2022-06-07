@@ -20,6 +20,7 @@ python-dotenv = "*"
 bcrypt = "*"
 requests = "*"
 pymongo = {extras = ["srv"], version = "*"}
+flask-socketio = "*"
 
 [requires]
 python_version = "3"

@@ -25,11 +25,26 @@ class User:
         if self.db.users.find_one({'username': self.username.lower()}):
             raise UserException(f"User {self.username} already exists.")
         
+        if self.username.lower() in ['delete', 'update']:
+            raise UserException(f'Username "{self.username}" is invalid.')
+        
         self.db.users.insert_one({
             'email': self.email.lower(),
             'username': self.username.lower(),
             'display_username': self.username,
-            'password': bcrypt.hashpw(self.password.encode('utf-8'), bcrypt.gensalt())
+            'password': bcrypt.hashpw(self.password.encode('utf-8'), bcrypt.gensalt()),
+            'portfolio': {
+                "description": "",
+                "media": []
+            },
+            'posted_gigs': [
+                {
+                    "title": "",
+                    "description": "",
+                    "id": 0
+                }
+            ],
+            'active_chats': []
         })
     
     @staticmethod
@@ -49,6 +64,15 @@ class User:
             return user
         
         raise UserException("User not found.")
+    
+    @staticmethod
+    def get_all_users(db):
+        users = db.users.find({})
+
+        if len(users) > 0:
+            return users
+        
+        raise UserException("No users founds.")
     
     @staticmethod
     def update(db, username, data_type, new_data):
