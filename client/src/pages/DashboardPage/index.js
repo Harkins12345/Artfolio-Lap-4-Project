@@ -17,9 +17,43 @@ const DashboardPage = () => {
           Edit <i className="fa-solid fa-pencil"></i>
         </a>
       </div>
-
       {/*  GIG REQUESTS  */}
-      <h3> GIG REQUESTS</h3>
+      <div className="gig-requests">
+        <div class="projects-status">
+          <div class="item-status">
+            <span class="status-number">5</span>
+            <span class="status-type">Gig Requests</span>
+          </div>
+          <div class="item-status">
+            <span class="status-number">7</span>
+            <span class="status-type">Upcomig Gigs</span>
+          </div>
+        </div>
+        {/* {renderGigs()} */}
+        <div className="artist-card">
+          <div className="artist-information">
+            <h3> DRUMMER NEEDED </h3>
+            <h4> Genre: Rock </h4>
+            <h4> Location: London</h4>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed
+              ante efficitur, consectetur arcu et, tincidunt sem. Aenean varius
+              velit ex, non venenatis lorem porta ut. Donec vitae tellus ornare,
+              sagittis metus vel, fringilla mauris. Donec sodales diam interdum,
+              pretium est eget, tristique diam. Quisque sed nisi tortor. Aliquam
+              non pellentesque arcu, a venenatis odio. Pellentesque habitant
+              morbi tristique senectus et netus et malesuada fames ac turpis
+              egestas.
+            </p>
+            <div className="artist-box">
+              <div className="artist-pricing">£50-60/hour</div>
+            </div>
+            <a className="edit" href="">
+              Edit <i className="fa-solid fa-pencil"></i>
+            </a>
+          </div>
+        </div>
+      </div>
       <div className="gig-requests">
         {/* {renderGigs()} */}
         <div className="artist-card">
@@ -46,34 +80,7 @@ const DashboardPage = () => {
           </div>
         </div>
       </div>
-
-      <div className="gig-requests">
-        {/* {renderGigs()} */}
-        <div className="artist-card">
-          <div className="artist-information">
-            <h3> DRUMMER NEEDED </h3>
-            <h4> Genre: Rock </h4>
-            <h4> Location: London</h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed
-              ante efficitur, consectetur arcu et, tincidunt sem. Aenean varius
-              velit ex, non venenatis lorem porta ut. Donec vitae tellus ornare,
-              sagittis metus vel, fringilla mauris. Donec sodales diam interdum,
-              pretium est eget, tristique diam. Quisque sed nisi tortor. Aliquam
-              non pellentesque arcu, a venenatis odio. Pellentesque habitant
-              morbi tristique senectus et netus et malesuada fames ac turpis
-              egestas.
-            </p>
-            <div className="artist-box">
-              <div className="artist-pricing">£50-60/hour</div>
-            </div>
-            <a className="edit" href="">
-              Edit <i className="fa-solid fa-pencil"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      <button> CREATE NEW GIG </button>
+      <button className="create-gig"> CREATE NEW GIG </button>
 
       {/* ATTENDING GIGS */}
 
