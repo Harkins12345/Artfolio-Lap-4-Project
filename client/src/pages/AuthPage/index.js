@@ -1,8 +1,6 @@
 import React from "react";
 import classnames from "classnames";
 import { useState } from "react";
-import { useJwt } from "react-jwt";
-
 import "./style.css";
 
 const AuthPage = () => {
