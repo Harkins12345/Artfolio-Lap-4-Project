@@ -1,7 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux"
 import FooterCTA from "../../components/FooterCTA";
 
 const LandingPage = () => {
+
+  const username = useSelector(state => state.username)
+
   return (
     <>
       <section className="sign-in">
@@ -80,7 +84,7 @@ const LandingPage = () => {
           </button>
         </div>
       </section>
-      <FooterCTA />
+      {username ? null : <FooterCTA />}
     </>
   );
 };
