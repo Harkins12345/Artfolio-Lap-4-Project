@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import FooterCTA from "../../components/FooterCTA";
+import { FooterCTA, ArtistAudio, ArtistReview } from "../../components";
 
 const ArtistPortfolioPage = () => {
   const navigate = useNavigate();
@@ -55,18 +55,47 @@ const ArtistPortfolioPage = () => {
         <div className="container-xl pt-4">
           <h2 className="artist-media-title">Check out some of my work</h2>
           <div className="row">
-            <div className="col">carosel</div>
-          </div>
-          <div className="media-audio">
-            <div className="row">
-              <div className="col-2">
-                <div className="play-btn">
-                  <i class="bi bi-play-circle-fill"></i>
-                </div>
-              </div>
-              <div className="col-10 audio-name">Name of audio</div>
+            <div className="col">
+              <ul className="gallery-list has-scrollbar">
+                <li>
+                  <div className="gallery-item-artist-media">
+                    <img
+                      src="https://heavy.com/wp-content/uploads/2016/02/martin_super_bowl-e1454699147664.jpg"
+                      alt=""
+                    />
+                  </div>
+                </li>
+                <li>
+                  <div className="gallery-item-artist-media">
+                    <img
+                      src="https://heavy.com/wp-content/uploads/2016/02/martin_super_bowl-e1454699147664.jpg"
+                      alt=""
+                    />
+                  </div>
+                </li>
+                <li>
+                  <div className="gallery-item-artist-media">
+                    <img
+                      src="https://heavy.com/wp-content/uploads/2016/02/martin_super_bowl-e1454699147664.jpg"
+                      alt=""
+                    />
+                  </div>
+                </li>
+
+                <li>
+                  <div className="gallery-item-artist-media">
+                    <img
+                      src="https://heavy.com/wp-content/uploads/2016/02/martin_super_bowl-e1454699147664.jpg"
+                      alt=""
+                    />
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
+          <ArtistAudio />
+          <ArtistAudio />
+          <ArtistAudio />
         </div>
       </section>
       <section id="artist-reviews">
@@ -82,22 +111,9 @@ const ArtistPortfolioPage = () => {
           </div>
         </div>
 
-        <div className="container-xl py-4">
-          <div className="review">
-            <h4 className="review-title">Great Singer!</h4>
-            <div className="review-stars">
-              <i className="bi bi-star-fill"></i>
-              <i className="bi bi-star-fill"></i>
-              <i className="bi bi-star-fill"></i>
-              <i className="bi bi-star-fill"></i>
-              <i className="bi bi-star-fill"></i>
-            </div>
-            <div className="review-text py-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eleifend
-              viverra dictumst posuere aliquet sem nullam in diam.
-            </div>
-            <div className="review-from-name"> John Smith, London</div>
-          </div>
+        <div className="container-xl">
+          <ArtistReview />
+          <ArtistReview />
         </div>
       </section>
       <FooterCTA />

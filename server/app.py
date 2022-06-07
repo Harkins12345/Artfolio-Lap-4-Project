@@ -64,6 +64,12 @@ def serve(path):
     return send_from_directory(app.static_folder, 'index.html')
 
 
+@app.route('/validate', methods=['POST'])
+@authenticate
+def validate_user():
+    return jsonify({'username': session['username']})
+
+
 @app.route('/register', methods=['POST'])
 def register():
     email = request.json.get('email', None)
@@ -81,7 +87,8 @@ def register():
 
     try:
         User(db, username, email, password)
-        return jsonify({'message': 'User created successfully.'}), 201
+        session['username'] = username
+        return jsonify({'username': username}), 201
 
     except UserException as e:
         return jsonify({'error': str(e)}), 400
@@ -106,7 +113,7 @@ def login():
         user = User.get_by_email(db, email)
         if bcrypt.checkpw(password.encode('utf-8'), user['password']):
             session['username'] = user['display_username']
-            return jsonify({'username': 'Welcome back ' + user['display_username'] + '.'}), 200
+            return jsonify({'username': user['display_username']}), 200
         return jsonify({'error': f'Incorrect login credentials'}), 400
 
     except UserException as e:
@@ -166,16 +173,19 @@ def update():
 
     if data_type not in ['email', 'password']:
         return jsonify({'error': 'invalid data_type.'}), 400
+    
+    if username == session['username']:
+        try:
+            User.update(db, username, data_type, new_data)
+            return jsonify({'message': f'{data_type.capitalize()} updated successfully.'})
 
-    try:
-        User.update(db, username, data_type, new_data)
-        return jsonify({'message': f'{data_type.capitalize()} updated successfully.'})
+        except UserException as e:
+            return jsonify({'error': str(e)}), 400
 
-    except UserException as e:
-        return jsonify({'error': str(e)}), 400
-
-    except Exception as e:
-        return jsonify({'error': 'An unexpected error occurred.'}), 500
+        except Exception as e:
+            return jsonify({'error': 'An unexpected error occurred.'}), 500
+    
+    return jsonify({'error': 'Authentication required.'}), 401
 
 
 @app.route('/users/delete', methods=['POST'])
@@ -186,9 +196,12 @@ def delete():
     if not username:
         return jsonify({'error': 'username is required.'}), 400
 
-    User.delete(db, username)
+    if username == session['username']:
+        User.delete(db, username)
 
-    return jsonify({'message': f'User {username} deleted successfully.'}), 204
+        return jsonify({'message': f'User {username} deleted successfully.'}), 204
+    
+    return jsonify({'error': 'Authentication required.'}), 401
 
 
 @app.route('/upload', methods=['POST'])
@@ -202,15 +215,15 @@ def upload():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return send_from_directory(app.static_folder, 'index.html')
+    return send_from_directory(app.static_folder, 'index.html'), 404
 
 @app.errorhandler(405)
 def page_not_found(e):
-    return send_from_directory(app.static_folder, 'index.html')
+    return send_from_directory(app.static_folder, 'index.html'), 405
 
 @app.errorhandler(500)
 def page_not_found(e):
-    return send_from_directory(app.static_folder, 'index.html')
+    return send_from_directory(app.static_folder, 'index.html'), 500
 
 
 if __name__ == "__main__":
