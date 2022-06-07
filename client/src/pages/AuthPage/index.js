@@ -45,9 +45,8 @@ const AuthPage = () => {
               type="submit"
               placeholder="SIGN UP"
               onClick={signUpButton}
-            >
+            />
               Sign up
-            </button>
           </form>
         </div>
         <div className="form-container sign-in-container">
