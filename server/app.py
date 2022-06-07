@@ -1,3 +1,4 @@
+from crypt import methods
 import requests as r
 from flask import Flask, request, send_from_directory, jsonify
 from flask_mail import Message, Mail
@@ -37,18 +38,18 @@ db = mongo.db
 
 @app.route('/', defaults={'path': ''}, methods=['GET'])
 def serve(path):
-#     return '''<h1>Home</h1>
-#     <form method="POST" action="/upload" enctype="multipart/form-data" />
-#   <input type="file" id="myFile" name="photo_upload"  accept=".jpg,.png,.jpeg" />
-#   <input type="submit" />
-#     </form>
+    return '''<h1>Home</h1>
+    <form method="POST" action="/upload" enctype="multipart/form-data" />
+  <input type="file" id="myFile" name="photo_upload"  accept=".jpg,.png,.jpeg" />
+  <input type="submit" />
+    </form>
 
-#     <video id="video1" width="420" controls>
-#     <source src="/media/mov_bbb.mp4" type="video/mp4">
-#     Your browser does not support HTML video.
-#   </video>
-#     '''
-    return send_from_directory(app.static_folder,'index.html')
+    <video id="video1" width="420" controls>
+    <source src="/media/mov_bbb.mp4" type="video/mp4">
+    Your browser does not support HTML video.
+  </video>
+    '''
+    #return send_from_directory(app.static_folder,'index.html')
 
 
 @app.route('/register', methods=['POST'])
@@ -96,14 +97,43 @@ def login():
         return jsonify({'error': f'Incorrect login credentials'}), 400
 
     except UserException as e:
-        return jsonify({'error': str(e)}), 404
+        return jsonify({'error': str(e)}), 400
 
     except Exception as e:
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
+@app.route('/users', methods=['GET'])
+def get_all():
+    try:
+        users = User.get_all_users(db)
+        for user in users:
+            del user['active_chats']
+        return jsonify(users)
+    
+    except UserException as e:
+        return jsonify({'error': str(e)}), 404
+    
+    except Exception as e:
+        print(e)
+        return jsonify({'error': 'An unexpected error occurred.'}), 500
 
-@app.route('/user/update', methods=['POST'])
+
+@app.route('/users/<username>', methods=['GET'])
+def get_user(username):
+    try:
+        user = User.get_by_username(db, username)
+        del user['active_chats']
+        return jsonify(user)
+
+    except UserException as e:
+        return jsonify({'error': str(e)}), 404
+    
+    except Exception as e:
+        print(e)
+        return jsonify({'error': 'An unexpected error occurred.'}), 500
+
+@app.route('/users/update', methods=['POST'])
 def update():
     username = request.json.get('username', None)
     data_type = request.json.get('data_type', None)
@@ -132,7 +162,7 @@ def update():
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
 
-@app.route('/user/delete', methods=['POST'])
+@app.route('/users/delete', methods=['POST'])
 def delete():
     username = request.json.get('username', None)
 
