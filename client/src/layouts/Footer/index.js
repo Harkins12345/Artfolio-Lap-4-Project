@@ -41,8 +41,6 @@ const Footer = () => {
 
           <div className="footer-menu-link">Terms & Conditions</div>
         </div>
-
-
         <div className="footer-social-links">
           <div className="footer-facebook-link">
             <i className="fa-brands fa-facebook-f"></i>
