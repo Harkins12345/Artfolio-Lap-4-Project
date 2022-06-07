@@ -1,7 +1,6 @@
 import requests as r
 from flask import Flask, request, send_from_directory, jsonify, session
 from flask_mail import Message, Mail
-from flask_session import Session
 from wrappers.pymongoFixed import PyMongoFixed
 from wrappers.flask_sessions_fixed import SessionFixed
 from wrappers.decorators import authenticate
@@ -39,7 +38,9 @@ db = mongo.db
 
 app.config.update(dict(
     SESSION_TYPE="mongodb",
-    SESSION_MONGODB=mongo
+    SESSION_MONGODB=mongo,
+    SESSION_MONGODB_DB="cluster0",
+    SESSION_MONGODB_COLLECTION="sessions"
 ))
 
 sess = SessionFixed(app)
@@ -48,20 +49,19 @@ sess = SessionFixed(app)
 # Endpoints
 
 @app.route('/', defaults={'path': ''}, methods=['GET'])
-# @authenticate
 def serve(path):
-    return '''<h1>Home</h1>
-    <form method="POST" action="/upload" enctype="multipart/form-data" />
-  <input type="file" id="myFile" name="photo_upload"  accept=".jpg,.png,.jpeg" />
-  <input type="submit" />
-    </form>
+    #     return '''<h1>Home</h1>
+    #     <form method="POST" action="/upload" enctype="multipart/form-data" />
+    #   <input type="file" id="myFile" name="photo_upload"  accept=".jpg,.png,.jpeg" />
+    #   <input type="submit" />
+    #     </form>
 
-    <video id="video1" width="420" controls>
-    <source src="/media/mov_bbb.mp4" type="video/mp4">
-    Your browser does not support HTML video.
-  </video>
-    '''
-    # return send_from_directory(app.static_folder,'index.html')
+    #     <video id="video1" width="420" controls>
+    #     <source src="/media/mov_bbb.mp4" type="video/mp4">
+    #     Your browser does not support HTML video.
+    #   </video>
+    #     '''
+    return send_from_directory(app.static_folder, 'index.html')
 
 
 @app.route('/register', methods=['POST'])
@@ -106,7 +106,7 @@ def login():
         user = User.get_by_email(db, email)
         if bcrypt.checkpw(password.encode('utf-8'), user['password']):
             session['username'] = user['display_username']
-            return jsonify({'message': 'Welcome back ' + user['display_username'] + '.'}), 200
+            return jsonify({'username': 'Welcome back ' + user['display_username'] + '.'}), 200
         return jsonify({'error': f'Incorrect login credentials'}), 400
 
     except UserException as e:
@@ -117,8 +117,8 @@ def login():
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
 
-@app.route('/users', methods=['GET'])
-def get_all_user():
+@app.route('/users', methods=['POST'])
+def get_all():
     try:
         users = User.get_all_users(db)
         for user in users:
@@ -133,7 +133,7 @@ def get_all_user():
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
 
-@app.route('/users/<username>', methods=['GET'])
+@app.route('/users/<username>', methods=['POST'])
 def get_user(username):
     try:
         user = User.get_by_username(db, username)
@@ -149,7 +149,8 @@ def get_user(username):
 
 
 @app.route('/users/update', methods=['POST'])
-def user_update():
+@authenticate
+def update():
     username = request.json.get('username', None)
     data_type = request.json.get('data_type', None)
     new_data = request.json.get('new_data', None)
@@ -178,7 +179,8 @@ def user_update():
 
 
 @app.route('/users/delete', methods=['POST'])
-def user_delete():
+@authenticate
+def delete():
     username = request.json.get('username', None)
 
     if not username:
@@ -190,6 +192,7 @@ def user_delete():
 
 
 @app.route('/upload', methods=['POST'])
+@authenticate
 def upload():
     if 'photo_upload' in request.files:
         photo_upload = request.files['photo_upload']
@@ -197,10 +200,17 @@ def upload():
     return 'File saved', 201
 
 
-@app.route('/media/<filename>', methods=['GET'])
-def get_media(filename):
+@app.errorhandler(404)
+def page_not_found(e):
+    return send_from_directory(app.static_folder, 'index.html')
 
-    return mongo.send_file(filename)
+@app.errorhandler(405)
+def page_not_found(e):
+    return send_from_directory(app.static_folder, 'index.html')
+
+@app.errorhandler(500)
+def page_not_found(e):
+    return send_from_directory(app.static_folder, 'index.html')
 
 
 if __name__ == "__main__":
