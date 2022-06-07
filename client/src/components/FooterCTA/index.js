@@ -9,7 +9,7 @@ const FooterCTA = () => {
         <h3 id="footer-cta-title">Ready to get started?</h3>
         <button
           onClick={() => navigate("/sign-in")}
-          className="btn sign-in-btn"
+          className="btn primary-cta-btn"
           data-testid="signInBtn"
         >
           Sign In

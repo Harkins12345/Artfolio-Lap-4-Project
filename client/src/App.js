@@ -6,6 +6,9 @@ import {
   ArtistPortfolioPage,
   AuthPage,
   AllArtistsPage,
+  GigPage,
+  AllGigsPage,
+  DashboardPage,
 } from "./pages";
 import Layout from "./layouts";
 
@@ -15,6 +18,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/sign-in" element={<AuthPage />} />
           <Route path="/artists">
             <Route path="/artists" element={<AllArtistsPage />} />
