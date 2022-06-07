@@ -118,7 +118,7 @@ def login():
 
 
 @app.route('/users', methods=['GET'])
-def get_all():
+def get_all_user():
     try:
         users = User.get_all_users(db)
         for user in users:
@@ -149,7 +149,7 @@ def get_user(username):
 
 
 @app.route('/users/update', methods=['POST'])
-def update():
+def user_update():
     username = request.json.get('username', None)
     data_type = request.json.get('data_type', None)
     new_data = request.json.get('new_data', None)
@@ -178,7 +178,7 @@ def update():
 
 
 @app.route('/users/delete', methods=['POST'])
-def delete():
+def user_delete():
     username = request.json.get('username', None)
 
     if not username:
