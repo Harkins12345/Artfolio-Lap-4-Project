@@ -1,8 +1,9 @@
-from crypt import methods
 import requests as r
-from flask import Flask, request, send_from_directory, jsonify
+from flask import Flask, request, send_from_directory, jsonify, session
 from flask_mail import Message, Mail
 from wrappers.pymongoFixed import PyMongoFixed
+from wrappers.flask_sessions_fixed import SessionFixed
+from wrappers.decorators import authenticate
 
 from models.user import User, UserException, bcrypt
 
@@ -10,7 +11,7 @@ from models.user import User, UserException, bcrypt
 
 app = Flask(__name__, static_url_path='', static_folder='react-build')
 
-# Set up email config
+# Set up Email config
 
 app.config.update(dict(
     DEBUG=2,
@@ -33,23 +34,40 @@ app.config.update(dict(
 mongo = PyMongoFixed(app)
 db = mongo.db
 
+# Set up Session config
+
+app.config.update(dict(
+    SESSION_TYPE="mongodb",
+    SESSION_MONGODB=mongo,
+    SESSION_MONGODB_DB="cluster0",
+    SESSION_MONGODB_COLLECTION="sessions"
+))
+
+sess = SessionFixed(app)
+
 
 # Endpoints
 
 @app.route('/', defaults={'path': ''}, methods=['GET'])
 def serve(path):
-    return '''<h1>Home</h1>
-    <form method="POST" action="/upload" enctype="multipart/form-data" />
-  <input type="file" id="myFile" name="photo_upload"  accept=".jpg,.png,.jpeg" />
-  <input type="submit" />
-    </form>
+    #     return '''<h1>Home</h1>
+    #     <form method="POST" action="/upload" enctype="multipart/form-data" />
+    #   <input type="file" id="myFile" name="photo_upload"  accept=".jpg,.png,.jpeg" />
+    #   <input type="submit" />
+    #     </form>
 
-    <video id="video1" width="420" controls>
-    <source src="/media/mov_bbb.mp4" type="video/mp4">
-    Your browser does not support HTML video.
-  </video>
-    '''
-    #return send_from_directory(app.static_folder,'index.html')
+    #     <video id="video1" width="420" controls>
+    #     <source src="/media/mov_bbb.mp4" type="video/mp4">
+    #     Your browser does not support HTML video.
+    #   </video>
+    #     '''
+    return send_from_directory(app.static_folder, 'index.html')
+
+
+@app.route('/validate', methods=['POST'])
+@authenticate
+def validate_user():
+    return jsonify({'username': session['username']})
 
 
 @app.route('/register', methods=['POST'])
@@ -93,7 +111,8 @@ def login():
     try:
         user = User.get_by_email(db, email)
         if bcrypt.checkpw(password.encode('utf-8'), user['password']):
-            return jsonify({'message': 'Welcome back ' + user['display_username'] + '.'}), 200
+            session['username'] = user['display_username']
+            return jsonify({'username': 'Welcome back ' + user['display_username'] + '.'}), 200
         return jsonify({'error': f'Incorrect login credentials'}), 400
 
     except UserException as e:
@@ -103,23 +122,24 @@ def login():
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
-@app.route('/users', methods=['GET'])
+
+@app.route('/users', methods=['POST'])
 def get_all():
     try:
         users = User.get_all_users(db)
         for user in users:
             del user['active_chats']
         return jsonify(users)
-    
+
     except UserException as e:
         return jsonify({'error': str(e)}), 404
-    
+
     except Exception as e:
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
 
-@app.route('/users/<username>', methods=['GET'])
+@app.route('/users/<username>', methods=['POST'])
 def get_user(username):
     try:
         user = User.get_by_username(db, username)
@@ -128,12 +148,14 @@ def get_user(username):
 
     except UserException as e:
         return jsonify({'error': str(e)}), 404
-    
+
     except Exception as e:
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
+
 @app.route('/users/update', methods=['POST'])
+@authenticate
 def update():
     username = request.json.get('username', None)
     data_type = request.json.get('data_type', None)
@@ -163,6 +185,7 @@ def update():
 
 
 @app.route('/users/delete', methods=['POST'])
+@authenticate
 def delete():
     username = request.json.get('username', None)
 
@@ -175,6 +198,7 @@ def delete():
 
 
 @app.route('/upload', methods=['POST'])
+@authenticate
 def upload():
     if 'photo_upload' in request.files:
         photo_upload = request.files['photo_upload']
@@ -182,10 +206,17 @@ def upload():
     return 'File saved', 201
 
 
-@app.route('/media/<filename>', methods=['GET'])
-def get_media(filename):
+@app.errorhandler(404)
+def page_not_found(e):
+    return send_from_directory(app.static_folder, 'index.html'), 404
 
-    return mongo.send_file(filename)
+@app.errorhandler(405)
+def page_not_found(e):
+    return send_from_directory(app.static_folder, 'index.html'), 405
+
+@app.errorhandler(500)
+def page_not_found(e):
+    return send_from_directory(app.static_folder, 'index.html'), 500
 
 
 if __name__ == "__main__":
