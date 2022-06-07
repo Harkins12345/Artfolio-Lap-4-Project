@@ -68,7 +68,7 @@ const ArtistPortfolioPage = () => {
             <div className="row">
               <div className="col-2">
                 <div className="play-btn">
-                  <i class="bi bi-play-circle-fill"></i>
+                  <i className="bi bi-play-circle-fill"></i>
                 </div>
               </div>
               <div className="col-10 audio-name">Name of audio</div>

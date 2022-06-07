@@ -22,20 +22,20 @@ const DashboardPage = () => {
       </div>
       {/*  GIG REQUESTS  */}
       <div className="gig-requests" data-testid="gig-requests">
-        <div class="projects-status" data-testid="gig-requests">
-          <div class="item-status" data-testid="gig-requests">
-            <span class="status-number" data-testid="gig-requests">
+        <div className="projects-status" data-testid="gig-requests">
+          <div className="item-status" data-testid="gig-requests">
+            <span className="status-number" data-testid="gig-requests">
               5
             </span>
-            <span class="status-type" data-testid="gig-requests">
+            <span className="status-type" data-testid="gig-requests">
               Gig Requests
             </span>
           </div>
-          <div class="item-status" data-testid="upcoming-gigs">
-            <span class="status-number" data-testid="upcoming-gigs">
+          <div className="item-status" data-testid="upcoming-gigs">
+            <span className="status-number" data-testid="upcoming-gigs">
               7
             </span>
-            <span class="status-type" data-testid="upcoming-gigs">
+            <span className="status-type" data-testid="upcoming-gigs">
               Upcomig Gigs
             </span>
           </div>
