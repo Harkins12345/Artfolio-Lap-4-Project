@@ -8,7 +8,8 @@ import { useState } from "react";
 
 const AuthPage = () => {
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [swapPanel, setSwapPanel] = useState(false);
 
@@ -31,7 +32,7 @@ const AuthPage = () => {
     .then(resp => resp.data)
     .then(data => {
       dispatch(setUsername(data['username']));
-      useNavigate("/", { replace: true })
+      navigate("/", { replace: true })
     })
     .catch(err => console.log(err))
   }
@@ -50,7 +51,7 @@ const AuthPage = () => {
       .then(resp => resp.data)
       .then(data => {
         dispatch(setUsername(data['username']));
-        useNavigate("/", { replace: true })
+        navigate("/", { replace: true })
       })
       .catch(err => console.log(err))
 
