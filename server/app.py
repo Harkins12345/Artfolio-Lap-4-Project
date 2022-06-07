@@ -64,6 +64,12 @@ def serve(path):
     return send_from_directory(app.static_folder, 'index.html')
 
 
+@app.route('/validate', methods=['POST'])
+@authenticate
+def validate_user():
+    return jsonify({'username': session['username']})
+
+
 @app.route('/register', methods=['POST'])
 def register():
     email = request.json.get('email', None)
@@ -202,15 +208,15 @@ def upload():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return send_from_directory(app.static_folder, 'index.html')
+    return send_from_directory(app.static_folder, 'index.html'), 404
 
 @app.errorhandler(405)
 def page_not_found(e):
-    return send_from_directory(app.static_folder, 'index.html')
+    return send_from_directory(app.static_folder, 'index.html'), 405
 
 @app.errorhandler(500)
 def page_not_found(e):
-    return send_from_directory(app.static_folder, 'index.html')
+    return send_from_directory(app.static_folder, 'index.html'), 500
 
 
 if __name__ == "__main__":
