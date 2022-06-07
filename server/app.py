@@ -1,5 +1,5 @@
 import requests as r
-from flask import Flask, request, send_from_directory, jsonify
+from flask import Flask, request, send_from_directory, jsonify, session
 from flask_mail import Message, Mail
 from flask_session import Session
 from wrappers.pymongoFixed import PyMongoFixed
@@ -39,9 +39,7 @@ db = mongo.db
 
 app.config.update(dict(
     SESSION_TYPE="mongodb",
-    SESSION_MONGODB=mongo,
-    SESSION_MONGODB_DB="cluster0",
-    SESSION_MONGODB_COLLECTION="sessions"
+    SESSION_MONGODB=mongo
 ))
 
 sess = SessionFixed(app)
@@ -50,7 +48,7 @@ sess = SessionFixed(app)
 # Endpoints
 
 @app.route('/', defaults={'path': ''}, methods=['GET'])
-#@authenticate
+# @authenticate
 def serve(path):
     return '''<h1>Home</h1>
     <form method="POST" action="/upload" enctype="multipart/form-data" />
@@ -107,6 +105,7 @@ def login():
     try:
         user = User.get_by_email(db, email)
         if bcrypt.checkpw(password.encode('utf-8'), user['password']):
+            session['username'] = user['display_username']
             return jsonify({'message': 'Welcome back ' + user['display_username'] + '.'}), 200
         return jsonify({'error': f'Incorrect login credentials'}), 400
 
