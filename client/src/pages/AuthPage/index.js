@@ -6,7 +6,7 @@ import { useJwt } from "react-jwt";
 import "./style.css";
 
 const AuthPage = () => {
-  // const { decodedToken, isExpired } = useJwt(token);
+
   const [swapPanel, setSwapPanel] = useState(false);
 
   const signUpButton = () => {
@@ -15,58 +15,6 @@ const AuthPage = () => {
   const signInButton = () => {
     setSwapPanel(false);
   };
-
-  const requestLogin = async (e) => {
-    e.preventDefault();
-
-    try {
-      const options = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(Object.fromEntries(new FormData(e.target))),
-      };
-      // console.log(Object.fromEntries(new FormData(e.target)));
-      const r = await fetch(`http://localhost:3000/auth/login`, options);
-      const data = await r.json();
-      if (!data.success) {
-        throw new Error("Login not authorised");
-      }
-      // login(data.token);
-    } catch (err) {
-      console.warn(err);
-    }
-  };
-
-  const requestRegistration = async (e) => {
-    e.preventDefault();
-    try {
-      const options = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(Object.fromEntries(new FormData(e.target))),
-      };
-      const r = await fetch(`http://localhost:3000/auth/register`, options);
-      const data = await r.json();
-      // console.log(data);
-      if (data.err) {
-        throw Error(data.err);
-      }
-    } catch (err) {
-      console.warn(err);
-    }
-  };
-
-  // const login = (token) => {
-  //   const user = jwt_decode(token);
-  //   localStorage.setItem("token", token);
-  //   localStorage.setItem("username", user.username);
-  //   localStorage.setItem("userEmail", user.email);
-  // };
-
-  // const currentUser = () => {
-  //   const username = localStorage.getItem("username");
-  //   return username;
-  // };
 
   return (
     <>
@@ -78,7 +26,7 @@ const AuthPage = () => {
         id="container"
       >
         <div className="form-container sign-up-container">
-          <form onSubmit={requestRegistration} id="SignUp" method="POST">
+          <form id="SignUp" method="POST">
             <h1>Create Account</h1>
             <div className="social-container">
               <a href="/" className="social">
@@ -105,7 +53,7 @@ const AuthPage = () => {
           </form>
         </div>
         <div className="form-container sign-in-container">
-          <form onSubmit={requestLogin} id="SignIn" method="POST">
+          <form id="SignIn" method="POST">
             <h1>SIGN IN</h1>
             <div className="social-container">
               <a href="/" className="social">
