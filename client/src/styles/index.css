@@ -838,12 +838,12 @@ all artists list
   padding: 5px;
 }
 
-.artist-image {
-  height: 100px;
-  width: 100px;
+.artist-image-card {
+  height: 120px;
+  width: 100%;
   background-color: #00000025;
   position: relative;
-  border-radius: 100px;
+  border-radius: 25px 25px 0px 0px;
 }
 
 .play-button {
