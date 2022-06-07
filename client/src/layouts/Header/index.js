@@ -1,35 +1,21 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import "../../styles/index.css";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <>
-      <header className="header">
-        <div className="container">
-          <a href="#" className="logo">
-            <img src="" alt="Artfolio logo" />
-          </a>
+      <header>
+        <div className="container-xl header-container">
+          <img
+            onClick={() => navigate("/")}
+            src="/images/artfolio-red.png"
+            alt="Artfolio logo"
+            className="navbar-logo"
+          />
 
-          <nav className="navbar" data-nav>
-            <ul className="navbar-list">
-              <li>
-                <a href="#home" className="navbar-link">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#about" className="navbar-link">
-                  About
-                </a>
-              </li>
-            </ul>
-          </nav>
-
-          <div className="header-actions">
-            <button className="btn-sign_in">
-              <span>Sign In</span>
-            </button>
+          <div onClick={() => navigate("/sign-in")} className="btn sign-in-btn">
+            Sign In
           </div>
         </div>
       </header>

@@ -1,15 +1,15 @@
 # Artfolio-Lap-4-Project
-# website - url.com
+# website - artfol.io
 # Artfolio
 
-Futureproof LAP 2 Portfolio Week Project<br>
+Futureproof LAP 4 Portfolio Week Project
 
-Team Artfolio:
+Team Artfol.io:
+- Albert Stoykov
 - Jianli Lin
 - Michael Harkins-Meloy
-- Yusra Tahir 
-- Albert Stoykov
 - Prishal Makwana
+- Yusra Tahir 
 
 ## Description 
 [What does the application do]

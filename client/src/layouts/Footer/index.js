@@ -1,86 +1,99 @@
 import React from "react";
-import "../../styles/index.css";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <footer>
       <div className="footer-top">
-        <div className="footer-container">
-          <div className="footer-brand-wrapper">
-            <a href="#" className="logo">
-              <img src="" alt="Artfolio logo" />
-            </a>
+        <img
+          src="/images/artfolio-cream.png"
+          alt="Artfolio logo"
+          className="footer-logo"
+        />
 
-            <div className="footer-menu-wrapper">
-              <ul className="footer-menu-list">
-                <li>
-                  <a href="#hero" className="footer-menu-link">
-                    Home
-                  </a>
-                </li>
+        <p className="footer-slogan">
+          Your marketplace for the latest artists and gigs
+        </p>
+        <hr></hr>
 
-                <li>
-                  <a href="#about" className="footer-menu-link">
-                    About
-                  </a>
-                </li>
+        <ul className="footer-sitemap">
+          <li onClick={() => navigate("/")} className="footer-menu-link">
+            Home
+          </li>
 
-                <li>
-                  <a href="#" className="footer-menu-link">
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <li onClick={() => navigate("/artists")} className="footer-menu-link">
+            All Artists
+          </li>
 
-          <div className="footer-quicklinks">
-            <ul className="quicklink-list">
-              <li>
-                <a href="#" className="quicklink-item">
-                  Faq
-                </a>
-              </li>
+          <li onClick={() => navigate("/gigs")} className="footer-menu-link">
+            All Gigs
+          </li>
 
-              <li>
-                <a href="#" className="quicklink-item">
-                  Help center
-                </a>
-              </li>
+          <li className="footer-menu-link">Contact us</li>
 
-              <li>
-                <a href="#" className="quicklink-item">
-                  Terms of use
-                </a>
-              </li>
+          <li className="footer-menu-link">Privacy Policy</li>
 
-              <li>
-                <a href="#" className="quicklink-item">
-                  Privacy
-                </a>
-              </li>
-            </ul>
-          </div>
-          <ul className="footer-social-list">
-            <li>
-              <a href="#" className="footer-social-link">
-                Facebook icon
-              </a>
-            </li>
+          <li className="footer-menu-link">Terms & Conditions</li>
+        </ul>
 
-            <li>
-              <a href="#" className="footer-social-link">
-                Youtube icon
-              </a>
-            </li>
-          </ul>
-        </div>
+        <ul className="footer-social-links">
+          <li className="footer-facebook-link">
+            <i class="fa-brands fa-facebook-f"></i>
+          </li>
+          <li className="footer-instagram-link">
+            <i class="fa-brands fa-instagram"></i>
+          </li>
+          <li className="footer-soundcloud-link">
+            <i class="fa-brands fa-soundcloud"></i>
+          </li>
+        </ul>
       </div>
 
-      <div className="footer-bottom">
-        <div className="footer-container">
+      <div className="footer-copyright">
+        <div className="container-xl">
           <p className="copyright">
-            Copyright &copy; 2022. all rights reserved
+            Artfol.io ©2022. Created and designed by{" "}
+            <a
+              href="https://github.com/AlbertStoykov"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Albert
+            </a>
+            ,{" "}
+            <a
+              href="https://github.com/jianli1028"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Jianli
+            </a>
+            ,{" "}
+            <a
+              href="https://github.com/Harkins12345"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Michael
+            </a>
+            ,{" "}
+            <a
+              href="https://github.com/PrishalM"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Prishal
+            </a>
+            , and{" "}
+            <a
+              href="https://github.com/yusra-tahir"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Yusra
+            </a>
+            .
           </p>
         </div>
       </div>

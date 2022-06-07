@@ -1,3 +1,33 @@
+:root {
+    --green: #105652;
+    --red: #b91646;
+    --yellow: #f9c041;
+    --beige: #fbf3e4;
+    --beige-darker: #dfd8ca;
+    --text-dark: #0c413e;
+    --text-light: #fbf3e4;
+
+    --opacity: rgba(19, 10, 10, 0.5);
+    --font-accent: "Bebas Neue", cursive;
+    --font-primary: "Poppins", sans-serif;
+}
+
+.containerF {
+    font-family: var(--font-primary);
+    font-size: small;
+    background-color: var(--beige);
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    position: relative;
+    overflow: hidden;
+    width: 700px;
+    max-width: 100%;
+    min-height: 480px;
+    top: 90px;
+    left: 20%;
+}
+
+
 h1 {
     font-weight: bold;
     margin: 0;
@@ -8,7 +38,7 @@ h1 {
 }
 
 .social {
-    color: #333;
+    color: var(--green);
     font-size: 14px;
     text-decoration: none;
     margin: 15px 0;
@@ -16,28 +46,24 @@ h1 {
 
 .auth {
     border-radius: 20px;
-    border: none;
-    background-color: #d1b7a1;
+    border: #4e0d21 solid;
+    background-color: var(--red);
     color: black;
-    font-size: 12px;
     font-weight: bolder;
-    padding: 12px 45px;
-    width: 150px;
-    letter-spacing: 1px;
+    padding: 10px 30px;
+    width: 50%;
+    letter-spacing: 2px;
     text-transform: uppercase;
+    text-align: center;
     transition: transform 80ms ease-in;
 }
 
 .auth:hover {
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 .auth:active {
     transform: scale(0.95);
-}
-
-.auth:focus {
-    outline: none;
 }
 
 button.ghost {
@@ -54,7 +80,7 @@ button.ghost {
 }
 
 form {
-    background-color: #F2E5D9;
+    background-color: var(--beige);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -65,33 +91,21 @@ form {
 }
 
 input {
-    background-color: #dbc2ad89;
+    background-color: #dfd8ca;
     border: none;
-    border-radius: 20px;
-    padding: 12px 15px;
-    margin: 10px 0;
+    border-radius: 10px;
+    padding: 12px 15px 10px;
+    margin: 5px 0;
     width: 100%;
-}
-
-.containerF {
-    background-color: #EFDCCC;
-    border-radius: 20px;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-        0 10px 10px rgba(0, 0, 0, 0.25);
-    position: relative;
-    left: 18%;
-    top: 100px;
-    overflow: hidden;
-    width: 700px;
-    max-width: 100%;
-    min-height: 500px;
 }
 
 .form-container {
     position: absolute;
+    top: 0;
     height: 100%;
     transition: all 0.6s ease-in-out;
 }
+
 
 .sign-in-container {
     left: 0;
@@ -148,12 +162,12 @@ input {
 }
 
 .overlay {
-    background-image:
-        linear-gradient(#72685a68,
-            #b3a085c3);
+    background: #edcc84;
+    background: -webkit-linear-gradient(to right, #edcc84, #edcc84);
+    background: linear-gradient(to right, #edcc84, #edcc84);
+    background-repeat: no-repeat;
     background-size: cover;
-    background: -webkit-linear-gradient(to right, #c39e9e);
-    background: linear-gradient(to right, #c39e9e);
+    background-position: 0 0;
     color: black;
     position: relative;
     left: -100%;
@@ -163,19 +177,11 @@ input {
     transition: transform 0.6s ease-in-out;
 }
 
-
-
 .containerF.right-panel-active .overlay {
     transform: translateX(50%);
 }
 
 .overlay-panel {
-    background-image:
-        linear-gradient(#72685a68,
-            #b3a085c3);
-    background-size: cover;
-    color: black;
-    background-position-x: right;
     position: absolute;
     display: flex;
     align-items: center;
@@ -190,7 +196,6 @@ input {
     transition: transform 0.6s ease-in-out;
 }
 
-
 .overlay-left {
     transform: translateX(-20%);
 }
@@ -204,7 +209,7 @@ input {
     transform: translateX(0);
 }
 
-.container.right-panel-active .overlay-right {
+.containerF.right-panel-active .overlay-right {
     transform: translateX(20%);
 }
 
@@ -213,8 +218,8 @@ input {
 }
 
 .social-container a {
-    border: 1px solid #b3a7a7;
-    border-radius: 70%;
+    border: 1px solid #dddddd;
+    border-radius: 50%;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -224,7 +229,7 @@ input {
 }
 
 .social-container a:hover {
-    color: black;
+    color: var(--red);
     text-decoration: none;
-    background-color: rgba(236, 159, 92, 0.312);
+    background-color: #1056525e;
 }
