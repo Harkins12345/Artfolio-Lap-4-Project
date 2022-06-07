@@ -128,10 +128,24 @@ footer {
   padding-bottom: 5px;
 }
 
+.footer-line-container {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-line {
+  width: 80%;
+  background-color: var(--beige-darker);
+  opacity: 1;
+  height: 2px;
+  border-radius: 2px;
+}
+
 .footer-sitemap {
   list-style-type: none;
   line-height: 250%;
   font-size: 16px;
+  padding-bottom: 20px;
 }
 
 .footer-menu-link {
@@ -147,6 +161,7 @@ footer {
   list-style-type: none;
   display: flex;
   justify-content: space-evenly;
+  padding-bottom: 20px;
 }
 
 .footer-facebook-link,
@@ -233,6 +248,15 @@ footer {
   padding-bottom: 20px;
   padding-top: 20px;
   margin-bottom: 0;
+}
+
+.createAccountNow {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.createAccountNow:hover {
+  text-decoration: none;
 }
 
 /************************************************************************/
