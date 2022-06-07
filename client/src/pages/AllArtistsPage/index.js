@@ -58,9 +58,9 @@ const AllArtistsPage = () => {
 
         return (
             <div className="artist-card">
-                <div className="artist-image">
+                <div className="artist-image-card">
                     <div className="play-button">
-                        <audio controls>
+                        <audio controls="false">
                             <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg"></source>
                             <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg"></source>
                         </ audio>
@@ -122,7 +122,7 @@ const AllArtistsPage = () => {
                 {renderArtists()}
                 {renderArtists()}
                 {/* place holder */}
-                
+
             </div>
         </div>
     )
