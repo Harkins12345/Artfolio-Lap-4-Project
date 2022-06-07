@@ -338,8 +338,8 @@ footer {
   align-items: center;
   gap: 15px;
   margin: -15px;
+  scrollbar-width: thin;
   overflow-x: auto;
-  scrollbar-color: var(--beige-darker) var(--green);
   scroll-snap-type: inline mandatory;
   list-style-type: none;
   padding-top: 25px;
