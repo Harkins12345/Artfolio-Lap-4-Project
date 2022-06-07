@@ -5,14 +5,16 @@ const GigPage = () => {
   const navigate = useNavigate();
   return (
     <>
-      <section id="artist-intro">
-        <div className="container-xl py-5">
-          <div className="row">
+      <section id="artist-intro" data-testid="artist-intro">
+        <div className="container-xl py-5" data-testid="artist-intro">
+          <div className="row" data-testid="artist-intro">
             <span
               className="back-to-all-artists"
+              data-testid="back-btn"
               onClick={() => navigate("/artists")}
             >
-              <i className="bi bi-arrow-left"></i>&nbsp; Back to all artists
+              <i className="bi bi-arrow-left" data-testid="back-btn"></i>&nbsp;
+              Back to all artists
             </span>
           </div>
 

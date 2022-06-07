@@ -5,41 +5,59 @@ const Footer = () => {
   const navigate = useNavigate();
   return (
     <footer>
-      <div className="footer-top">
+      <div className="footer-top" data-testid="footer-top">
         <img
           src="/images/artfolio-cream.png"
           alt="Artfolio logo"
           className="footer-logo"
         />
 
-        <p className="footer-slogan">
+        <p className="footer-slogan" data-testid="footer-slogan">
           Your marketplace for the latest artists and gigs
         </p>
-        <div className="footer-line-container">
+        <div
+          className="footer-line-container"
+          data-testid="footer-line-container"
+        >
           <hr className="footer-line"></hr>
         </div>
 
-        <div className="footer-sitemap">
-          <div onClick={() => navigate("/")} className="footer-menu-link">
+        <div className="footer-sitemap" data-testid="footer-sitemap">
+          <div
+            onClick={() => navigate("/")}
+            className="footer-menu-link"
+            data-testid="footer-home-link"
+          >
             Home
           </div>
 
           <div
             onClick={() => navigate("/artists")}
             className="footer-menu-link"
+            data-testid="footer-artists-link"
           >
             All Artists
           </div>
 
-          <div onClick={() => navigate("/gigs")} className="footer-menu-link">
+          <div
+            onClick={() => navigate("/gigs")}
+            className="footer-menu-link"
+            data-testid="footer-gigs-link"
+          >
             All Gigs
           </div>
 
-          <div className="footer-menu-link">Contact us</div>
+          <div className="footer-menu-link" data-testid="footer-menu-link">
+            Contact us
+          </div>
 
-          <div className="footer-menu-link">Privacy Policy</div>
+          <div className="footer-menu-link" data-testid="footer-menu-link">
+            Privacy Policy
+          </div>
 
-          <div className="footer-menu-link">Terms & Conditions</div>
+          <div className="footer-menu-link" data-testid="footer-menu-link">
+            Terms & Conditions
+          </div>
         </div>
         <div className="footer-social-links">
           <div className="footer-facebook-link">

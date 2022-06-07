@@ -66,11 +66,21 @@ const AuthPage = () => {
         })}
         id="container"
       >
-        <div className="form-container sign-up-container">
-          <form className="auth-form" id="SignUp" onSubmit={register}>
-            <h1 className="header-authpage">Create Account</h1>
-            <div className="social-container">
-              <a href="/" className="social">
+        <div
+          className="form-container sign-up-container"
+          data-testid="form-container"
+        >
+          <form
+            className="auth-form"
+            id="SignUp"
+            onSubmit={register}
+            data-testid="auth-form"
+          >
+            <h1 className="header-authpage" data-testid="header-authpage">
+              Create Account
+            </h1>
+            <div className="social-container" data-testid="social">
+              <a href="/" className="social" data-testid="social">
                 <i className="fab fa-facebook-f"></i>
               </a>
               <a href="/" className="social">
@@ -83,6 +93,7 @@ const AuthPage = () => {
             <span>or use your email for registration</span>
             <input
               className="auth-info"
+              data-testid="auth-info"
               type="text"
               value={username}
               onChange={(e) => setUser(e.target.value)}
@@ -90,6 +101,16 @@ const AuthPage = () => {
             />
             <input
               className="auth-info"
+              type="text"
+              name="name"
+              placeholder="Name"
+            />
+            <input
+              className="auth-info"
+              type="text"
+              name="name"
+              placeholder="Name"
+              />
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -97,6 +118,7 @@ const AuthPage = () => {
             />
             <input
               className="auth-info"
+              data-testid="auth-info"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -111,14 +133,16 @@ const AuthPage = () => {
             />
             <button
               className="btn auth-btn"
+              data-testid="auth-btn"
               type="submit"
               placeholder="Sign up"
+              onClick={signUpButton}
             >
               Sign up
           </form>
         </div>
         <div className="form-container sign-in-container">
-          <form className="auth-form" id="SignIn" onSubmit={login}>
+          <form className="auth-form" data-testid="sign-in-form" id="SignIn" onSubmit={login}>
             <h1>SIGN IN</h1>
 
             <div className="social-container">
@@ -160,14 +184,14 @@ const AuthPage = () => {
           </form>
         </div>
         <div className="overlay-container">
-          <div className="overlay">
-            <div className="overlay-panel overlay-left">
+          <div className="overlay" data-testid="overlay">
+            <div className="overlay-panel overlay-left" data-testid="overlay">
               <h1>Welcome Back!</h1>
               <button className="ghost" id="signIn" onClick={toggleBtn}>
                 Sign In
               </button>
             </div>
-            <div className="overlay-panel overlay-right">
+            <div className="overlay-panel overlay-right" data-testid="overlay">
               <h1>Don't have an account?</h1>
               <button className="ghost" id="signUp" onClick={toggleBtn}>
                 Sign Up
