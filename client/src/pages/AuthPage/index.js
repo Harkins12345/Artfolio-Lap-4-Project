@@ -78,11 +78,10 @@ const AuthPage = () => {
               className="auth"
               data-testid="auth-btn"
               type="submit"
-              placeholder="SIGN UP"
+              placeholder="Sign up"
               onClick={signUpButton}
-            >
-              Sign up
-            </button>
+            />
+            Sign up
           </form>
         </div>
         <div className="form-container sign-in-container">

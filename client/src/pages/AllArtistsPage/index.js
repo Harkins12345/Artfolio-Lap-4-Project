@@ -56,9 +56,9 @@ const AllArtistsPage = () => {
 
     return (
       <div className="artist-card" data-testid="artist-card">
-        <div className="artist-image" data-testid="artist-image">
+        <div className="artist-image-card" data-testid="artist-image">
           <div className="play-button">
-            <audio controls>
+            <audio id="audio">
               <source
                 src="https://www.w3schools.com/html/horse.mp3"
                 type="audio/mpeg"
@@ -68,12 +68,18 @@ const AllArtistsPage = () => {
                 type="audio/ogg"
               ></source>
             </audio>
+            <button type="button" className="no-effect-btn">
+              <div className="play-btn">
+                <h1 class="bi bi-play-circle-fill"></h1>
+                {/* <h1 class="bi bi-pause-circle-fill"></h1> */}
+              </div>
+            </button>
           </div>
           <div className="flair-section" data-testid="flair-section">
             <p>Rock</p>
           </div>
         </div>
-        <div className="artist-information" data-testid="artist-information">
+        <div className="artist-information">
           <h3>Incredible Singer John</h3>
           <h4>Location: London</h4>
           <p>
@@ -86,11 +92,9 @@ const AllArtistsPage = () => {
             tristique senectus et netus et malesuada fames ac turpis egestas.
           </p>
           <div className="artist-info-box">
-            <div className="artist-pricing" data-testid="artist-pricing">
-              £50-60/hour
-            </div>
+            <div className="artist-pricing">£50-60/hour</div>
             <div className="artist-view-more">
-              <a href="#">View more</a>
+              <a href="artists/prop">View more</a>
             </div>
           </div>
         </div>
