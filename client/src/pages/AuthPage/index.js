@@ -3,7 +3,6 @@ import classnames from "classnames";
 import { useState } from "react";
 
 const AuthPage = () => {
-
   const [swapPanel, setSwapPanel] = useState(false);
 
   const signUpButton = () => {
@@ -46,7 +45,9 @@ const AuthPage = () => {
               type="submit"
               placeholder="SIGN UP"
               onClick={signUpButton}
-            />
+            >
+              Sign up
+            </button>
           </form>
         </div>
         <div className="form-container sign-in-container">
@@ -71,12 +72,14 @@ const AuthPage = () => {
             <a className="social" href="/">
               Forgot your password?
             </a>
-            <input
-              className="auth"
-              type="submit"
-              placeholder="Sign in"
+
+            <button
+              className="btn auth-btn"
+              type="sumbit"
               onClick={signInButton}
-            />
+            >
+              Sign in
+            </button>
           </form>
         </div>
         <div className="overlay-container">

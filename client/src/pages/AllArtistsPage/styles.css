@@ -35,14 +35,14 @@ body {
   padding-right: 10px;
   padding: 5px;
 }
-
+/* 
 .artist-image {
   height: 120px;
   width: 100%;
   background-color: #00000025;
   position: relative;
-  border-radius: 25px 25px 0px 0px;
-}
+  border-radius: 100px;
+} */
 
 .play-button {
   position: absolute;
@@ -68,7 +68,7 @@ body {
   margin: 3px;
 }
 
-.artist-information{
+.artist-information {
   padding-right: 20px;
   padding-left: 20px;
   padding-bottom: 10px;

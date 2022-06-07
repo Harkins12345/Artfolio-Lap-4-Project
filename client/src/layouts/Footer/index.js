@@ -15,39 +15,45 @@ const Footer = () => {
         <p className="footer-slogan">
           Your marketplace for the latest artists and gigs
         </p>
-        <hr></hr>
+        <div className="footer-line-container">
+          <hr className="footer-line"></hr>
+        </div>
 
-        <ul className="footer-sitemap">
-          <li onClick={() => navigate("/")} className="footer-menu-link">
+        <div className="footer-sitemap">
+          <div onClick={() => navigate("/")} className="footer-menu-link">
             Home
-          </li>
+          </div>
 
-          <li onClick={() => navigate("/artists")} className="footer-menu-link">
+          <div
+            onClick={() => navigate("/artists")}
+            className="footer-menu-link"
+          >
             All Artists
-          </li>
+          </div>
 
-          <li onClick={() => navigate("/gigs")} className="footer-menu-link">
+          <div onClick={() => navigate("/gigs")} className="footer-menu-link">
             All Gigs
-          </li>
+          </div>
 
-          <li className="footer-menu-link">Contact us</li>
+          <div className="footer-menu-link">Contact us</div>
 
-          <li className="footer-menu-link">Privacy Policy</li>
+          <div className="footer-menu-link">Privacy Policy</div>
 
-          <li className="footer-menu-link">Terms & Conditions</li>
-        </ul>
+          <div className="footer-menu-link">Terms & Conditions</div>
+        </div>
 
-        <ul className="footer-social-links">
-          <li className="footer-facebook-link">
+
+        <div className="footer-social-links">
+          <div className="footer-facebook-link">
             <i className="fa-brands fa-facebook-f"></i>
-          </li>
-          <li className="footer-instagram-link">
+          </div>
+          <div className="footer-instagram-link">
             <i className="fa-brands fa-instagram"></i>
-          </li>
-          <li className="footer-soundcloud-link">
+          </div>
+          <div className="footer-soundcloud-link">
             <i className="fa-brands fa-soundcloud"></i>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
 
       <div className="footer-copyright">
