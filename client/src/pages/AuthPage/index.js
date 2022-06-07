@@ -1,17 +1,62 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setUsername } from '../../actions';
+import axios from "axios";
 import classnames from "classnames";
 import { useState } from "react";
 
 const AuthPage = () => {
+
+  const dispatch = useDispatch()
+
   const [swapPanel, setSwapPanel] = useState(false);
 
-  const signUpButton = () => {
-    setSwapPanel(true);
-  };
+  const [username, setUser] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confPassword, setConfPassword] = useState("");
 
-  const signInButton = () => {
-    setSwapPanel(false);
-  };
+  const toggleBtn = () => swapPanel ? setSwapPanel(false) : setSwapPanel(true);
+
+  const login = (e) => {
+    e.preventDefault()
+
+    const data = {
+      email: email,
+      password: password
+    }
+
+    axios.post(`${window.origin}/login`, data)
+    .then(resp => resp.data)
+    .then(data => {
+      dispatch(setUsername(data['username']));
+      useNavigate("/", { replace: true })
+    })
+    .catch(err => console.log(err))
+  }
+
+  const register = (e) => {
+    e.preventDefault()
+
+    if (password == confPassword){
+      const data = {
+        username: username,
+        email: email,
+        password: password
+      }
+  
+      axios.post(`${window.origin}/register`, data)
+      .then(resp => resp.data)
+      .then(data => {
+        dispatch(setUsername(data['username']));
+        useNavigate("/", { replace: true })
+      })
+      .catch(err => console.log(err))
+
+    }
+  }
+
 
   return (
     <>
@@ -22,7 +67,7 @@ const AuthPage = () => {
         id="container"
       >
         <div className="form-container sign-up-container">
-          <form className="auth-form" id="SignUp" method="POST">
+          <form className="auth-form" id="SignUp" onSubmit={register}>
             <h1 className="header-authpage">Create Account</h1>
             <div className="social-container">
               <a href="/" className="social">
@@ -39,38 +84,41 @@ const AuthPage = () => {
             <input
               className="auth-info"
               type="text"
-              name="username"
+              value={username}
+              onChange={(e) => setUser(e.target.value)}
               placeholder="Username"
             />
             <input
               className="auth-info"
-              type="text"
-              name="name"
-              placeholder="Name"
-            />
-            <input
-              className="auth-info"
               type="email"
-              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
             />
             <input
               className="auth-info"
               type="password"
-              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
             />
+            <input
+              className="auth-info"
+              type="password"
+              value={confPassword}
+              onChange={(e) => setConfPassword(e.target.value)}
+              placeholder="Confirm Password"
+            />
             <button
-              className="auth"
+              className="btn auth-btn"
               type="submit"
               placeholder="Sign up"
-              onClick={signUpButton}
-            />
+            >
               Sign up
           </form>
         </div>
         <div className="form-container sign-in-container">
-          <form className="auth-form" id="SignIn" method="POST">
+          <form className="auth-form" id="SignIn" onSubmit={login}>
             <h1>SIGN IN</h1>
 
             <div className="social-container">
@@ -88,13 +136,15 @@ const AuthPage = () => {
             <input
               className="auth-info"
               type="email"
-              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
             />
             <input
               className="auth-info"
               type="password"
-              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
             />
             <a className="social" href="/">
@@ -104,7 +154,6 @@ const AuthPage = () => {
             <button
               className="btn auth-btn"
               type="sumbit"
-              onClick={signInButton}
             >
               Sign in
             </button>
@@ -114,13 +163,13 @@ const AuthPage = () => {
           <div className="overlay">
             <div className="overlay-panel overlay-left">
               <h1>Welcome Back!</h1>
-              <button className="ghost" id="signIn" onClick={signInButton}>
+              <button className="ghost" id="signIn" onClick={toggleBtn}>
                 Sign In
               </button>
             </div>
             <div className="overlay-panel overlay-right">
               <h1>Don't have an account?</h1>
-              <button className="ghost" id="signUp" onClick={signUpButton}>
+              <button className="ghost" id="signUp" onClick={toggleBtn}>
                 Sign Up
               </button>
             </div>

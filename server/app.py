@@ -87,7 +87,8 @@ def register():
 
     try:
         User(db, username, email, password)
-        return jsonify({'message': 'User created successfully.'}), 201
+        session['username'] = username
+        return jsonify({'username': username}), 201
 
     except UserException as e:
         return jsonify({'error': str(e)}), 400
@@ -112,7 +113,7 @@ def login():
         user = User.get_by_email(db, email)
         if bcrypt.checkpw(password.encode('utf-8'), user['password']):
             session['username'] = user['display_username']
-            return jsonify({'username': 'Welcome back ' + user['display_username'] + '.'}), 200
+            return jsonify({'username': user['display_username']}), 200
         return jsonify({'error': f'Incorrect login credentials'}), 400
 
     except UserException as e:
