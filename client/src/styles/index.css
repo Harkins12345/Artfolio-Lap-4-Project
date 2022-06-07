@@ -66,6 +66,22 @@ body {
   box-shadow: 1px 1px 1px 0;
 }
 
+.dashboard {
+  background-color: var(--yellow);
+  border-radius: 50px;
+  width: 130px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+
+}
+
+.dashboard:hover {
+  box-shadow: 1px 1px 1px 0;
+}
+
 /************************************************************************/
 /* LAYOUTS */
 /************************************************************************/
@@ -95,6 +111,15 @@ header {
 
 .navbar-logo {
   height: 80px;
+}
+
+.navIcons {
+  display: flex;
+
+}
+
+.fa-regular {
+  margin-right: 5px;
 }
 
 /**********************************************************************/
@@ -248,7 +273,8 @@ html {
   overflow-x: hidden;
   overflow-y: scroll;
   width: 100%;
-  min-height: calc(100vh - 340px); /*content minus nav and footer*/
+  min-height: calc(100vh - 340px);
+  /*content minus nav and footer*/
 }
 
 #mainTitle {
@@ -370,6 +396,7 @@ html {
   justify-content: center;
   align-items: center;
 }
+
 .artist-icon {
   font-size: 3rem;
 }
@@ -397,6 +424,7 @@ html {
   .gallery-list li {
     min-width: 70%;
   }
+
   .container {
     max-width: 700px;
   }
@@ -446,6 +474,7 @@ html {
   .gallery-list li {
     min-width: 50%;
   }
+
   .container {
     max-width: 1000px;
   }
