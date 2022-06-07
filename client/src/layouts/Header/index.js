@@ -6,30 +6,40 @@ const Header = () => {
   return (
     <>
       <header>
-        <div className="container-xl header-container">
+        <div
+          className="container-xl header-container"
+          data-testid="header-container"
+        >
           <img
             onClick={() => navigate("/")}
             src="/images/artfolio-red.png"
             alt="Artfolio logo"
             className="navbar-logo"
+            data-testid="navbar-logo"
           />
 
+          {/* <div
+            onClick={() => navigate("/sign-in")}
+            className="btn primary-cta-btn"
+          > */}
 
-//           <div
-//             onClick={() => navigate("/sign-in")}
-//             className="btn primary-cta-btn"
-//           >
-
-          <div className="navIcons"> 
-          <div onClick={() => navigate("/dashboard")} className="dashboard">
-          <i className="fa-regular fa-address-card"></i>
-            Dashboard
-          </div>
-          <div onClick={() => navigate("/sign-in")} className="btn sign-in-btn">
-            <i className="fa-regular fa-user"></i>
-
-            Sign In
-          </div>
+          <div className="navIcons">
+            <div
+              onClick={() => navigate("/dashboard")}
+              className="dashboard"
+              data-testid="dashboard"
+            >
+              <i className="fa-regular fa-address-card"></i>
+              Dashboard
+            </div>
+            <div
+              onClick={() => navigate("/sign-in")}
+              className="btn sign-in-btn"
+              data-testid="sign-in-btn"
+            >
+              <i className="fa-regular fa-user"></i>
+              Sign In
+            </div>
           </div>
         </div>
       </header>

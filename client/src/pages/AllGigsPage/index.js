@@ -36,7 +36,7 @@ const AllGigsPage = () => {
       {/* need a blank space for navbar */}
 
       {/* section for description */}
-      <div className="main-section">
+      <div className="main-section" data-testid="main-section">
         <div className="main-text">
           <h1>Artists hideout</h1>
           <p>
@@ -66,11 +66,11 @@ const AllGigsPage = () => {
       </div>
 
       {/* section for each artist */}
-      <div className="artist-list">
+      <div className="artist-list" data-testid="artist-list">
         {/* {sortingArtist()} */}
-        <div className="sort-drop">
+        <div className="sort-drop" data-testid="sort-drop">
           <form id="sort-drop">
-            <label for="sort-drop">Sort by: </label>
+            <label htmlFor="sort-drop">Sort by: </label>
             <select
               name="sort-drop"
               id="sort-drop"
@@ -91,7 +91,7 @@ const AllGigsPage = () => {
               {/* to replace with playing button */}
               <img src="https://cdn-icons-png.flaticon.com/512/109/109197.png"></img>
             </div>
-            <div className="flair-section">
+            <div className="flair-section" data-testid="flair-section">
               <p>Rock</p>
             </div>
           </div>

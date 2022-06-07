@@ -5,6 +5,13 @@ import { screen, render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import * as router from "react-router";
 import userEvent from "@testing-library/user-event";
+
+const mockedUsedNavigate = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockedUsedNavigate,
+}));
+
 describe("FooterCTA", () => {
   beforeEach(() => {
     render(
@@ -34,12 +41,10 @@ describe("FooterCTA", () => {
     expect(paragraph).toBeInTheDocument();
   });
 
-  //   test("it renders the button and navigates to /sign-in upon click", async () => {
-  //     jest.spyOn(router, "useNavigate").mockImplementation(() => navigate);
-
-  //     const ui = userEvent.setup();
-  //     const navigate = jest.fn();
-  //     await ui.click(screen.queryByText("Sign In"));
-  //     expect(navigate).toHaveBeenCalledWith("/sign-in");
-  //   });
+  test("it renders the button and navigates to /sign-in upon click", async () => {
+    let button = screen.getByTestId("signInBtn");
+    await userEvent.click(button);
+    expect(button).toBeInTheDocument();
+    expect(mockedUsedNavigate).toHaveBeenCalledWith("/sign-in");
+  });
 });
