@@ -17,7 +17,6 @@ const AuthPage = () => {
 
   return (
     <>
-      {/* <Layout /> */}
       <div
         className={classnames("containerF", {
           "right-panel-active": swapPanel,
