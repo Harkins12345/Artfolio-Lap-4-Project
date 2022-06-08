@@ -1120,3 +1120,71 @@ AllArtistsPage
   background-color: none !important;
 
 }
+
+.chat-modal-initialization {
+  font-size: small;
+  color: grey;
+  text-align: center;
+}
+
+/* chat balloon send style */
+
+.chat-balloon-send-main {
+  position: relative;
+  float: right;
+  background-color: var(--beige);
+  min-width: 50%;
+  max-width: 70%;
+  margin-right: 5%;
+  border-radius: 5px;
+  margin-bottom: 12px;
+}
+
+.chat-balloon-send-text-box {
+  position: static;
+  padding: 5px;
+}
+
+.chat-baloon-send-message{
+  word-wrap: break-word;
+  text-align: left;
+  font-size: 1em;
+}
+
+.chat-baloon-send-time {
+  float: right;
+}
+
+.chat-baloon-time {
+  font-size: small;
+  color: grey;
+  padding: 5px;
+}
+
+/* chat balloon received style */
+
+.chat-balloon-received-main {
+  position: relative;
+  float: left;
+  background-color: var(--beige-darker);
+  min-width: 50%;
+  max-width: 70%;
+  margin-left: 5%;
+  border-radius: 5px;
+  margin-bottom: 12px;
+}
+
+.chat-balloon-received-text-box {
+  position: static;
+  padding: 5px;
+}
+
+.chat-baloon-received-message{
+  word-wrap: break-word;
+  text-align: left;
+  font-size: 1em;
+}
+
+.chat-baloon-received-time {
+  float: right;
+}
