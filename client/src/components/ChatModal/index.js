@@ -1,25 +1,22 @@
 import React from "react";
 
-const ChatModal = () => {
 
-    // function to close the chat
-    const showModal = () => {
-        
-    }
+const ChatModal = ({ showModal, setShowModal }) => {
+
     // function to minimize the chat
 
     return (
         <>
             {/* show modal if value is true */}
-            {/* {showModal? ( */}
+            {showModal? (
                 <div className="chat-modal-box ">
                     <div className="chat-modal-section-top">
                         <div className="chat-modal-top-close">
                             <div className="chat-modal-collapse">
-                                <i className="bi bi-arrows-angle-contract"></i>
+                                <i className="bi bi-arrows-angle-contract" id="minimizeChat"></i>
                             </div>
                             <div className="chat-modal-close">
-                                <i className="bi bi-x-square-fill"></i>
+                                <i className="bi bi-x-square-fill" id="closeChat"></i>
                             </div>
                         </div>
                     </div>
@@ -41,7 +38,7 @@ const ChatModal = () => {
                         </form>
                     </div>
                 </div>
-            {/* ) : null} */}
+            ) : null}
         </>
     )
 }

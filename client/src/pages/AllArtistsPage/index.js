@@ -14,7 +14,7 @@ const AllArtistsPage = () => {
       .post(`${window.origin}/artists`)
       .then((resp) => resp.data)
       .then((data) => setArtistList(data))
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -55,12 +55,16 @@ const AllArtistsPage = () => {
                 <option value="price" data-testid="artist-pricing">
                   Price&nbsp;(ascending)
                 </option>
-                <option value="rating">Rating&nbsp;(ascending)</option>
+                <option value="rating" data-testid="artist-rating">
+                  Rating&nbsp;(ascending)
+                </option>
               </select>
             </form>
           </div>
           <div className="gallery-all-list">
-            {artistList.map(artist => <ArtistCard artistData={artist}/>)}
+            {artistList.map((artist) => (
+              <ArtistCard artistData={artist} />
+            ))}
           </div>
         </div>
 

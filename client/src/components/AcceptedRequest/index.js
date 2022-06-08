@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-import ChatModal from "./../ChatModal";
+import { ChatModal } from "../../components";
+
 
 const AcceptedRequest = () => {
-
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <a
       ref={ref}
@@ -16,13 +16,21 @@ const AcceptedRequest = () => {
       <span className="threedots" />
     </a>
   ));
+
+  // open modal operators
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(prev => !prev);
+  };
+
   return (
     <div className="accepted-container my-4">
       <div className="row name-dropdown">
-        <div className="col-6">
+        <div className="col-6" data-testid="username">
           <h3> USERNAME </h3>
         </div>
-        <div className="col-6 drop-down-tg">
+        <div className="col-6 drop-down-tg" data-testid="dropdown">
           <Dropdown>
             <Dropdown.Toggle as={CustomToggle} />
             <Dropdown.Menu size="sm" title="">
@@ -42,12 +50,12 @@ const AcceptedRequest = () => {
               velit ex, non venenatis lorem porta ut. Donec vitae tellus ornare,
               sagittis metus vel, fringilla mauris.
             </p>
-            <button className="edit-button">
-              <i className="fa-solid fa-message"></i> Chat <ChatModal/>
+            <button className="edit-button" onClick={openModal}>
+              <i className="fa-solid fa-message"></i> Chat
             </button>
           </div>
         </div>
-        <div className="col-4">
+        <div className="col-4" data-testid="request-details">
           <div className="request-details">
             <span> Location </span>
             <span> Date/Time </span>
@@ -56,7 +64,7 @@ const AcceptedRequest = () => {
             <span> Budget </span>
           </div>
         </div>
-      </div>
+      </div><ChatModal showModal={showModal} setShowModal={setShowModal} />
     </div>
   );
 };
