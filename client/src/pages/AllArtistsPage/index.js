@@ -42,8 +42,9 @@ const AllArtistsPage = () => {
                 name="sort-drop"
                 className="btn sort-drop-list"
                 id="sort-drop-list"
+                data-testid="sort-drop"
               >
-                <option value="new" data-testid="artist-list">
+                <option value="new" data-testid="artist-new">
                   New artists
                 </option>
                 <option value="popular">

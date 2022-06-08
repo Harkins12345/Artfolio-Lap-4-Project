@@ -52,9 +52,4 @@ describe("All Artists Page", () => {
     let main = screen.getAllByTestId("main-section");
     expect(main).toBeTruthy();
   });
-
-  test("it renders an Artist list", () => {
-    let list = screen.getAllByTestId("artist-list");
-    expect(list).toBeTruthy();
-  });
 });
