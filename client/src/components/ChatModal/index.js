@@ -5,7 +5,11 @@ import ChatBalloonSend from "../ChatBalloonSend";
 
 const ChatModal = ({ showModal, setShowModal }) => {
 
-    // function to minimize the chat
+    // function to close the chat
+    const closeChat = () => {
+        setShowModal(prev => !prev);
+        console.log(showModal)
+    };
 
     return (
         <>
@@ -15,10 +19,12 @@ const ChatModal = ({ showModal, setShowModal }) => {
                     <div className="chat-modal-section-top">
                         <div className="chat-modal-top-close">
                             <div className="chat-modal-collapse">
-                                <i className="bi bi-arrows-angle-contract" id="minimizeChat"></i>
+                                {/* <i className="bi bi-arrows-angle-contract" id="minimizeChat"></i> */}
                             </div>
                             <div className="chat-modal-close">
-                                <i className="bi bi-x-square-fill" id="closeChat"></i>
+                                <button className="chat-modal-close-button" onClick={closeChat}>
+                                    <i className="bi bi-x-square-fill" id="closeChat"></i>
+                                </button>
                             </div>
                         </div>
                     </div>

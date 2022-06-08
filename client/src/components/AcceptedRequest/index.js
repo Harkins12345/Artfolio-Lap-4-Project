@@ -19,7 +19,7 @@ const AcceptedRequest = () => {
 
   // open modal operators
   const [showModal, setShowModal] = useState(false);
-
+  
   const openModal = () => {
     setShowModal(prev => !prev);
   };

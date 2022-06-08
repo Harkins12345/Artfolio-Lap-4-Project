@@ -1071,6 +1071,12 @@ AllArtistsPage
   float: right;
 }
 
+.chat-modal-close-button {
+  border: 0px!important;
+  background-color: var(--beige-darker);
+  cursor: pointer;
+}
+
 .chat-modal-section-middle {
   height: 75%;
   margin: auto;
