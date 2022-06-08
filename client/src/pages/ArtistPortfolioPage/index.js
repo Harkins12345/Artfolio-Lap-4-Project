@@ -57,7 +57,10 @@ const ArtistPortfolioPage = () => {
             viverra dictumst posuere aliquet sem nullam in diam.
           </div>
           <div className="artist-btn-container">
-            <div onClick={() => navigate("/")} className="btn primary-cta-btn">
+            <div
+              onClick={() => navigate("/dashboard")}
+              className="btn primary-cta-btn"
+            >
               Get in touch
             </div>
           </div>

@@ -16,6 +16,7 @@ const AllArtistsPage = () => {
       .catch((err) => console.log(err));
   }, []);
 
+
   return (
     <>
       <div className="all-artists-section" data-testid="main-section">
@@ -61,6 +62,7 @@ const AllArtistsPage = () => {
             <ArtistCard />
             <ArtistCard />
           </div>
+
         </div>
       </section>
 

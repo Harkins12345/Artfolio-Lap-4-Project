@@ -18,18 +18,18 @@ describe("All Artists Page", () => {
     expect(card).toBeTruthy();
   });
 
-  test("it renders an Artist Image inside Artist Card", () => {
-    let image = screen.getAllByTestId("artist-image");
+  test("it renders an  New Artist Option", () => {
+    let image = screen.getAllByTestId("artist-new");
     expect(image).toBeTruthy();
   });
 
-  test("it renders a genre inside Artist Card", () => {
-    let genre = screen.getAllByTestId("flair-section");
-    expect(genre).toBeTruthy();
+  test("it renders a Sort Dropdown menu", () => {
+    let sort = screen.getAllByTestId("sort-drop");
+    expect(sort).toBeTruthy();
   });
 
   test("it renders Artist Info", () => {
-    let info = screen.getAllByTestId("artist-information");
+    let info = screen.getAllByTestId("artist-info");
     expect(info).toBeTruthy();
   });
 

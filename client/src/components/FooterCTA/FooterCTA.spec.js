@@ -12,7 +12,7 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockedUsedNavigate,
 }));
 
-describe("FooterCTA", () => {
+describe("FooterCTA Component", () => {
   beforeEach(() => {
     render(
       <Router>
@@ -39,6 +39,13 @@ describe("FooterCTA", () => {
   test("it renders a Create Account Button", () => {
     let paragraph = screen.getByTestId("createAccBtn");
     expect(paragraph).toBeInTheDocument();
+  });
+
+  test("it renders the button and navigates to /sign-in upon click", async () => {
+    let button = screen.getByTestId("createAccBtn");
+    await userEvent.click(button);
+    expect(button).toBeInTheDocument();
+    expect(mockedUsedNavigate).toHaveBeenCalledWith("/sign-in");
   });
 
   test("it renders the button and navigates to /sign-in upon click", async () => {
