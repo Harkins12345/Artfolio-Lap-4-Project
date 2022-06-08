@@ -6,9 +6,9 @@ const DashboardPage = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="welcome-section">
-        <div className="profile-header">
-          <div className="profile-img">
+      <div className="welcome-section" data-testid="welcome-section">
+        <div className="profile-header" data-testid="main-text">
+          <div className="profile-img" data-testid="user-welcome">
             <img
               className="profile-pic"
               src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
@@ -30,17 +30,20 @@ const DashboardPage = () => {
             </div>
           </div>
         </div>
-        <button onClick={() => navigate("/portfolio")} className="profile-option">
-          Edit <i className="fa-solid fa-pencil"></i>
+        <button
+          onClick={() => navigate("/portfolio")}
+          className="profile-option"
+        >
+          Edit <i className="fa-solid fa-pencil" data-testid="edit-btn"></i>
         </button>
       </div>
 
       <div className="dashboard-container">
-        <div className="request-gigs"></div>
-        <h3> Requested Gigs </h3>
-        <div className="artist-card">
-          <div className="artist-information">
-            <p> DRUMMER NEEDED </p>
+        <div className="request-gigs" data-testid="gig-requests"></div>
+        <h3 data-testid="gig-requests"> Requested Gigs </h3>
+        <div className="artist-card" data-testid="artist-card">
+          <div className="artist-information" data-testid="artist-card">
+            <p data-testid="artist-card"> DRUMMER NEEDED </p>
             <div className="artist-box"></div>
             <button className="edit-button" href="">
               Edit <i className="fa-solid fa-pencil"></i>
@@ -48,7 +51,10 @@ const DashboardPage = () => {
           </div>
         </div>
 
-        <button onClick={() => navigate("/new-gig")} className="create-gig"> CREATE NEW GIG </button>
+        <button onClick={() => navigate("/new-gig")} className="create-gig">
+          {" "}
+          CREATE NEW GIG{" "}
+        </button>
 
         {/* ATTENDING GIGS */}
         <div className="accepted-gigs">

@@ -5,7 +5,7 @@ const FooterCTA = () => {
   const navigate = useNavigate();
   return (
     <section id="footer-cta" data-testid="footer-cta">
-      <div className="container-xl py-4 footer-container">
+      <div className="container-xl py-4 footer-cta-container">
         <h3 id="footer-cta-title">Ready to get started?</h3>
 
         <div
@@ -19,7 +19,7 @@ const FooterCTA = () => {
 
         <p id="create-account" data-testid="create-account">
           Haven't got an account?{" "}
-          <span className="createAccountNow" data-testid="createAccBtn">
+          <span onClick={() => navigate("/sign-in")} className="createAccountNow" data-testid="createAccBtn">
             Create one now!
           </span>
         </p>

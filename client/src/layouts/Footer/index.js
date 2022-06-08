@@ -5,51 +5,97 @@ const Footer = () => {
   const navigate = useNavigate();
   return (
     <footer>
-      <div className="footer-top">
-        <img
-          src="/images/artfolio-cream.png"
-          alt="Artfolio logo"
-          className="footer-logo"
-        />
+      <div className="footer-top" data-testid="footer-top">
+        <div className="footer-content container-xl ">
+          <div>
+            <img
+              src="/images/artfolio-cream.png"
+              alt="Artfolio logo"
+              className="footer-logo"
+            />
 
-        <p className="footer-slogan">
-          Your marketplace for the latest artists and gigs
-        </p>
-        <div className="footer-line-container">
-          <hr className="footer-line"></hr>
-        </div>
-
-        <div className="footer-sitemap">
-          <div onClick={() => navigate("/")} className="footer-menu-link">
-            Home
+            <p className="footer-slogan" data-testid="footer-slogan">
+              Your marketplace for the latest artists
+            </p>
           </div>
 
           <div
-            onClick={() => navigate("/artists")}
-            className="footer-menu-link"
+            className="footer-line-container"
+            data-testid="footer-line-container"
           >
-            All Artists
+            <hr className="footer-line"></hr>
           </div>
 
-          <div onClick={() => navigate("/gigs")} className="footer-menu-link">
-            All Gigs
+          <div className="footer-sitemap-1">
+            <div
+              onClick={() => navigate("/")}
+              className="footer-menu-link"
+              data-testid="footer-home-link"
+            >
+              Home
+            </div>
+
+            <div
+              onClick={() => navigate("/artists")}
+              className="footer-menu-link"
+              data-testid="footer-artists-link"
+            >
+              All Artists
+            </div>
+
+            <div
+              onClick={() => navigate("/demo")}
+              className="footer-menu-link"
+              data-testid="footer-artists-link"
+            >
+              About us
+            </div>
+          </div>
+          <div className="footer-sitemap-2">
+            <div
+              onClick={() => navigate("/demo")}
+              className="footer-menu-link"
+              data-testid="footer-menu-link"
+            >
+              Contact us
+            </div>
+
+            <div
+              onClick={() => navigate("/demo")}
+              className="footer-menu-link"
+              data-testid="footer-menu-link"
+            >
+              Privacy Policy
+            </div>
+
+            <div
+              onClick={() => navigate("/demo")}
+              className="footer-menu-link"
+              data-testid="footer-menu-link"
+            >
+              Terms & Conditions
+            </div>
           </div>
 
-          <div className="footer-menu-link">Contact us</div>
-
-          <div className="footer-menu-link">Privacy Policy</div>
-
-          <div className="footer-menu-link">Terms & Conditions</div>
-        </div>
-        <div className="footer-social-links">
-          <div className="footer-facebook-link">
-            <i className="fa-brands fa-facebook-f"></i>
-          </div>
-          <div className="footer-instagram-link">
-            <i className="fa-brands fa-instagram"></i>
-          </div>
-          <div className="footer-soundcloud-link">
-            <i className="fa-brands fa-soundcloud"></i>
+          <div className="footer-social-links">
+            <div
+              onClick={() => navigate("/demo")}
+              className="footer-facebook-link"
+            >
+              <i className="fa-brands fa-facebook-f"></i>
+            </div>
+            <div
+              onClick={() => navigate("/demo")}
+              className="footer-instagram-link"
+            >
+              <i className="fa-brands fa-instagram"></i>
+            </div>
+            <div
+              onClick={() => navigate("/demo")}
+              className="footer-soundcloud-link"
+            >
+              <i className="fa-brands fa-soundcloud"></i>
+            </div>
           </div>
         </div>
       </div>
