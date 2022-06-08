@@ -924,3 +924,11 @@ AllArtistsPage
 .hide {
   display: none;
 }
+
+/* Chat Modal Component */
+
+.chat-modal-box {
+  max-width: 20%;
+  max-height: 30%;
+  background-color: var(--beige);
+}
