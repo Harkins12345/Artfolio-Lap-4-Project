@@ -16,6 +16,7 @@ PAGES
 -AuthPage
 -AllArtistPage
 -ArtistPortfolioPage
+-YourPortfolioPage
 
 Media Queries 
 
@@ -815,6 +816,23 @@ AllArtistsPage
   margin-left: 10px;
 }
 
+.artist-image-availability {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.artist-availability {
+  margin-top: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: var(--green);
+  color: var(--text-light);
+  border-radius: 25px;
+}
+
 .artist-review-section {
   background-color: var(--beige-darker);
   margin-top: 20px;
@@ -843,6 +861,43 @@ AllArtistsPage
   display: flex;
   justify-content: end;
   font-style: italic;
+}
+
+/**********************************************************************/
+/* YourPortfolioPage */
+/**********************************************************************/
+.your-portfolio-hero-section {
+  background-color: var(--beige-darker);
+  width: 100%;
+  height: 100%;
+  text-align: justify;
+  margin: auto;
+}
+
+.your-portfolio-hero-content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.your-portfolio-title {
+  font-weight: 700;
+  font-family: "Bebas Neue", cursive;
+}
+
+.your-portfolio-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#name,
+#email,
+#current-password,
+#new-password,
+#genre {
+  border-radius: 25px;
+  border: 2px solid var(--green);
+  background-color: transparent;
+  margin-bottom: 10px;
 }
 
 /* Media Queries */
