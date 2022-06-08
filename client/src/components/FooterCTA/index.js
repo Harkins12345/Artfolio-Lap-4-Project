@@ -19,7 +19,7 @@ const FooterCTA = () => {
 
         <p id="create-account" data-testid="create-account">
           Haven't got an account?{" "}
-          <span className="createAccountNow" data-testid="createAccBtn">
+          <span onClick={() => navigate("/sign-in")} className="createAccountNow" data-testid="createAccBtn">
             Create one now!
           </span>
         </p>
