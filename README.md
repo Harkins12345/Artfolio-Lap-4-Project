@@ -1,10 +1,7 @@
-# Artfolio-Lap-4-Project
+
 # website - artfol.io
 # Artfolio
-
-Futureproof LAP 4 Portfolio Week Project
-
-Team Artfol.io:
+# Team Artfol.io:
 - Albert Stoykov
 - Jianli Lin
 - Michael Harkins-Meloy
@@ -14,9 +11,11 @@ Team Artfol.io:
 ## Description 
 [What does the application do]
   * Artfolio - Connecting performers to their next big break 
-  * Music Performers Marketplace  
-
-
+  * Music Performers Marketplace
+  * - Users can create accounts 
+  * - create gigs to search for artists
+  * - offer services as an artist
+  * - chat to arrange business opportunities 
 
 ---
 
@@ -27,9 +26,10 @@ Team Artfol.io:
 - 
 
 ### Usage
-
-- 
-- 
+# website - artfol.io
+# If ran localy
+- npm install
+- npm start
 
 # Technologies 
 
@@ -52,12 +52,12 @@ Agreed on our way of working
 
 Defining and refining  
 - Defined the core requirements of the application and added each requirement as tickets in a trello board  
-- Went through each ticket as a team to ensure we are all aligned with the requirments and how we indend to tackle the ticket 
+- Went through each ticket as a team to ensure we are all aligned with the requirments and how we intend to tackle the ticket 
 
 Design planning 
 - Found a few examples of similar journalling websites and took screenshots
-- Using Figma, as a team we went through each of these example screenshots and discussed likes/dislikes
-- As a team we decided how our application will look
+- Using Figma, went through website examples and discussed likes/dislikes as a team
+- Created brand guidelines and designs
 
 Organising and planning 
 - Assigned a few tickets to each team memeber 
@@ -66,25 +66,28 @@ Organising and planning
 ---
 
 ## Bugs during production
+- [] CSS inconsistencies
+- [] Front End Testing - Jest coverage would occasionally stop working
 - []
 
 ## Wins & Challenges
 
 ### Wins
 
-- [x] 
+- [x] 100% Front End Testing Coverage 
 - [x] 
 
 ### Challenges
 
-- 
-- 
+- Testing
+- Time constraints
 
 # Future features 
 
-- Customizable user profiles 
-- Chat Bot
-- Success Badges for being reliable, quality performer, quality client etc.
+- [x] Payment Integration
+- [x] Customizable user profiles 
+- [x] Chat Bot
+- [x] Success Badges for being reliable, quality performer, quality client etc.
 
 ---
 
