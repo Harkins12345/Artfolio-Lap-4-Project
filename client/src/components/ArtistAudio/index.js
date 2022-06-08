@@ -1,11 +1,22 @@
 import React from "react";
 
-const ArtistAudio = () => {
+const ArtistAudio = ({ media }) => {
   return (
     <div className="media-audio" data-testid="media-audio">
-      <div className="play-pause-btn">
-        <i className="bi bi-play-circle-fill"></i>
-        <i className="bi bi-pause-circle-fill hide"></i>
+      <div className="row ">
+        <div className="col-2">
+          <div className="play-pause-btn">
+            <i className="bi bi-play-circle-fill"></i>
+            <i className="bi bi-pause-circle-fill hide"></i>
+          </div>
+        </div>
+        <div className="col-10 audio-name" data-testid="audio-name">
+          <audio controls>
+            <source src={media ? `/media/${media['filename']}` : ''}
+             type={media ? media['contentType'] : ''} />
+            Your browser does not support the audio element.
+          </audio>
+        </div>
       </div>
 
       <span className=" audio-name" data-testid="audio-name">
