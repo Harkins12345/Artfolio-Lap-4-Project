@@ -1,6 +1,8 @@
 import requests as r
+from datetime import timedelta
 from flask import Flask, request, send_from_directory, jsonify, session
 from flask_mail import Message, Mail
+from flask_socketio import SocketIO, emit
 from wrappers.pymongoFixed import PyMongoFixed
 from wrappers.flask_sessions_fixed import SessionFixed
 from wrappers.decorators import authenticate
@@ -39,28 +41,28 @@ db = mongo.db
 app.config.update(dict(
     SESSION_TYPE="mongodb",
     SESSION_MONGODB=mongo,
-    SESSION_MONGODB_DB="cluster0",
-    SESSION_MONGODB_COLLECTION="sessions"
+    PERMANENT_SESSION_LIFETIME=timedelta(days=14)
 ))
 
 sess = SessionFixed(app)
+
+# Set up SocketIO
+
+socketio = SocketIO(app)
+
+# Socket Events
+
+@socketio.on('connect')
+def set_up_chat(data):
+    print(session['username'])
+    emit('setUpChat', session['username'])
 
 
 # Endpoints
 
 @app.route('/', defaults={'path': ''}, methods=['GET'])
 def serve(path):
-    #     return '''<h1>Home</h1>
-    #     <form method="POST" action="/upload" enctype="multipart/form-data" />
-    #   <input type="file" id="myFile" name="photo_upload"  accept=".jpg,.png,.jpeg" />
-    #   <input type="submit" />
-    #     </form>
-
-    #     <video id="video1" width="420" controls>
-    #     <source src="/media/mov_bbb.mp4" type="video/mp4">
-    #     Your browser does not support HTML video.
-    #   </video>
-    #     '''
+    
     return send_from_directory(app.static_folder, 'index.html')
 
 
@@ -227,4 +229,4 @@ def page_not_found(e):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    socketio.run(app)
