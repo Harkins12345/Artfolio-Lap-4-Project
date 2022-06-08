@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { ArtistCard } from "../../components";
+import { ArtistCard, ChatModal } from "../../components";
 
 const AllArtistsPage = () => {
   const username = useSelector((state) => state.username);
@@ -65,7 +65,7 @@ const AllArtistsPage = () => {
 
         </div>
       </section>
-
+      <ChatModal />
       {/* {username ? null : <FooterCTA />} */}
     </>
   );
