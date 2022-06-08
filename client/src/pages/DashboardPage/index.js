@@ -19,13 +19,21 @@ const DashboardPage = () => {
           <div className="profile-nav-info">
             <h3 className="user-name">USERNAME</h3>
             <div className="projectStatus">
-              <p className="item-status">
-                <span className="status-number">5</span>
-                <span className="status-type">Gig Requests</span>
+              <p className="item-status" data-testid="attending-gig">
+                <span className="status-number" data-testid="attending-gig">
+                  5
+                </span>
+                <span className="status-type" data-testid="attending-gig">
+                  Gig Requests
+                </span>
               </p>
               <p className="item-status">
-                <span className="status-number">7</span>
-                <span className="status-type">Upcoming Gigs</span>
+                <span className="status-number" data-testid="upcoming-gigs">
+                  7
+                </span>
+                <span className="status-type" data-testid="upcoming-gigs">
+                  Upcoming Gigs
+                </span>
               </p>
             </div>
           </div>
@@ -51,7 +59,11 @@ const DashboardPage = () => {
           </div>
         </div>
 
-        <button onClick={() => navigate("/new-gig")} className="create-gig">
+        <button
+          onClick={() => navigate("/new-gig")}
+          className="create-gig"
+          data-testid="create-gig-btn"
+        >
           {" "}
           CREATE NEW GIG{" "}
         </button>
@@ -60,12 +72,12 @@ const DashboardPage = () => {
         <div className="accepted-gigs">
           <h3> Accepted Gigs </h3>
           {/* {acceptedGigs()} */}
-          <div className="artist-card">
-            <div className="artist-information">
-              <h3> Wedding Performer </h3>
-              <h4> Genre: Rock </h4>
-              <h4> Location: Newcastle </h4>
-              <p>
+          <div className="artist-card" data-testid="gigs-accepted">
+            <div className="artist-information" data-testid="gigs-accepted">
+              <h3 data-testid="gigs-accepted"> Wedding Performer </h3>
+              <h4 data-testid="gigs-accepted"> Genre: Rock </h4>
+              <h4 data-testid="gigs-accepted"> Location: Newcastle </h4>
+              <p data-testid="gigs-accepted">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
                 sed ante efficitur, consectetur arcu et, tincidunt sem. Aenean
                 varius velit ex, non venenatis lorem porta ut. Donec vitae
