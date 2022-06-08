@@ -1045,12 +1045,20 @@ AllArtistsPage
 }
 
 .chat-modal-top-close {
-  width: 20%;
+  width: 50px;
   position: absolute;
   right: 15px;
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+
+.chat-modal-collapse {
+  float: left;
+}
+
+.chat-modal-close {
+  float: right;
 }
 
 .chat-modal-section-middle {
@@ -1090,14 +1098,16 @@ AllArtistsPage
   display: inline-block;
 }
 
-.chat-modal-send-icon {
-  height: 100%;
+.chat-modal-send-icon-box {
   width: 15%;
   display: inline-block;
   text-align: center;
+  vertical-align: top;
 }
 
 .chat-modal-send-button {
+
   border: 0px !important;
   background-color: none !important;
+
 }
