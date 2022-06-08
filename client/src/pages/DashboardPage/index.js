@@ -6,7 +6,6 @@ import AcceptedRequest from "../../components/AcceptedRequest";
 const DashboardPage = () => {
   const navigate = useNavigate();
 
-  
   return (
     <>
       {/* HEADER */}
@@ -23,16 +22,25 @@ const DashboardPage = () => {
                     alt="Profile Image"
                   />
                 </div>
-                <div className="profile-nav-info">
-                  <h3 className="user-name">USERNAME</h3>
+                <div className="profile-nav-info" data-testid="artist-card">
+                  <h3 className="user-name" data-testid="artist-card">
+                    USERNAME
+                  </h3>
                   <div className="projectStatus">
                     <p className="item-status">
                       <span className="status-number">2</span>
                       <span className="status-type">Pending Requests</span>
                     </p>
                     <p className="item-status">
-                      <span className="status-number">7</span>
-                      <span className="status-type">Attending Gigs</span>
+                      <span
+                        className="status-number"
+                        data-testid="attending-gig"
+                      >
+                        7
+                      </span>
+                      <span className="status-type" data-testid="attending-gig">
+                        Attending Gigs
+                      </span>
                     </p>
                   </div>
                 </div>
@@ -42,6 +50,7 @@ const DashboardPage = () => {
               <button
                 onClick={() => navigate("/portfolio")}
                 className="profile-option"
+                data-testid="portfolio-btn"
               >
                 Edit{" "}
                 <i className="fa-solid fa-pencil" data-testid="edit-btn"></i>
@@ -54,12 +63,17 @@ const DashboardPage = () => {
       {/* PENDING REQUESTS */}
       <div className="container-xl dashboard-main">
         <div className="pending-container">
-          <h2> Pending Requests</h2>
-          <button className="pending-requests">Check Requests</button>
+          <h2 data-testid="gig-requests"> Pending Requests</h2>
+          <button className="pending-requests" gig-requests>
+            Check Requests
+          </button>
         </div>
         {/* ACCEPTED GIGS */}
-        <h2 className="mt-4"> Accepted Requests </h2>
-        <AcceptedRequest/>
+        <h2 className="mt-4" data-testid="gigs-accepted">
+          {" "}
+          Accepted Requests{" "}
+        </h2>
+        <AcceptedRequest />
       </div>
     </>
   );
