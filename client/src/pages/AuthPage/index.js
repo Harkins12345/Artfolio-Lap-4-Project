@@ -103,12 +103,6 @@ const AuthPage = () => {
             />
             <input
               className="auth-info"
-              type="text"
-              name="name"
-              placeholder="Name"
-            />
-            <input
-              className="auth-info"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}

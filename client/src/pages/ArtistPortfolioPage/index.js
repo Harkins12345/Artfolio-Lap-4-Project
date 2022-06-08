@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import {
   FooterCTA,
   ArtistAudio,
@@ -9,6 +10,17 @@ import {
 
 const ArtistPortfolioPage = () => {
   const navigate = useNavigate();
+  const [artistData, setArtistData] = useState()
+
+  // get the artists api (with a placeholder)
+  useEffect(() => {
+    axios
+      .post(`${window.origin}/artists/${window.location.pathname.split('/')[2]}`)
+      .then((resp) => resp.data)
+      .then((data) => setArtistData(data))
+      .catch((err) => navigate('/artists'))
+  }, []);
+
   return (
     <>
       <section id="artist-intro-section" data-testid="artist-intro-section">
@@ -26,14 +38,14 @@ const ArtistPortfolioPage = () => {
           <div className="row pt-5 pb-3">
             <div className="col-8">
               <h1 className="artist-name" data-testid="artist-name">
-                Artist Name
+              {artistData ? artistData['portfolio']['name'] : "Loading"}
               </h1>
               <h2 className="artist-genre" data-testid="artist-genre">
-                Genre, Genre
+              {artistData ? artistData['portfolio']['genre'] : "Loading"}
               </h2>
 
               <h3 className="artist-price" data-testid="artist-price">
-                £££££
+              £{artistData ? artistData['portfolio']['price'] : "Loading"}
               </h3>
               <div className="artist-stars" data-testid="artist-stars">
                 <i className="bi bi-star-fill"></i>
@@ -44,17 +56,16 @@ const ArtistPortfolioPage = () => {
               </div>
             </div>
             <div className="col-4">
-              <div className="row d-flex justify-content-end me-3">
+              <div className="artist-image-availability d-flex justify-content-end me-2">
                 <span className="artist-image" data-testid="artist-image">
                   <i className="artist-icon bi bi-person-fill"></i>
                 </span>
+                <div className="artist-availability">Available</div>
               </div>
-              <div className="row"></div>
             </div>
           </div>
           <div className="artist-intro" data-testid="artist-intro">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eleifend
-            viverra dictumst posuere aliquet sem nullam in diam.
+          {artistData ? artistData['portfolio']['description'] : "Loading"}
           </div>
           <div className="artist-btn-container">
             <div
@@ -72,15 +83,11 @@ const ArtistPortfolioPage = () => {
           <div className="row">
             <div className="col">
               <ul className="gallery-list has-scrollbar mb-2">
-                <ArtistMedia />
-                <ArtistMedia />
-                <ArtistMedia />
+                {artistData ? artistData['portfolio']['media'].filter(media => media['contentType'].split('/')[0] !== 'audio').map(media => <ArtistMedia media={media} />) : null}
               </ul>
             </div>
           </div>
-          <ArtistAudio />
-          <ArtistAudio />
-          <ArtistAudio />
+          {artistData ? artistData['portfolio']['media'].filter(media => media['contentType'].split('/')[0] === 'audio').map(media => <ArtistAudio media={media} />) : null}
         </div>
       </section>
       <section id="artist-reviews">
