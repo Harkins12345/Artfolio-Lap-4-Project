@@ -68,10 +68,10 @@ const AllArtistsPage = () => {
             <ArtistCard />
             <ArtistCard />
           </div>
-
-        </div><ChatModal />
         </div>
-
+        <div>
+          <ChatModal />
+        </div>
       </section>
       {/* {username ? null : <FooterCTA />} */}
     </>
