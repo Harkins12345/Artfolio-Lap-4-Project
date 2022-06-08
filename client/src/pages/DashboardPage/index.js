@@ -1,10 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./style.css";
 import AcceptedRequest from "../../components/AcceptedRequest";
 
 const DashboardPage = () => {
   const navigate = useNavigate();
+
+  const username = useSelector(state => state.username)
+
+  const [pendingRequests, setPendingRequests] = useState([]);
+  const [activeGigs, setActiveGigs] = useState([]);
+
+  useEffect(() => {
+    axios.post('/dashboard')
+    .then(resp => resp.data)
+    .then(data => {
+      setPendingRequests(data['pending_requests'])
+      setActiveGigs(data['active_gigs'])
+    })
+    .catch(err => console.log(err))
+  }, [])
+
+  useEffect(() => {
+    console.log(pendingRequests)
+  }, [pendingRequests])
+
+  function checkRequests(e){
+    axios.post('/dashboard/refresh')
+    .then(resp => resp.data)
+    .then(data => setPendingRequests(prev => [...prev, ...data['requests']]))
+  }
 
   return (
     <>
@@ -24,11 +51,11 @@ const DashboardPage = () => {
                 </div>
                 <div className="profile-nav-info" data-testid="artist-card">
                   <h3 className="user-name" data-testid="artist-card">
-                    USERNAME
+                    {username ? username : "Loading..."}
                   </h3>
                   <div className="projectStatus">
                     <p className="item-status">
-                      <span className="status-number">2</span>
+                      <span className="status-number">{pendingRequests.length}</span>
                       <span className="status-type">Pending Requests</span>
                     </p>
                     <p className="item-status">
@@ -36,7 +63,7 @@ const DashboardPage = () => {
                         className="status-number"
                         data-testid="attending-gig"
                       >
-                        7
+                        {activeGigs.length}
                       </span>
                       <span className="status-type" data-testid="attending-gig">
                         Attending Gigs
@@ -64,7 +91,7 @@ const DashboardPage = () => {
       <div className="container-xl dashboard-main">
         <div className="pending-container">
           <h2 data-testid="gig-requests"> Pending Requests</h2>
-          <button className="pending-requests" gig-requests>
+          <button className="pending-requests" gig-requests onClick={checkRequests}>
             Check Requests
           </button>
         </div>
