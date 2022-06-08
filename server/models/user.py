@@ -1,3 +1,4 @@
+from os import stat
 import bcrypt
 from uuid import uuid4
 from models.chat import Chat
@@ -66,7 +67,7 @@ class User:
 
     @staticmethod
     def get_all_users(db):
-        users = db.users.find({})
+        users = list(db.users.find({}))
 
         if len(users) > 0:
             return users
@@ -92,7 +93,7 @@ class User:
             except Exception as e:
                 print(f'Inner Unexpected error {e}')
 
-        elif data_type == 'password':
+        if data_type == 'password':
             db.users.find_one_and_update({'username': username.lower()}, {'$set': {
                                          'password': bcrypt.hashpw(new_data.encode('utf-8'), bcrypt.gensalt())}})
 
@@ -116,16 +117,16 @@ class User:
 
     @staticmethod
     def accept_request(db, request_data, username):
-        db.users.find_and_update({'username': username}, {
+        db.users.find_one_and_update({'username': username}, {
                                  '$pull': {'pending_requests': {'request_id': request_data['request_id']}}})
 
-        db.users.find_and_update({'username': username}, {
+        db.users.find_one_and_update({'username': username}, {
                                  '$push': {'active_gigs': request_data}})
 
-        db.users.find_and_update({'username': request_data['from_username']}, {
+        db.users.find_one_and_update({'username': request_data['from_username']}, {
                                  '$pull': {'sent_requests': {'request_id': request_data['request_id']}}})
 
-        db.users.find_and_update({'username': request_data['from_username']}, {
+        db.users.find_one_and_update({'username': request_data['from_username']}, {
                                  '$push': {'active_gigs': request_data}})
 
         Chat(db, request_data['request_id'],
@@ -133,10 +134,10 @@ class User:
 
     @staticmethod
     def denie_request(db, request_data, username):
-        db.users.find_and_update({'username': username}, {
+        db.users.find_one_and_update({'username': username}, {
                                  '$pull': {'pending_requests': {'request_id': request_data['request_id']}}})
         
-        db.users.find_and_update({'username': request_data['from_username']}, {
+        db.users.find_one_and_update({'username': request_data['from_username']}, {
                                  '$pull': {'sent_requests': {'request_id': request_data['request_id']}}})
 
     @staticmethod
@@ -149,3 +150,7 @@ class User:
                     return False
         
         return True
+    
+    @staticmethod
+    def upload_portfolio(db, username, file_data):
+        db.users.find_one_and_update({'display_username': username}, {'$push' : {'portfolio.media' : file_data}})

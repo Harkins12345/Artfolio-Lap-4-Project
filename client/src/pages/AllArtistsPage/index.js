@@ -10,10 +10,12 @@ const AllArtistsPage = () => {
   // get the artists api (with a placeholder)
   useEffect(() => {
     axios
-      .get(`https://jsonplaceholder.typicode.com/todos`)
+      .post(`${window.origin}/artists`)
       .then((resp) => resp.data)
       .then((data) => setArtistList([...data]))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+    
+    console.log(artistList)
   }, []);
 
 
@@ -53,14 +55,7 @@ const AllArtistsPage = () => {
             </form>
           </div>
           <div className="gallery-all-list">
-            <ArtistCard />
-            <ArtistCard />
-            <ArtistCard />
-            <ArtistCard />
-            <ArtistCard />
-            <ArtistCard />
-            <ArtistCard />
-            <ArtistCard />
+            {artistList.map(artist => <ArtistCard artistData={artist}/>)}
           </div>
 
         </div>

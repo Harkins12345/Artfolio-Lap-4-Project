@@ -11,7 +11,7 @@ from models.chat import Chat, uuid4
 
 # File path to serve up react-build
 
-app = Flask(__name__, static_url_path='', static_folder='dummy-build')
+app = Flask(__name__, static_url_path='', static_folder='react-build')
 
 # Set up Email config
 
@@ -133,13 +133,15 @@ def login():
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
 
-@app.route('/users', methods=['POST'])
+@app.route('/artists', methods=['POST'])
 def get_all():
     try:
         users = User.get_all_users(db)
+        print(type(users))
         for user in users:
             del user['active_chats']
-        return jsonify(users)
+        artists = [a for a in users if len(a['portfolio']['media']) != 0]
+        return jsonify({'artists': artists})
 
     except UserException as e:
         return jsonify({'error': str(e)}), 404
@@ -149,7 +151,7 @@ def get_all():
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
 
-@app.route('/users/<username>', methods=['POST'])
+@app.route('/artists/<username>', methods=['POST'])
 def get_user(username):
     try:
         user = User.get_by_username(db, username)
@@ -164,7 +166,7 @@ def get_user(username):
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
 
-@app.route('/users/update', methods=['POST'])
+@app.route('/artists/update', methods=['POST'])
 @authenticate
 def update():
     username = request.json.get('username', None)
@@ -197,7 +199,7 @@ def update():
     return jsonify({'error': 'Authentication required.'}), 401
 
 
-@app.route('/users/delete', methods=['POST'])
+@app.route('/artists/delete', methods=['POST'])
 @authenticate
 def delete():
     username = request.json.get('username', None)
@@ -212,14 +214,33 @@ def delete():
 
     return jsonify({'error': 'Authentication required.'}), 401
 
+@app.route('/media/<filename>')
+def serve_media(filename):
+    return mongo.send_file(filename)
 
 @app.route('/upload', methods=['POST'])
 @authenticate
 def upload():
-    if 'photo_upload' in request.files:
-        photo_upload = request.files['photo_upload']
-        mongo.save_file(photo_upload.filename, photo_upload)
-        return jsonify({'message': f'File {photo_upload.filename} saved.'}), 201
+    print(request.files)
+    if 'inputFile' in request.files:
+        file_upload = request.files['inputFile']
+
+        new_filename = session['username'] + '_' + \
+            str(uuid4()) + '.' + file_upload.filename.split('.')[1]
+
+        while db.fs.files.find_one({'filename': new_filename}):
+            new_filename = session['username'] + '_' + \
+                str(uuid4()) + '.' + file_upload.filename.split('.')[1]
+
+        file_id = mongo.save_file(new_filename, file_upload)
+        saved_file = db.fs.files.find_one({'_id': file_id})
+
+        User.upload_portfolio(db, session['username'], {
+            'filename': saved_file['filename'],
+            'contentType': saved_file['contentType']
+        })
+
+        return jsonify({'message': f'File {file_upload.filename} saved.'}), 201
 
     return jsonify({'error': 'Bad request.'}), 400
 
