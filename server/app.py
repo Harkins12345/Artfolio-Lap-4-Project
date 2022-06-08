@@ -184,16 +184,49 @@ def get_user(username):
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
+@app.route('/dashboard', methods=['POST'])
+@authenticate
+def get_user_dashboard():
+
+    username = session['username']
+
+    try:
+        user = User.get_by_username(db, username)
+        del user['_id']
+        del user['email']
+        del user['username']
+        del user['display_username']
+        del user['password']
+        del user['sent_requests']
+        return jsonify(user)
+
+    except UserException as e:
+        return jsonify({'error': str(e)}), 404
+
+    except Exception as e:
+        print(e)
+        return jsonify({'error': 'An unexpected error occurred.'}), 500
+
+@app.route('/dashboard/refresh', methods=['POST'])
+@authenticate
+def refresh_requests():
+    username = session['username']
+
+    try:
+        user = User.get_by_username(db, username)
+        
+        return jsonify({'requests' : user['pending_requests']})
+
+    except Exception as e:
+        print(e)
+        return jsonify({'error': 'An unexpected error occurred.'}), 500
 
 @app.route('/artists/update', methods=['POST'])
 @authenticate
 def update():
-    username = request.json.get('username', None)
+    username = session['username']
     data_type = request.json.get('data_type', None)
     new_data = request.json.get('new_data', None)
-
-    if not username:
-        return jsonify({'error': 'username is required.'}), 400
 
     if not data_type:
         return jsonify({'error': 'data_type is required.'}), 400
@@ -204,18 +237,15 @@ def update():
     if data_type not in ['email', 'password']:
         return jsonify({'error': 'invalid data_type.'}), 400
 
-    if username == session['username']:
-        try:
-            User.update(db, username, data_type, new_data)
-            return jsonify({'message': f'{data_type.capitalize()} updated successfully.'})
+    try:
+        User.update(db, username, data_type, new_data)
+        return jsonify({'message': f'{data_type.capitalize()} updated successfully.'})
 
-        except UserException as e:
-            return jsonify({'error': str(e)}), 400
+    except UserException as e:
+        return jsonify({'error': str(e)}), 400
 
-        except Exception as e:
-            return jsonify({'error': 'An unexpected error occurred.'}), 500
-
-    return jsonify({'error': 'Authentication required.'}), 401
+    except Exception as e:
+        return jsonify({'error': 'An unexpected error occurred.'}), 500
 
 
 @app.route('/artists/delete', methods=['POST'])

@@ -886,7 +886,8 @@ AllArtistsPage
   font-family: "Bebas Neue", cursive;
 }
 
-.your-portfolio-form {
+.your-portfolio-form,
+.artist-form {
   display: flex;
   flex-direction: column;
 }
@@ -895,11 +896,49 @@ AllArtistsPage
 #email,
 #current-password,
 #new-password,
-#genre {
+#genre,
+#price,
+#artist-description {
   border-radius: 25px;
   border: 2px solid var(--green);
   background-color: transparent;
   margin-bottom: 10px;
+}
+
+#artist-upload-image-video,
+#artist-upload-audio {
+  margin-bottom: 10px;
+}
+
+.update-btn,
+.delete-btn {
+  border-radius: 50px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.update-btn {
+  border: 2px solid var(--yellow);
+  background-color: var(--yellow);
+  color: var(--green);
+}
+
+.update-btn:hover {
+  border: 2px solid var(--yellow);
+  background-color: transparent;
+  color: var(--green);
+}
+
+.delete-btn {
+  border: 2px solid var(--red);
+  background-color: transparent;
+  color: var(--red);
+}
+
+.delete-btn:hover {
+  border: 2px solid var(--red);
+  background-color: var(--red);
+  color: var(--text-light);
 }
 
 /* Media Queries */
@@ -1077,4 +1116,6 @@ AllArtistsPage
 
 .chat-modal-send-button {
   border: 0px !important;
+  background-color: none !important;
+
 }
