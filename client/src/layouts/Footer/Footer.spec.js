@@ -3,6 +3,8 @@ import React from "react";
 import { screen, render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Layout from "../index.js";
+import { Provider } from "react-redux";
+// import store from "./store";
 import userEvent from "@testing-library/user-event";
 
 const mockedUsedNavigate = jest.fn();
@@ -15,7 +17,9 @@ describe("Footer", () => {
   beforeEach(() => {
     render(
       <Router>
+        {/* <Provider store={store}> */}
         <Layout />
+        {/* </Provider> */}
       </Router>
     );
   });
