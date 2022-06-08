@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUsername } from "./actions";
 import axios from "axios";
+import io from 'socket.io-client';
 import { Routes, Route, Navigate } from "react-router-dom";
 import {
   NotFoundPage,
@@ -15,8 +16,8 @@ import Layout from "./layouts";
 
 const App = () => {
   const dispatch = useDispatch();
-
   const username = useSelector((state) => state.username);
+  const socket = io(window.location.origin);
 
   useEffect(() => {
     axios
