@@ -100,7 +100,8 @@ body {
 /**********************************************************************/
 header {
   position: sticky;
-  position: -webkit-sticky; /* Safari */
+  position: -webkit-sticky;
+  /* Safari */
   top: 0;
   background-color: var(--beige);
   height: 100px;
@@ -308,7 +309,8 @@ footer {
 
 .hero-title,
 .gigs-title,
-.artists-title {
+.artists-title,
+.pending-request-title {
   font-family: "Bebas Neue", cursive;
 }
 
@@ -462,8 +464,6 @@ footer {
   width: 700px;
   max-width: 100%;
   min-height: 480px;
-  left: 20%;
-  margin: 50px;
 }
 
 .header-authpage {
@@ -810,6 +810,7 @@ AllArtistsPage
 .play-pause-btn:hover {
   color: var(--red);
 }
+
 .audio-name {
   display: flex;
   align-items: center;
@@ -848,6 +849,7 @@ AllArtistsPage
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
 .review-title {
   font-weight: 700;
 }
@@ -1011,6 +1013,13 @@ AllArtistsPage
   .footer-sitemap-1 {
     padding-bottom: 20px;
   }
+
+  .containerF {
+    left: 20%;
+    margin: 50px;
+    margin-bottom: 5%;
+    margin-top: 5%;
+  }
 }
 
 /* Overriding code - do not put anything below this  */
@@ -1034,6 +1043,7 @@ AllArtistsPage
   border-style: solid;
   border-bottom-style: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  z-index: 2;
 }
 
 .chat-modal-section-top {
@@ -1082,6 +1092,7 @@ AllArtistsPage
   border-style: solid;
   border-color: #00000023;
   border-width: 1px;
+  overflow-y: auto;
 }
 
 .chat-modal-section-bottom {
@@ -1106,8 +1117,76 @@ AllArtistsPage
 }
 
 .chat-modal-send-button {
-
   border: 0px !important;
   background-color: none !important;
-
 }
+
+.chat-modal-initialization {
+  font-size: small;
+  color: grey;
+  text-align: center;
+}
+
+/* chat balloon send style */
+
+.chat-balloon-send-main {
+  position: relative;
+  float: right;
+  background-color: var(--beige);
+  min-width: 50%;
+  max-width: 70%;
+  margin-right: 5%;
+  border-radius: 5px;
+  margin-bottom: 12px;
+}
+
+.chat-balloon-send-text-box {
+  position: static;
+  padding: 5px;
+}
+
+.chat-baloon-send-message{
+  word-wrap: break-word;
+  text-align: left;
+  font-size: 1em;
+}
+
+.chat-baloon-send-time {
+  float: right;
+}
+
+.chat-baloon-time {
+  font-size: small;
+  color: grey;
+  padding: 5px;
+}
+
+/* chat balloon received style */
+
+.chat-balloon-received-main {
+  position: relative;
+  float: left;
+  background-color: var(--beige-darker);
+  min-width: 50%;
+  max-width: 70%;
+  margin-left: 5%;
+  border-radius: 5px;
+  margin-bottom: 12px;
+}
+
+.chat-balloon-received-text-box {
+  position: static;
+  padding: 5px;
+}
+
+.chat-baloon-received-message{
+  word-wrap: break-word;
+  text-align: left;
+  font-size: 1em;
+}
+
+.chat-baloon-received-time {
+  float: right;
+}
+
+/* create triangoles */

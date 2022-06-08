@@ -1,31 +1,37 @@
 import React from "react";
+import ChatBalloonReceived from "../ChatBalloonReceived";
+import ChatBalloonSend from "../ChatBalloonSend";
 
-const ChatModal = () => {
 
-    // function to close the chat
-    const showModal = () => {
-        
-    }
+const ChatModal = ({ showModal, setShowModal }) => {
+
     // function to minimize the chat
 
     return (
         <>
             {/* show modal if value is true */}
-            {/* {showModal? ( */}
+            {showModal? (
                 <div className="chat-modal-box ">
                     <div className="chat-modal-section-top">
                         <div className="chat-modal-top-close">
                             <div className="chat-modal-collapse">
-                                <i className="bi bi-arrows-angle-contract"></i>
+                                <i className="bi bi-arrows-angle-contract" id="minimizeChat"></i>
                             </div>
                             <div className="chat-modal-close">
-                                <i className="bi bi-x-square-fill"></i>
+                                <i className="bi bi-x-square-fill" id="closeChat"></i>
                             </div>
                         </div>
                     </div>
                     <div className="chat-modal-section-middle">
                         <div className="chat-modal-chat-box">
-                            hello, this is the chat box for another component
+                            <p className="chat-modal-initialization">conversation started</p>
+                            <ChatBalloonSend />
+                            <ChatBalloonReceived />
+                            <ChatBalloonSend />
+                            <ChatBalloonReceived />
+                            <ChatBalloonSend />
+                            <ChatBalloonReceived />
+                            <ChatBalloonReceived />
                         </div>
                     </div>
                     <div className="chat-modal-section-bottom">
@@ -41,7 +47,7 @@ const ChatModal = () => {
                         </form>
                     </div>
                 </div>
-            {/* ) : null} */}
+            ) : null}
         </>
     )
 }
