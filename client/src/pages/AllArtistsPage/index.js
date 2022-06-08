@@ -22,53 +22,65 @@ const AllArtistsPage = () => {
         console.error(err);
       }
     }
-    
+
     // render artists
     const renderArtists = () => {
+      // get genre, get audio, get name, get location, get description, get price, get link to the artist
+      const genre = artistList;
+      const audioDemo = artistList;
+      const artistName = artistList;
+      const artistLocation = artistList;
+      const artistDescription = artistList;
+      const artistPrice = artistList;
 
-        // get genre, get audio, get name, get location, get description, get price, get link to the artist
-        const genre = artistList;
-        const audioDemo = artistList;
-        const artistName = artistList;
-        const artistLocation = artistList;
-        const artistDescription = artistList;
-        const artistPrice = artistList;
-
-        return (
-            <div className="artist-card" data-testid="artist-card">
-                <div className="artist-image-card" data-testid="artist-image">
-                    <div className="play-button">
-                        <audio id="audio">
-                            <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg"></source>
-                            <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg"></source>
-                        </ audio>
-                        <button type="button" className="no-effect-btn">
-                            <div className="play-btn">
-                                <h1 class="bi bi-play-circle-fill"></h1>
-                                {/* <h1 class="bi bi-pause-circle-fill"></h1> */}
-                            </div>
-                        </button>
-                    </div>
-                    <div className="flair-section" data-testid="flair-section">
-                        <p>Rock</p>
-                    </div>
+      return (
+        <div className="artist-card" data-testid="artist-card">
+          <div className="artist-image-card" data-testid="artist-image">
+            <div className="play-button">
+              <audio id="audio">
+                <source
+                  src="https://www.w3schools.com/html/horse.mp3"
+                  type="audio/mpeg"
+                ></source>
+                <source
+                  src="https://www.w3schools.com/html/horse.ogg"
+                  type="audio/ogg"
+                ></source>
+              </audio>
+              <button type="button" className="no-effect-btn">
+                <div className="play-btn">
+                  <h1 class="bi bi-play-circle-fill"></h1>
+                  {/* <h1 class="bi bi-pause-circle-fill"></h1> */}
                 </div>
-                <div className="artist-information">
-                    <h3>Incredible Singer John</h3>
-                    <h4>Location: London</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed ante efficitur, consectetur arcu et, tincidunt sem. Aenean varius velit ex, non venenatis lorem porta ut. Donec vitae tellus ornare, sagittis metus vel, fringilla mauris. Donec sodales diam interdum, pretium est eget, tristique diam. Quisque sed nisi tortor. Aliquam non pellentesque arcu, a venenatis odio. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-                    <div className="artist-info-box">
-                        <div className="artist-pricing">
-                            £50-60/hour
-                        </div>
-                        <div className="artist-view-more">
-                            <a href="artists/prop">View more</a>
-                        </div>
-                    </div>
-                </div>
+              </button>
             </div>
-        )
-    }
+            <div className="flair-section" data-testid="flair-section">
+              <p>Rock</p>
+            </div>
+          </div>
+          <div className="artist-information">
+            <h3>Incredible Singer John</h3>
+            <h4>Location: London</h4>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed
+              ante efficitur, consectetur arcu et, tincidunt sem. Aenean varius
+              velit ex, non venenatis lorem porta ut. Donec vitae tellus ornare,
+              sagittis metus vel, fringilla mauris. Donec sodales diam interdum,
+              pretium est eget, tristique diam. Quisque sed nisi tortor. Aliquam
+              non pellentesque arcu, a venenatis odio. Pellentesque habitant
+              morbi tristique senectus et netus et malesuada fames ac turpis
+              egestas.
+            </p>
+            <div className="artist-info-box">
+              <div className="artist-pricing">£50-60/hour</div>
+              <div className="artist-view-more">
+                <a href="artists/prop">View more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    };
 
     return (
       <div className="artist-card" data-testid="artist-card">
@@ -116,7 +128,7 @@ const AllArtistsPage = () => {
         </div>
       </div>
     );
-  };
+  });
 
   return (
     <div>

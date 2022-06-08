@@ -1,14 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setUsername } from '../../actions';
+import { setUsername } from "../../actions";
 import axios from "axios";
 import classnames from "classnames";
 import { useState } from "react";
 
 const AuthPage = () => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [swapPanel, setSwapPanel] = useState(false);
 
@@ -17,46 +16,47 @@ const AuthPage = () => {
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
 
-  const toggleBtn = () => swapPanel ? setSwapPanel(false) : setSwapPanel(true);
+  const toggleBtn = () =>
+    swapPanel ? setSwapPanel(false) : setSwapPanel(true);
 
   const login = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const data = {
       email: email,
-      password: password
-    }
+      password: password,
+    };
 
-    axios.post(`${window.origin}/login`, data)
-    .then(resp => resp.data)
-    .then(data => {
-      dispatch(setUsername(data['username']));
-      useNavigate("/", { replace: true })
-    })
-    .catch(err => console.log(err))
-  }
+    axios
+      .post(`${window.origin}/login`, data)
+      .then((resp) => resp.data)
+      .then((data) => {
+        dispatch(setUsername(data["username"]));
+        useNavigate("/", { replace: true });
+      })
+      .catch((err) => console.log(err));
+  };
 
   const register = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    if (password == confPassword){
+    if (password == confPassword) {
       const data = {
         username: username,
         email: email,
-        password: password
-      }
-  
-      axios.post(`${window.origin}/register`, data)
-      .then(resp => resp.data)
-      .then(data => {
-        dispatch(setUsername(data['username']));
-        useNavigate("/", { replace: true })
-      })
-      .catch(err => console.log(err))
+        password: password,
+      };
 
+      axios
+        .post(`${window.origin}/register`, data)
+        .then((resp) => resp.data)
+        .then((data) => {
+          dispatch(setUsername(data["username"]));
+          useNavigate("/", { replace: true });
+        })
+        .catch((err) => console.log(err));
     }
-  }
-
+  };
 
   return (
     <>
@@ -110,7 +110,8 @@ const AuthPage = () => {
               type="text"
               name="name"
               placeholder="Name"
-              />
+            />
+            <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -137,12 +138,17 @@ const AuthPage = () => {
               type="submit"
               placeholder="Sign up"
               onClick={signUpButton}
-            >
-              Sign up
+            />
+            Sign up
           </form>
         </div>
         <div className="form-container sign-in-container">
-          <form className="auth-form" data-testid="sign-in-form" id="SignIn" onSubmit={login}>
+          <form
+            className="auth-form"
+            data-testid="sign-in-form"
+            id="SignIn"
+            onSubmit={login}
+          >
             <h1>SIGN IN</h1>
 
             <div className="social-container">
@@ -175,10 +181,7 @@ const AuthPage = () => {
               Forgot your password?
             </a>
 
-            <button
-              className="btn auth-btn"
-              type="sumbit"
-            >
+            <button className="btn auth-btn" type="sumbit">
               Sign in
             </button>
           </form>
