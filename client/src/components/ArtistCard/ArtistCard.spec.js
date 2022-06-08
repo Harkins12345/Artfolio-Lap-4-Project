@@ -4,7 +4,7 @@ import { screen, render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import ArtistCard from "./index.js";
 
-describe("Artist Review", () => {
+describe("Artist Card Component", () => {
   beforeEach(() => {
     render(
       <Router>

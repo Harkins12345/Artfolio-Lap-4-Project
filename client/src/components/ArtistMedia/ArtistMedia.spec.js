@@ -4,7 +4,7 @@ import ArtistMedia from "./index.js";
 import { screen, render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 
-describe("Artist Review", () => {
+describe("Artist Media Component", () => {
   beforeEach(() => {
     render(
       <Router>

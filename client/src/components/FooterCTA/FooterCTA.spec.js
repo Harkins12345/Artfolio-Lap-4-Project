@@ -12,7 +12,7 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockedUsedNavigate,
 }));
 
-describe("FooterCTA", () => {
+describe("FooterCTA Component", () => {
   beforeEach(() => {
     render(
       <Router>
