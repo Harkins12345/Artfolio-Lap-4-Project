@@ -3,14 +3,16 @@ import React from "react";
 const ArtistCard = () => {
   return (
     <li>
-      <div className="gallery-item-artist">
+      <div className="gallery-item-artist" data-testid="artist-card">
         <img
           src="https://heavy.com/wp-content/uploads/2016/02/martin_super_bowl-e1454699147664.jpg"
           alt=""
         />
         <div className="gallery-content">
-          <h3 className="gallery-item-title">Lorem ipsum dolor sit amet.</h3>
-          <p className="gallery-item-description">
+          <h3 className="gallery-item-title" data-testid="artist-title">
+            Lorem ipsum dolor sit amet.
+          </h3>
+          <p className="gallery-item-description" data-testid="artist-desc">
             Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
           </p>
           <div className="gallery-rating-price-row">
