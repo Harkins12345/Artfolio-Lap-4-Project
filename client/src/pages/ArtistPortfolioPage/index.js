@@ -44,12 +44,12 @@ const ArtistPortfolioPage = () => {
               </div>
             </div>
             <div className="col-4">
-              <div className="row d-flex justify-content-end me-3">
+              <div className="artist-image-availability d-flex justify-content-end me-2">
                 <span className="artist-image" data-testid="artist-image">
                   <i className="artist-icon bi bi-person-fill"></i>
                 </span>
+                <div className="artist-availability">Available</div>
               </div>
-              <div className="row"></div>
             </div>
           </div>
           <div className="artist-intro" data-testid="artist-intro">
