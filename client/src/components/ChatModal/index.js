@@ -1,4 +1,6 @@
 import React from "react";
+import ChatBalloonReceived from "../ChatBalloonReceived";
+import ChatBalloonSend from "../ChatBalloonSend";
 
 
 const ChatModal = ({ showModal, setShowModal }) => {
@@ -22,7 +24,9 @@ const ChatModal = ({ showModal, setShowModal }) => {
                     </div>
                     <div className="chat-modal-section-middle">
                         <div className="chat-modal-chat-box">
-                            hello, this is the chat box for another component
+                            <p className="chat-modal-initialization">conversation started</p>
+                            <ChatBalloonSend />
+                            <ChatBalloonReceived />
                         </div>
                     </div>
                     <div className="chat-modal-section-bottom">
