@@ -37,7 +37,7 @@ const LandingPage = () => {
             </div>
             <div className="hero-btn-microcopy" data-testid="noAccount">
               Haven't got an account?&nbsp;
-              <span className="createAccountNow" data-testid="createAccBtn">
+              <span onClick={() => navigate("/sign-in")} className="createAccountNow" data-testid="createAccBtn">
                 Create one now!
               </span>
             </div>
