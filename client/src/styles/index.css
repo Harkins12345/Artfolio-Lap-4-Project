@@ -1092,6 +1092,7 @@ AllArtistsPage
   border-style: solid;
   border-color: #00000023;
   border-width: 1px;
+  overflow-y: auto;
 }
 
 .chat-modal-section-bottom {
