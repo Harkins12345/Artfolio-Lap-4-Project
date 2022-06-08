@@ -4,7 +4,7 @@ import { screen, render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Layout from "../index.js";
 import { Provider } from "react-redux";
-// import store from "./store";
+import { store } from "./store";
 import userEvent from "@testing-library/user-event";
 
 const mockedUsedNavigate = jest.fn();
@@ -14,12 +14,14 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("Footer", () => {
+  const store = createStore(rootReducer);
+
   beforeEach(() => {
     render(
       <Router>
-        {/* <Provider store={store}> */}
-        <Layout />
-        {/* </Provider> */}
+        <Provider store={store}>
+          <Layout />
+        </Provider>
       </Router>
     );
   });

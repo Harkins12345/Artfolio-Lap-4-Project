@@ -2,9 +2,9 @@ import "@testing-library/jest-dom";
 import React from "react";
 import { screen, render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Provider } from "react-redux";
-import store from "./store";
 import Layout from "../index.js";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 describe("Header", () => {
   beforeEach(() => {
