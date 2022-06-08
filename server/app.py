@@ -87,7 +87,8 @@ def register():
 
     try:
         User(db, username, email, password)
-        return jsonify({'message': 'User created successfully.'}), 201
+        session['username'] = username
+        return jsonify({'username': username}), 201
 
     except UserException as e:
         return jsonify({'error': str(e)}), 400
@@ -112,7 +113,7 @@ def login():
         user = User.get_by_email(db, email)
         if bcrypt.checkpw(password.encode('utf-8'), user['password']):
             session['username'] = user['display_username']
-            return jsonify({'username': 'Welcome back ' + user['display_username'] + '.'}), 200
+            return jsonify({'username': user['display_username']}), 200
         return jsonify({'error': f'Incorrect login credentials'}), 400
 
     except UserException as e:
@@ -172,16 +173,19 @@ def update():
 
     if data_type not in ['email', 'password']:
         return jsonify({'error': 'invalid data_type.'}), 400
+    
+    if username == session['username']:
+        try:
+            User.update(db, username, data_type, new_data)
+            return jsonify({'message': f'{data_type.capitalize()} updated successfully.'})
 
-    try:
-        User.update(db, username, data_type, new_data)
-        return jsonify({'message': f'{data_type.capitalize()} updated successfully.'})
+        except UserException as e:
+            return jsonify({'error': str(e)}), 400
 
-    except UserException as e:
-        return jsonify({'error': str(e)}), 400
-
-    except Exception as e:
-        return jsonify({'error': 'An unexpected error occurred.'}), 500
+        except Exception as e:
+            return jsonify({'error': 'An unexpected error occurred.'}), 500
+    
+    return jsonify({'error': 'Authentication required.'}), 401
 
 
 @app.route('/users/delete', methods=['POST'])
@@ -192,9 +196,12 @@ def delete():
     if not username:
         return jsonify({'error': 'username is required.'}), 400
 
-    User.delete(db, username)
+    if username == session['username']:
+        User.delete(db, username)
 
-    return jsonify({'message': f'User {username} deleted successfully.'}), 204
+        return jsonify({'message': f'User {username} deleted successfully.'}), 204
+    
+    return jsonify({'error': 'Authentication required.'}), 401
 
 
 @app.route('/upload', methods=['POST'])
