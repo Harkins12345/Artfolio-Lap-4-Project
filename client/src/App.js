@@ -48,11 +48,8 @@ const App = () => {
 
           /> */}
             <Route path="/dashboard/edit" element={<YourPortfolioPage />} />
-          </Route>
 
-          <Route
-            path="/sign-in"
-            element={
+          <Route path="/sign-in" element={
               username ? <Navigate to="/" replace={true} /> : <AuthPage />
             }
           />
