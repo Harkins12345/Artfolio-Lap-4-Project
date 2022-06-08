@@ -1,8 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import FooterCTA from "../../components/FooterCTA";
 import { useNavigate } from "react-router-dom";
-import { ArtistCard } from "../../components";
+import { ArtistCard, FooterCTA } from "../../components";
 
 const LandingPage = () => {
   const username = useSelector((state) => state.username);

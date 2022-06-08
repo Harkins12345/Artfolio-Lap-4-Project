@@ -10,6 +10,7 @@ import {
   AuthPage,
   AllArtistsPage,
   DashboardPage,
+  DemoPage,
 } from "./pages";
 import Layout from "./layouts";
 
@@ -52,6 +53,7 @@ const App = () => {
             <Route path="/artists/:name" element={<ArtistPortfolioPage />} />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/demo" element={<DemoPage />} />
         </Route>
       </Routes>
     </>
