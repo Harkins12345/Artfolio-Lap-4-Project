@@ -28,7 +28,7 @@ const ChatModal = ({ showModal, setShowModal }) => {
                     <div className="chat-modal-section-bottom">
                         <form id="chat-modal-box">
                             <div className="chat-modal-text-area">
-                                <textarea className="form-control" id="chat-box-message"></textarea>
+                                <input type="text" className="form-control" autoComplete="off" id="chat-box-message"></input>
                             </div>
                             <div className="chat-modal-send-icon-box">
                                 <button type="submit" className="chat-modal-send-button">
