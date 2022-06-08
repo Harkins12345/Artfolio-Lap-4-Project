@@ -7,8 +7,10 @@ import classnames from "classnames";
 import { useState } from "react";
 
 const AuthPage = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const [swapPanel, setSwapPanel] = useState(false);
 
   const [username, setUser] = useState("");
