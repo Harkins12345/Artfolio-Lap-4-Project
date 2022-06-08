@@ -24,7 +24,7 @@ describe("All Artists Page", () => {
   });
 
   test("it renders an Artist Card", () => {
-    let card = screen.getAllByTestId("artist-card");
+    let card = screen.getAllByTestId("artist-rating");
     expect(card).toBeTruthy();
   });
 
