@@ -1,25 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
-import "bootstrap/dist/css/bootstrap.css";
-import Dropdown from "react-bootstrap/Dropdown";
 import AcceptedRequest from "../../components/AcceptedRequest";
 
 const DashboardPage = () => {
   const navigate = useNavigate();
 
-  const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-    <a
-      ref={ref}
-      onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
-      }}
-    >
-      {children}
-      <span className="threedots" />
-    </a>
-  ));
+  
   return (
     <>
       {/* HEADER */}
