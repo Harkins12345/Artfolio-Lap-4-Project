@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
+import { ChatModal } from "../../components";
 
 const AcceptedRequest = () => {
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -14,6 +15,14 @@ const AcceptedRequest = () => {
       <span className="threedots" />
     </a>
   ));
+
+  // open modal operators
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(prev => !prev);
+  };
+
   return (
     <div className="accepted-container my-4">
       <div className="row name-dropdown">
@@ -40,7 +49,7 @@ const AcceptedRequest = () => {
               velit ex, non venenatis lorem porta ut. Donec vitae tellus ornare,
               sagittis metus vel, fringilla mauris.
             </p>
-            <button className="edit-button">
+            <button className="edit-button" onClick={openModal}>
               <i className="fa-solid fa-message"></i> Chat
             </button>
           </div>
@@ -54,7 +63,7 @@ const AcceptedRequest = () => {
             <span> Budget </span>
           </div>
         </div>
-      </div>
+      </div><ChatModal showModal={showModal} setShowModal={setShowModal} />
     </div>
   );
 };
