@@ -1,17 +1,16 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 const ArtistAudio = ({ media }) => {
-
   const [paused, changePaused] = useState();
   const [song, setSong] = useState();
 
-  function togglePause(e){
-    if (paused){
-      changePaused(false)
+  function togglePause(e) {
+    if (paused) {
+      changePaused(false);
     } else {
-      changePaused(true)
+      changePaused(true);
     }
-    paused ? changePaused(false) : changePaused(true)
+    paused ? changePaused(false) : changePaused(true);
   }
 
   return (
@@ -25,8 +24,10 @@ const ArtistAudio = ({ media }) => {
         </div>
         <div className="col-10 audio-name" data-testid="audio-name">
           <audio controls>
-            <source src={media ? `/media/${media['filename']}` : ''}
-             type={media ? media['contentType'] : ''} />
+            <source
+              src={media ? `/media/${media["filename"]}` : ""}
+              type={media ? media["contentType"] : ""}
+            />
             Your browser does not support the audio element.
           </audio>
         </div>
