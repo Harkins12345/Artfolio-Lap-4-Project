@@ -4,34 +4,49 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./style.css";
 import AcceptedRequest from "../../components/AcceptedRequest";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 const DashboardPage = () => {
   const navigate = useNavigate();
 
-  const username = useSelector(state => state.username)
+  const username = useSelector((state) => state.username);
 
   const [pendingRequests, setPendingRequests] = useState([]);
   const [activeGigs, setActiveGigs] = useState([]);
 
-  useEffect(() => {
-    axios.post('/dashboard')
-    .then(resp => resp.data)
-    .then(data => {
-      setPendingRequests(data['pending_requests'])
-      setActiveGigs(data['active_gigs'])
-    })
-    .catch(err => console.log(err))
-  }, [])
+  // MODAL
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
-    console.log(pendingRequests)
-  }, [pendingRequests])
+    axios
+      .post("/dashboard")
+      .then((resp) => resp.data)
+      .then((data) => {
+        setPendingRequests(data["pending_requests"]);
+        setActiveGigs(data["active_gigs"]);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
-  function checkRequests(e){
-    axios.post('/dashboard/refresh')
-    .then(resp => resp.data)
-    .then(data => setPendingRequests(prev => [...prev, ...data['requests']]))
+  useEffect(() => {
+    console.log(pendingRequests);
+  }, [pendingRequests]);
+
+  function checkRequests(e) {
+    axios
+      .post("/dashboard/refresh")
+      .then((resp) => resp.data)
+      .then((data) =>
+        setPendingRequests((prev) => [...prev, ...data["requests"]])
+      );
   }
+
+  // INCOMMING PAGE FOR MODAL
 
   return (
     <>
@@ -55,7 +70,9 @@ const DashboardPage = () => {
                   </h3>
                   <div className="projectStatus">
                     <p className="item-status">
-                      <span className="status-number">{pendingRequests.length}</span>
+                      <span className="status-number">
+                        {pendingRequests.length}
+                      </span>
                       <span className="status-type">Pending Requests</span>
                     </p>
                     <p className="item-status">
@@ -91,9 +108,83 @@ const DashboardPage = () => {
       <div className="container-xl dashboard-main">
         <div className="pending-container">
           <h2 data-testid="gig-requests"> Pending Requests</h2>
-          <button className="pending-requests" gig-requests onClick={checkRequests}>
+
+          {/* MODAL ADDITION  */}
+          <button
+            onClick={handleShow}
+            variant="primary"
+            className="pending-requests"
+            gig-requests
+          >
             Check Requests
           </button>
+
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title> PENDING REQUESTS </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label>Date/Time</Form.Label>
+                  <Form.Control
+                    type="date"
+                    placeholder="name@example.com"
+                    autoFocus
+                  />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label>Location</Form.Label>
+                  <Form.Control as="textarea" rows={1} />
+                </Form.Group>
+
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label>Duration</Form.Label>
+                  <Form.Control as="textarea" rows={1} />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label>Genre</Form.Label>
+                  <Form.Control as="textarea" rows={1} />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label>Budget</Form.Label>
+                  <Form.Control as="textarea" rows={1} />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlTextarea1"
+                >
+                  <Form.Label>Description</Form.Label>
+                  <Form.Control as="textarea" rows={3} />
+                </Form.Group>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="primary" onClick={handleClose}>
+                ACCEPT REQUEST
+              </Button>
+              <Button variant="secondary" onClick={handleClose}>
+                DECLINE REQUEST
+              </Button>
+            </Modal.Footer>
+          </Modal>
+
+          {/* MODAL ENDS */}
         </div>
         {/* ACCEPTED GIGS */}
         <h2 className="mt-4" data-testid="gigs-accepted">
