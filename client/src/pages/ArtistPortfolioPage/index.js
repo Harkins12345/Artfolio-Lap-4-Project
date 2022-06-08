@@ -1,6 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { FooterCTA, ArtistAudio, ArtistReview } from "../../components";
+import {
+  FooterCTA,
+  ArtistAudio,
+  ArtistReview,
+  ArtistMedia,
+} from "../../components";
 
 const ArtistPortfolioPage = () => {
   const navigate = useNavigate();
@@ -64,39 +69,9 @@ const ArtistPortfolioPage = () => {
           <div className="row">
             <div className="col">
               <ul className="gallery-list has-scrollbar">
-                <li>
-                  <div className="gallery-item-artist-media">
-                    <img
-                      src="https://heavy.com/wp-content/uploads/2016/02/martin_super_bowl-e1454699147664.jpg"
-                      alt=""
-                    />
-                  </div>
-                </li>
-                <li>
-                  <div className="gallery-item-artist-media">
-                    <img
-                      src="https://heavy.com/wp-content/uploads/2016/02/martin_super_bowl-e1454699147664.jpg"
-                      alt=""
-                    />
-                  </div>
-                </li>
-                <li>
-                  <div className="gallery-item-artist-media">
-                    <img
-                      src="https://heavy.com/wp-content/uploads/2016/02/martin_super_bowl-e1454699147664.jpg"
-                      alt=""
-                    />
-                  </div>
-                </li>
-
-                <li>
-                  <div className="gallery-item-artist-media">
-                    <img
-                      src="https://heavy.com/wp-content/uploads/2016/02/martin_super_bowl-e1454699147664.jpg"
-                      alt=""
-                    />
-                  </div>
-                </li>
+                <ArtistMedia />
+                <ArtistMedia />
+                <ArtistMedia />
               </ul>
             </div>
           </div>

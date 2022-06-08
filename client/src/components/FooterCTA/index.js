@@ -5,7 +5,7 @@ const FooterCTA = () => {
   const navigate = useNavigate();
   return (
     <section id="footer-cta" data-testid="footer-cta">
-      <div className="container-xl py-4 footer-container">
+      <div className="container-xl py-4 footer-cta-container">
         <h3 id="footer-cta-title">Ready to get started?</h3>
 
         <div

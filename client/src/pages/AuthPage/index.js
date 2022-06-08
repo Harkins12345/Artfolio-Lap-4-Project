@@ -8,7 +8,7 @@ import { useState } from "react";
 
 const AuthPage = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const [swapPanel, setSwapPanel] = useState(false);
 
   const [username, setUser] = useState("");
@@ -32,7 +32,7 @@ const AuthPage = () => {
       .then((resp) => resp.data)
       .then((data) => {
         dispatch(setUsername(data["username"]));
-        useNavigate("/", { replace: true });
+        navigate("/", { replace: true });
       })
       .catch((err) => console.log(err));
   };
@@ -52,7 +52,7 @@ const AuthPage = () => {
         .then((resp) => resp.data)
         .then((data) => {
           dispatch(setUsername(data["username"]));
-          useNavigate("/", { replace: true });
+          navigate("/", { replace: true });
         })
         .catch((err) => console.log(err));
     }
@@ -77,7 +77,7 @@ const AuthPage = () => {
             data-testid="auth-form"
           >
             <h1 className="header-authpage" data-testid="header-authpage">
-              Create Account
+              Sign up
             </h1>
             <div className="social-container" data-testid="social">
               <a href="/" className="social" data-testid="social">
@@ -107,11 +107,6 @@ const AuthPage = () => {
             />
             <input
               className="auth-info"
-              type="text"
-              name="name"
-              placeholder="Name"
-            />
-            <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -137,9 +132,10 @@ const AuthPage = () => {
               data-testid="auth-btn"
               type="submit"
               placeholder="Sign up"
-              onClick={signUpButton}
-            />
-            Sign up
+              onClick={toggleBtn}
+            >
+              Sign up
+            </button>
           </form>
         </div>
         <div className="form-container sign-in-container">
@@ -149,7 +145,7 @@ const AuthPage = () => {
             id="SignIn"
             onSubmit={login}
           >
-            <h1>SIGN IN</h1>
+            <h1>Sign in</h1>
 
             <div className="social-container">
               <a href="/" className="social">
