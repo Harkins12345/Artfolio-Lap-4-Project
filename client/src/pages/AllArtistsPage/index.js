@@ -62,9 +62,8 @@ const AllArtistsPage = () => {
           <div className="gallery-all-list">
             {artistList.map(artist => <ArtistCard artistData={artist}/>)}
           </div>
-
         </div>
-
+        
       </section>
       {/* {username ? null : <FooterCTA />} */}
     </>
