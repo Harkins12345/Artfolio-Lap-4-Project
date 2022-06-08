@@ -928,7 +928,76 @@ AllArtistsPage
 /* Chat Modal Component */
 
 .chat-modal-box {
-  max-width: 20%;
-  max-height: 30%;
+  position: fixed;
+  bottom: 0;
+  right: 3%;
+  min-width: 300px;
+  min-height: 300px;
+  width: 20vw;
+  height: 50vh;
   background-color: var(--beige);
+  border-radius: 10px 10px 0px 0px;
+  border-style: solid;
+  border-bottom-style: none;
+
+}
+
+.chat-modal-section-top {
+  height: 10%;
+  width: 100%;
+  background-color: var(--beige-darker);
+  border-radius: 10px 10px 0px 0px;
+}
+
+.chat-modal-top-close {
+  margin: auto;
+}
+
+.chat-modal-section-middle {
+  height: 75%;
+  margin: auto;
+  position: relative;
+}
+
+.chat-modal-chat-box {
+  background-color: white;
+  width: 96%;
+  height: 96%;
+  padding: 2px;
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #00000023;
+  border-width: 1px;
+}
+
+.chat-modal-section-bottom {
+  height: 15%;
+  width: 100%;
+  overflow: auto;
+  display: inline;
+}
+
+.chat-modal-text-area {
+  padding-left: 8px;
+  height: 100%;
+  width: 85%;
+  display: inline-block;
+}
+
+.chat-modal-send-icon {
+  height: 100%;
+  width: 15%;
+  display: inline-block;
+  text-align: center;
+}
+
+.chat-modal-send-button {
+  border: 0px!important;
+  background-color: none!important;
 }
