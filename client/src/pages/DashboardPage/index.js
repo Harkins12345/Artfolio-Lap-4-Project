@@ -75,7 +75,7 @@ const DashboardPage = () => {
             </div>
             <div className="col-4 portfolio-button">
               <button
-                onClick={() => navigate("/portfolio")}
+                onClick={() => navigate("/dashboard/edit")}
                 className="profile-option"
                 data-testid="portfolio-btn"
               >
