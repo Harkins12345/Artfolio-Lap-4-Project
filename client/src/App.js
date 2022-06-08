@@ -34,6 +34,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/dashboard" element={<DashboardPage />}/>
+          {/* comment previous line out when done
           <Route
             path="/dashboard"
             element={
@@ -43,9 +45,11 @@ const App = () => {
                 <Navigate to="/sign-in" replace={true} />
               )
             }
-          >
+
+          /> */}
             <Route path="/dashboard/edit" element={<YourPortfolioPage />} />
           </Route>
+
           <Route
             path="/sign-in"
             element={
