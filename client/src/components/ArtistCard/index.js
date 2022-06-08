@@ -1,9 +1,31 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
 const ArtistCard = ({artistData}) => {
 
   const navigate = useNavigate();
+
+  const [paused, changePaused] = useState();
+  const [audioPlayer, setAudioPlayer] = useState();
+
+  useEffect(() => {
+    if(artistData){
+      setAudioPlayer(prev => {
+        const song = new Audio(`${window.origin}/media/${artistData['portfolio']['media'].find(media => media['contentType'].split('/')[0] === 'audio')['filename']}`)
+        return song
+      })
+    }
+  }, [])
+
+  function togglePause(e) {
+    if (paused) {
+      changePaused(false)
+      audioPlayer.pause()
+    } else {
+      changePaused(true)
+      audioPlayer.play()
+    }
+  }
 
   function navigateToUser(e){
     navigate(`/artists/${artistData['display_username'].toLowerCase()}`)
@@ -20,17 +42,8 @@ const ArtistCard = ({artistData}) => {
       <div className="gallery-content">
         <div className="play-genre-container">
           <div className="play-button">
-            <audio controls id="audio">
-              <source
-                src={artistData ? `/media/${artistData['portfolio']['media'].find(media => media['contentType'].split('/')[0] === 'audio')['filename']}` : ""}
-                type={artistData ? artistData['portfolio']['media'].find(media => media['contentType'].split('/')[0] === 'audio')['contentType'] : ""}
-              ></source>
-              Your browser does not support the audio tag.
-            </audio>
-
             <div className="play-pause-btn">
-              <i className="bi bi-play-circle-fill"></i>
-              <i className="bi bi-pause-circle-fill hide"></i>
+            <i className={paused ? "bi bi-pause-circle-fill" : "bi bi-play-circle-fill"} onClick={togglePause}></i>
             </div>
           </div>
           <div className="artist-genre-container">

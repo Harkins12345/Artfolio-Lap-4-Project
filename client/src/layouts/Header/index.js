@@ -1,11 +1,22 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setUsername } from '../../actions'
+import axios from "axios";
 
 const Header = () => {
   const username = useSelector((state) => state.username);
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  function logout(e){
+    axios.post(`${window.origin}/logout`)
+    .catch(err => console.log(err))
+
+    dispatch(setUsername(null))
+    navigate('/')
+  }
+
   return (
     <header>
       <div
@@ -22,12 +33,21 @@ const Header = () => {
 
         <div className="navbar-btns" data-testid="navbar-btns">
           {username ? (
+            <>
             <div
               onClick={() => navigate("/dashboard")}
               className="btn primary-cta-btn dashboard-btn"
             >
               <i className="fa-regular fa-address-card"></i>Dashboard
             </div>
+            <div
+              onClick={logout}
+              className="btn primary-cta-btn"
+              data-testid="sign-in-btn"
+            >
+              <i className="fa-regular fa-user"></i>Sign Out
+            </div>
+            </>
           ) : (
             <div
               onClick={() => navigate("/sign-in")}

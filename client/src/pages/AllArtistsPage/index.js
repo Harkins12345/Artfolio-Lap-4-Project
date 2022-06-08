@@ -67,6 +67,7 @@ const AllArtistsPage = () => {
             ))}
           </div>
         </div>
+
       </section>
       {/* {username ? null : <FooterCTA />} */}
     </>

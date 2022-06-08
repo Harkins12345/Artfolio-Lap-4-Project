@@ -132,6 +132,13 @@ def login():
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
+@app.route('/logout', methods=['POST'])
+@authenticate
+def logout():
+    session.clear()
+
+    return jsonify({'message': 'Logging out...'})
+
 
 @app.route('/artists', methods=['POST'])
 def get_all():
