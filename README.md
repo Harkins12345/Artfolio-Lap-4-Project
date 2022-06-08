@@ -84,10 +84,10 @@ Organising and planning
 
 # Future features 
 
- [] Payment Integration
- [] Customizable user profiles 
- [] Chat Bot
- [] Success Badges for being reliable, quality performer, quality client etc.
+- [] Payment Integration
+- [] Customizable user profiles 
+- [] Chat Bot
+- [] Success Badges for being reliable, quality performer, quality client etc.
 
 ---
 
