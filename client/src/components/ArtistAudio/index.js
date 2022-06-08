@@ -1,10 +1,12 @@
+
 import React, { useEffect, useState } from "react";
 
-const ArtistAudio = ({ media }) => {
 
+const ArtistAudio = ({ media }) => {
   const [paused, changePaused] = useState();
   const [audioPlayer, setAudioPlayer] = useState();
 
+  
   useEffect(() => {
     if (media){
       setAudioPlayer(prev => {

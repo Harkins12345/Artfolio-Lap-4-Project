@@ -48,47 +48,47 @@ Media Queries
 /* Generic */
 /**********************************************************************/
 body {
-  background-color: var(--beige)!important;
-  color: var(--text-dark)!important;
-  font-family: "Poppins", sans-serif!important;
+  background-color: var(--beige) !important;
+  color: var(--text-dark) !important;
+  font-family: "Poppins", sans-serif !important;
   margin: 0;
   padding: 0;
 }
 
 .primary-cta-btn {
-  background-color: var(--yellow)!important;
-  border: 2px solid var(--yellow)!important;
-  color: var(--text-dark)!important;
-  border-radius: 50px!important;
+  background-color: var(--yellow) !important;
+  border: 2px solid var(--yellow) !important;
+  color: var(--text-dark) !important;
+  border-radius: 50px !important;
   width: 150px;
   height: 50px;
-  display: flex!important;
+  display: flex !important;
   justify-content: center;
   align-items: center;
-  font-weight: 700!important;
+  font-weight: 700 !important;
 }
 
 .primary-cta-btn:hover {
-  background-color: transparent!important;
-  border: 2px solid var(--yellow)!important;
+  background-color: transparent !important;
+  border: 2px solid var(--yellow) !important;
 }
 
 .secondary-cta-btn {
-  background-color: transparent!important;
-  border: 2px solid var(--green)!important;
-  color: var(--text-dark)!important;
-  border-radius: 50px!important;
+  background-color: transparent !important;
+  border: 2px solid var(--green) !important;
+  color: var(--text-dark) !important;
+  border-radius: 50px !important;
   width: 180px;
   height: 50px;
-  display: flex!important;
+  display: flex !important;
   justify-content: center;
   align-items: center;
-  font-weight: 700!important;
+  font-weight: 700 !important;
 }
 
 .secondary-cta-btn:hover {
-  background-color: var(--green)!important;
-  color: var(--text-light)!important;
+  background-color: var(--green) !important;
+  color: var(--text-light) !important;
 }
 
 /************************************************************************/
@@ -884,7 +884,8 @@ AllArtistsPage
   font-family: "Bebas Neue", cursive;
 }
 
-.your-portfolio-form {
+.your-portfolio-form,
+.artist-form {
   display: flex;
   flex-direction: column;
 }
@@ -893,11 +894,49 @@ AllArtistsPage
 #email,
 #current-password,
 #new-password,
-#genre {
+#genre,
+#price,
+#artist-description {
   border-radius: 25px;
   border: 2px solid var(--green);
   background-color: transparent;
   margin-bottom: 10px;
+}
+
+#artist-upload-image-video,
+#artist-upload-audio {
+  margin-bottom: 10px;
+}
+
+.update-btn,
+.delete-btn {
+  border-radius: 50px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.update-btn {
+  border: 2px solid var(--yellow);
+  background-color: var(--yellow);
+  color: var(--green);
+}
+
+.update-btn:hover {
+  border: 2px solid var(--yellow);
+  background-color: transparent;
+  color: var(--green);
+}
+
+.delete-btn {
+  border: 2px solid var(--red);
+  background-color: transparent;
+  color: var(--red);
+}
+
+.delete-btn:hover {
+  border: 2px solid var(--red);
+  background-color: var(--red);
+  color: var(--text-light);
 }
 
 /* Media Queries */
@@ -1006,12 +1045,20 @@ AllArtistsPage
 }
 
 .chat-modal-top-close {
-  width: 20%;
+  width: 50px;
   position: absolute;
   right: 15px;
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+
+.chat-modal-collapse {
+  float: left;
+}
+
+.chat-modal-close {
+  float: right;
 }
 
 .chat-modal-section-middle {
@@ -1051,14 +1098,16 @@ AllArtistsPage
   display: inline-block;
 }
 
-.chat-modal-send-icon {
-  height: 100%;
+.chat-modal-send-icon-box {
   width: 15%;
   display: inline-block;
   text-align: center;
+  vertical-align: top;
 }
 
 .chat-modal-send-button {
-  border: 0px!important;
-  background-color: none!important;
+
+  border: 0px !important;
+  background-color: none !important;
+
 }
