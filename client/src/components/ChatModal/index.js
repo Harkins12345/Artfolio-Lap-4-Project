@@ -31,6 +31,7 @@ const ChatModal = ({ showModal, setShowModal }) => {
                             <ChatBalloonReceived />
                             <ChatBalloonSend />
                             <ChatBalloonReceived />
+                            <ChatBalloonReceived />
                         </div>
                     </div>
                     <div className="chat-modal-section-bottom">
