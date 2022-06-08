@@ -25,9 +25,9 @@
 
 - 
 
-### Usage
+## Usage
 # website - artfol.io
-# If ran localy
+# If ran locally
 - npm install
 - npm start
 
