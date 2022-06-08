@@ -309,7 +309,8 @@ footer {
 
 .hero-title,
 .gigs-title,
-.artists-title {
+.artists-title,
+.pending-request-title {
   font-family: "Bebas Neue", cursive;
 }
 
@@ -568,7 +569,6 @@ button.ghost {
 }
 
 @keyframes show {
-
   0%,
   49.99% {
     opacity: 0;
@@ -945,7 +945,8 @@ AllArtistsPage
 /************************************************************************/
 
 /* responsive larger than 575px */
-@media (min-width: 575px) {}
+@media (min-width: 575px) {
+}
 
 /* responsive larger than 768px */
 @media (min-width: 768px) {
@@ -1018,7 +1019,6 @@ AllArtistsPage
     margin: 50px;
     margin-bottom: 5%;
     margin-top: 5%;
-
   }
 }
 
@@ -1118,5 +1118,4 @@ AllArtistsPage
 .chat-modal-send-button {
   border: 0px !important;
   background-color: none !important;
-
 }
