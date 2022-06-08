@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { ArtistCard, ChatModal } from "../../components";
+import { ArtistCard } from "../../components";
+import { useNavigate } from "react-router-dom";
 
 const AllArtistsPage = () => {
   const username = useSelector((state) => state.username);
@@ -10,10 +11,10 @@ const AllArtistsPage = () => {
   // get the artists api (with a placeholder)
   useEffect(() => {
     axios
-      .get(`https://jsonplaceholder.typicode.com/todos`)
+      .post(`${window.origin}/artists`)
       .then((resp) => resp.data)
-      .then((data) => setArtistList([...data]))
-      .catch((err) => console.log(err));
+      .then((data) => setArtistList(data))
+      .catch((err) => console.log(err))
   }, []);
 
   return (
@@ -59,19 +60,10 @@ const AllArtistsPage = () => {
             </form>
           </div>
           <div className="gallery-all-list">
-            <ArtistCard />
-            <ArtistCard />
-            <ArtistCard />
-            <ArtistCard />
-            <ArtistCard />
-            <ArtistCard />
-            <ArtistCard />
-            <ArtistCard />
+            {artistList.map(artist => <ArtistCard artistData={artist}/>)}
           </div>
         </div>
-        <div>
-          <ChatModal />
-        </div>
+        
       </section>
       {/* {username ? null : <FooterCTA />} */}
     </>
