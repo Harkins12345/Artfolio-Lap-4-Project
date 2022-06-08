@@ -16,6 +16,7 @@ PAGES
 -AuthPage
 -AllArtistPage
 -ArtistPortfolioPage
+-YourPortfolioPage
 
 Media Queries 
 
@@ -47,47 +48,47 @@ Media Queries
 /* Generic */
 /**********************************************************************/
 body {
-  background-color: var(--beige);
-  color: var(--text-dark);
-  font-family: "Poppins", sans-serif;
+  background-color: var(--beige)!important;
+  color: var(--text-dark)!important;
+  font-family: "Poppins", sans-serif!important;
   margin: 0;
   padding: 0;
 }
 
 .primary-cta-btn {
-  background-color: var(--yellow);
-  border: 2px solid var(--yellow);
-  color: var(--text-dark);
-  border-radius: 50px;
+  background-color: var(--yellow)!important;
+  border: 2px solid var(--yellow)!important;
+  color: var(--text-dark)!important;
+  border-radius: 50px!important;
   width: 150px;
   height: 50px;
-  display: flex;
+  display: flex!important;
   justify-content: center;
   align-items: center;
-  font-weight: 700;
+  font-weight: 700!important;
 }
 
 .primary-cta-btn:hover {
-  background-color: transparent;
-  border: 2px solid var(--yellow);
+  background-color: transparent!important;
+  border: 2px solid var(--yellow)!important;
 }
 
 .secondary-cta-btn {
-  background-color: transparent;
-  border: 2px solid var(--green);
-  color: var(--text-dark);
-  border-radius: 50px;
+  background-color: transparent!important;
+  border: 2px solid var(--green)!important;
+  color: var(--text-dark)!important;
+  border-radius: 50px!important;
   width: 180px;
   height: 50px;
-  display: flex;
+  display: flex!important;
   justify-content: center;
   align-items: center;
-  font-weight: 700;
+  font-weight: 700!important;
 }
 
 .secondary-cta-btn:hover {
-  background-color: var(--green);
-  color: var(--text-light);
+  background-color: var(--green)!important;
+  color: var(--text-light)!important;
 }
 
 /************************************************************************/
@@ -795,6 +796,10 @@ AllArtistsPage
   border-radius: 25px;
   margin-top: 10px;
   margin-bottom: 10px;
+  display: flex;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .play-pause-btn {
@@ -808,6 +813,24 @@ AllArtistsPage
 .audio-name {
   display: flex;
   align-items: center;
+  margin-left: 10px;
+}
+
+.artist-image-availability {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.artist-availability {
+  margin-top: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: var(--green);
+  color: var(--text-light);
+  border-radius: 25px;
 }
 
 .artist-review-section {
@@ -838,6 +861,43 @@ AllArtistsPage
   display: flex;
   justify-content: end;
   font-style: italic;
+}
+
+/**********************************************************************/
+/* YourPortfolioPage */
+/**********************************************************************/
+.your-portfolio-hero-section {
+  background-color: var(--beige-darker);
+  width: 100%;
+  height: 100%;
+  text-align: justify;
+  margin: auto;
+}
+
+.your-portfolio-hero-content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.your-portfolio-title {
+  font-weight: 700;
+  font-family: "Bebas Neue", cursive;
+}
+
+.your-portfolio-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#name,
+#email,
+#current-password,
+#new-password,
+#genre {
+  border-radius: 25px;
+  border: 2px solid var(--green);
+  background-color: transparent;
+  margin-bottom: 10px;
 }
 
 /* Media Queries */
@@ -918,4 +978,87 @@ AllArtistsPage
 
 .hide {
   display: none;
+}
+
+/* Chat Modal Component */
+
+.chat-modal-box {
+  position: fixed;
+  bottom: 0;
+  right: 3%;
+  min-width: 300px;
+  min-height: 300px;
+  width: 20vw;
+  height: 50vh;
+  background-color: var(--beige);
+  border-radius: 10px 10px 0px 0px;
+  border-style: solid;
+  border-bottom-style: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.chat-modal-section-top {
+  height: 10%;
+  width: 100%;
+  background-color: var(--beige-darker);
+  border-radius: 10px 10px 0px 0px;
+  position: relative;
+}
+
+.chat-modal-top-close {
+  width: 20%;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.chat-modal-section-middle {
+  height: 75%;
+  margin: auto;
+  position: relative;
+}
+
+.chat-modal-chat-box {
+  background-color: white;
+  width: 96%;
+  height: 96%;
+  padding: 2px;
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #00000023;
+  border-width: 1px;
+}
+
+.chat-modal-section-bottom {
+  height: 15%;
+  width: 100%;
+  overflow: auto;
+  display: inline;
+}
+
+.chat-modal-text-area {
+  padding-left: 8px;
+  height: 100%;
+  width: 85%;
+  display: inline-block;
+}
+
+.chat-modal-send-icon {
+  height: 100%;
+  width: 15%;
+  display: inline-block;
+  text-align: center;
+}
+
+.chat-modal-send-button {
+  border: 0px!important;
+  background-color: none!important;
 }
