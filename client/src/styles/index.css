@@ -348,7 +348,23 @@ footer {
   padding-right: 15px;
 }
 
-.gallery-list li {
+.gallery-all-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  justify-content: center;
+  gap: 15px;
+}
+
+.all-artist-gallery-list {
+  list-style-type: none;
+}
+
+.gallery-all-list .gallery-item-artist {
+  max-width: 100%;
+}
+
+.gallery-list .gallery-item-artist {
   min-width: 65%;
   scroll-snap-align: center;
 }
@@ -375,7 +391,10 @@ footer {
 }
 
 .gallery-content {
-  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .gallery-item-title,
@@ -396,6 +415,16 @@ footer {
   justify-content: space-between;
 }
 
+.gallery-item-view-more-link {
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 12px;
+}
+
+.gallery-item-view-more-link:hover {
+  text-decoration: none;
+}
+
 /* Note for Prishal: above has been checked */
 
 ::-webkit-scrollbar-track {
@@ -413,7 +442,7 @@ footer {
 }
 
 .has-scrollbar::-webkit-scrollbar-button {
-  color: orange;
+  color: var(--green);
   width: 40px;
 }
 
@@ -643,97 +672,32 @@ button.ghost {
 /*********************************************
 AllArtistsPage
 *********************************************/
-.main-section {
-  background-color: #f9c041;
+.all-artists-section {
+  background-color: var(--beige-darker);
   width: 100%;
   height: 100%;
   text-align: justify;
   margin: auto;
 }
 
-.main-text {
-  padding: 60px;
+.all-artist-hero-content {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-.artist-list {
-  width: 90%;
-  height: 100%;
-  padding: 10px;
-  margin: auto;
-}
-
-.artist-card {
-  width: 100%;
-  height: 100%;
-  margin: auto;
-  background-color: #f9c041;
-  margin-bottom: 30px;
-  border-radius: 25px;
+.all-artist-title {
+  font-weight: 700;
+  font-family: "Bebas Neue", cursive;
 }
 
 .sort-drop {
   text-align: right;
-  padding-right: 10px;
-  padding: 5px;
 }
 
-.artist-image-card {
-  height: 120px;
-  width: 100%;
-  background-color: #00000025;
-  position: relative;
-  border-radius: 25px 25px 0px 0px;
-}
-
-.play-button {
-  position: absolute;
-  bottom: 10px;
-  left: 20px;
-}
-
-.play-button img {
-  width: 2vw;
-}
-
-.flair-section {
-  position: absolute;
-  top: 10px;
-  right: 2vw;
-  background-color: #b91646;
-  border-radius: 9px;
-  width: 5rem;
-}
-
-.flair-section p {
-  text-align: center;
-  margin: 3px;
-}
-
-.artist-information {
-  padding: 20px;
-  text-align: justify;
-}
-
-.artist-info-box {
-  width: 100%;
-  margin: auto;
-  padding-bottom: 7px;
-}
-
-.artist-pricing {
-  display: inline-flex;
-  width: 80%;
-}
-
-.artist-view-more {
-  display: inline-flex;
-  width: 20%;
-  text-align: right;
-}
-
-.artist-view-more a {
-  text-decoration: none;
-  font-weight: bold;
+.sort-drop-list {
+  background-color: var(--beige-darker);
+  border-radius: 25px;
+  width: 140px;
 }
 
 /**********************************************************************/
@@ -754,15 +718,34 @@ AllArtistsPage
   text-decoration: underline;
 }
 
+.play-genre-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.artist-genre-container {
+  background-color: var(--beige);
+  color: var(--text-dark);
+  border-radius: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.artist-genre {
+  font-size: 12px;
+  font-weight: 500;
+}
+
 .artist-name,
 .artist-media-title,
 .artist-review-title {
   font-size: 24px;
-  font-weight: 700;
-}
-
-.artist-genre {
-  font-size: 16px;
   font-weight: 700;
 }
 
@@ -812,20 +795,24 @@ AllArtistsPage
   border-radius: 25px;
   margin-top: 10px;
   margin-bottom: 10px;
+  display: flex;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
-.play-btn {
-  margin-left: 10px;
+.play-pause-btn {
   font-size: 2rem;
   cursor: pointer;
 }
 
-.play-btn:hover {
+.play-pause-btn:hover {
   color: var(--red);
 }
 .audio-name {
   display: flex;
   align-items: center;
+  margin-left: 10px;
 }
 
 .artist-review-section {
@@ -858,107 +845,6 @@ AllArtistsPage
   font-style: italic;
 }
 
-/*********************************************
-all artists list
-*********************************************/
-.main-section {
-  background-color: #f9c041;
-  width: 100%;
-  height: 100%;
-  text-align: justify;
-  margin: auto;
-}
-
-.main-text {
-  padding: 60px;
-}
-
-.artist-list {
-  width: 90%;
-  height: 100%;
-  padding: 10px;
-  margin: auto;
-}
-
-.artist-card {
-  width: 100%;
-  height: 100%;
-  margin: auto;
-  background-color: #f9c041;
-  margin-bottom: 30px;
-  border-radius: 25px;
-}
-
-.sort-drop {
-  text-align: right;
-  padding-right: 10px;
-  padding: 5px;
-}
-
-.artist-image-card {
-  height: 120px;
-  width: 100%;
-  background-color: #00000025;
-  position: relative;
-  border-radius: 25px 25px 0px 0px;
-}
-
-.play-button {
-  position: absolute;
-  bottom: 10px;
-  left: 20px;
-}
-
-.play-button img {
-  width: 2vw;
-}
-
-.flair-section {
-  position: absolute;
-  top: 10px;
-  right: 2vw;
-  background-color: #b91646;
-  border-radius: 9px;
-  width: 5rem;
-}
-
-.flair-section p {
-  text-align: center;
-  margin: 3px;
-}
-
-.artist-information {
-  padding: 20px;
-  text-align: justify;
-}
-
-.artist-info-box {
-  width: 100%;
-  margin: auto;
-  padding-bottom: 7px;
-}
-
-.artist-pricing {
-  display: inline-flex;
-  width: 80%;
-}
-
-.artist-view-more {
-  display: inline-flex;
-  width: 20%;
-  text-align: right;
-}
-
-.artist-view-more a {
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.no-effect-btn {
-  border: none;
-  background-color: transparent;
-}
-
 /* Media Queries */
 /************************************************************************/
 
@@ -968,7 +854,15 @@ all artists list
 
 /* responsive larger than 768px */
 @media (min-width: 768px) {
-  .gallery-list li {
+  .gallery-all-list {
+    gap: 60px;
+  }
+
+  .gallery-all-list .gallery-item-artist {
+    max-width: 40%;
+  }
+
+  .gallery-list .gallery-item-artist {
     min-width: 40%;
   }
 }
@@ -997,7 +891,15 @@ all artists list
     justify-content: center;
   }
 
-  .gallery-list li {
+  .gallery-all-list {
+    gap: 60px;
+  }
+
+  .gallery-all-list .gallery-item-artist {
+    max-width: 20%;
+  }
+
+  .gallery-list .gallery-item-artist {
     min-width: 25%;
   }
 
@@ -1015,4 +917,10 @@ all artists list
   .footer-sitemap-1 {
     padding-bottom: 20px;
   }
+}
+
+/* Overriding code - do not put anything below this  */
+
+.hide {
+  display: none;
 }

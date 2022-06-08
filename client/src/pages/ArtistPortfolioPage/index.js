@@ -44,7 +44,7 @@ const ArtistPortfolioPage = () => {
               </div>
             </div>
             <div className="col-4">
-              <div className="row">
+              <div className="row d-flex justify-content-end me-3">
                 <span className="artist-image" data-testid="artist-image">
                   <i className="artist-icon bi bi-person-fill"></i>
                 </span>
@@ -57,7 +57,10 @@ const ArtistPortfolioPage = () => {
             viverra dictumst posuere aliquet sem nullam in diam.
           </div>
           <div className="artist-btn-container">
-            <div onClick={() => navigate("/")} className="btn primary-cta-btn">
+            <div
+              onClick={() => navigate("/dashboard")}
+              className="btn primary-cta-btn"
+            >
               Get in touch
             </div>
           </div>
@@ -68,7 +71,7 @@ const ArtistPortfolioPage = () => {
           <h2 className="artist-media-title">Check out some of my work</h2>
           <div className="row">
             <div className="col">
-              <ul className="gallery-list has-scrollbar">
+              <ul className="gallery-list has-scrollbar mb-2">
                 <ArtistMedia />
                 <ArtistMedia />
                 <ArtistMedia />
@@ -81,15 +84,17 @@ const ArtistPortfolioPage = () => {
         </div>
       </section>
       <section id="artist-reviews">
-        <div className="container-xl artist-review-section">
-          <h2 className="artist-review-title">My Reviews</h2>
-          <div className="artist-stars pb-3">
-            <i className="bi bi-star-fill"></i>
-            <i className="bi bi-star-fill"></i>
-            <i className="bi bi-star-fill"></i>
-            <i className="bi bi-star-fill"></i>
-            <i className="bi bi-star-fill"></i>
-            <div className="artist-stars-average">Average - 4.5/5</div>
+        <div className="artist-review-section">
+          <div className="container-xl">
+            <h2 className="artist-review-title">My Reviews</h2>
+            <div className="artist-stars pb-3">
+              <i className="bi bi-star-fill"></i>
+              <i className="bi bi-star-fill"></i>
+              <i className="bi bi-star-fill"></i>
+              <i className="bi bi-star-fill"></i>
+              <i className="bi bi-star-fill"></i>
+              <div className="artist-stars-average">Average - 4.5/5</div>
+            </div>
           </div>
         </div>
 
