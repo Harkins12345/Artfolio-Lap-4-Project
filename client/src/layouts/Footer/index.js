@@ -55,7 +55,7 @@ const Footer = () => {
             <div
               onClick={() => navigate("/demo")}
               className="footer-menu-link"
-              data-testid="footer-menu-link"
+              data-testid="footer-contact-link"
             >
               Contact us
             </div>
@@ -63,7 +63,7 @@ const Footer = () => {
             <div
               onClick={() => navigate("/demo")}
               className="footer-menu-link"
-              data-testid="footer-menu-link"
+              data-testid="footer-privacy-link"
             >
               Privacy Policy
             </div>
@@ -71,7 +71,7 @@ const Footer = () => {
             <div
               onClick={() => navigate("/demo")}
               className="footer-menu-link"
-              data-testid="footer-menu-link"
+              data-testid="footer-terms-link"
             >
               Terms & Conditions
             </div>
@@ -81,18 +81,21 @@ const Footer = () => {
             <div
               onClick={() => navigate("/demo")}
               className="footer-facebook-link"
+              data-testid="footer-facebook-link"
             >
               <i className="fa-brands fa-facebook-f"></i>
             </div>
             <div
               onClick={() => navigate("/demo")}
               className="footer-instagram-link"
+              data-testid="footer-instagram-link"
             >
               <i className="fa-brands fa-instagram"></i>
             </div>
             <div
               onClick={() => navigate("/demo")}
               className="footer-soundcloud-link"
+              data-testid="footer-soundcloud-link"
             >
               <i className="fa-brands fa-soundcloud"></i>
             </div>

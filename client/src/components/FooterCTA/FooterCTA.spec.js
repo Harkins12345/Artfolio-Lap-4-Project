@@ -42,6 +42,13 @@ describe("FooterCTA Component", () => {
   });
 
   test("it renders the button and navigates to /sign-in upon click", async () => {
+    let button = screen.getByTestId("createAccBtn");
+    await userEvent.click(button);
+    expect(button).toBeInTheDocument();
+    expect(mockedUsedNavigate).toHaveBeenCalledWith("/sign-in");
+  });
+
+  test("it renders the button and navigates to /sign-in upon click", async () => {
     let button = screen.getByTestId("signInBtn");
     await userEvent.click(button);
     expect(button).toBeInTheDocument();
