@@ -3,18 +3,28 @@ import React from "react";
 import { screen, render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import LandingPage from "./index.js";
+import { Provider } from "react-redux";
+import store from ".";
+import configureStore from "redux-mock-store";
+
+const middlewares = [];
+const mockStore = configureStore(middlewares);
 
 describe("Landing Page", () => {
   beforeEach(() => {
+    const store = mockStore({});
+
     render(
-      <Router>
-        <LandingPage />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <LandingPage />
+        </Router>
+      </Provider>
     );
   });
 
-  test("it renders a Create Account Button", () => {
-    let btn = screen.getByTestId("createAccBtn");
+  test("it renders a Create Account Buttons", () => {
+    let btn = screen.getAllByTestId("createAccBtn");
     expect(btn).toBeTruthy();
   });
 

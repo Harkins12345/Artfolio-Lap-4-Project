@@ -20,12 +20,11 @@ const Header = () => {
           data-testid="navbar-logo"
         />
 
-        <div className="navbar-btns">
+        <div className="navbar-btns" data-testid="navbar-btns">
           {username ? (
             <div
               onClick={() => navigate("/dashboard")}
               className="btn primary-cta-btn dashboard-btn"
-              data-testid="dashboard"
             >
               <i className="fa-regular fa-address-card"></i>Dashboard
             </div>

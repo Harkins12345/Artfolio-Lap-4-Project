@@ -27,7 +27,7 @@ const AllArtistsPage = () => {
 
     return (
       <div className="artist-card" data-testid="artist-card">
-        <div className="artist-image-card" data-testid="artist-image">
+        <div className="artist-image-card">
           <div className="play-button">
             <audio id="audio">
               <source
@@ -46,14 +46,14 @@ const AllArtistsPage = () => {
               </div>
             </button>
           </div>
-          <div className="flair-section" data-testid="flair-section">
+          <div className="flair-section">
             <p>Rock</p>
           </div>
         </div>
-        <div className="artist-information">
-          <h3>Incredible Singer John</h3>
-          <h4>Location: London</h4>
-          <p>
+        <div className="artist-information" data-testid="artist-info">
+          <h3 data-testid="artist-info">Incredible Singer John</h3>
+          <h4 data-testid="artist-info">Location: London</h4>
+          <p data-testid="artist-info">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed
             ante efficitur, consectetur arcu et, tincidunt sem. Aenean varius
             velit ex, non venenatis lorem porta ut. Donec vitae tellus ornare,
@@ -62,8 +62,10 @@ const AllArtistsPage = () => {
             non pellentesque arcu, a venenatis odio. Pellentesque habitant morbi
             tristique senectus et netus et malesuada fames ac turpis egestas.
           </p>
-          <div className="artist-info-box">
-            <div className="artist-pricing">£50-60/hour</div>
+          <div className="artist-info-box" data-testid="artist-pricing">
+            <div className="artist-pricing" data-testid="artist-pricing">
+              £50-60/hour
+            </div>
             <div className="artist-view-more">
               <a href="artists/prop">View more</a>
             </div>
@@ -78,8 +80,10 @@ const AllArtistsPage = () => {
       {/* section for description */}
       <div className="main-section" data-testid="main-section">
         <div className="main-text">
-          <h1>Artists hideout</h1>
-          <p>
+          <h1 data-testid="artist-info" data-testid="artist-card">
+            Artists hideout
+          </h1>
+          <p data-testid="artist-info">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed
             ante efficitur, consectetur arcu et, tincidunt sem. Aenean varius
             velit ex, non venenatis lorem porta ut. Donec vitae tellus ornare,
@@ -108,13 +112,19 @@ const AllArtistsPage = () => {
       {/* section for each artist */}
       <div className="artist-list" data-testid="artist-list">
         {/* {sortingArtist()} */}
-        <div className="sort-drop">
-          <form id="sort-drop">
-            <label htmlFor="sort-drop">Sort by: </label>
+        <div className="sort-drop" data-testid="sort-drop">
+          <form id="sort-drop" data-testid="sort-drop">
+            <label htmlFor="sort-drop" data-testid="sort-drop">
+              Sort by:{" "}
+            </label>
             <select name="sort-drop" id="sort-drop-list">
-              <option value="new">New artists</option>
+              <option value="new" data-testid="artist-new">
+                New artists
+              </option>
               <option value="alphabet">Alphabet</option>
-              <option value="price">Price</option>
+              <option value="price" data-testid="artist-pricing">
+                Price
+              </option>
               <option value="rating">Rating</option>
             </select>
           </form>

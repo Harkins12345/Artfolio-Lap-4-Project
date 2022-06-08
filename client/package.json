@@ -48,5 +48,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "redux-mock-store": "^1.5.4",
+    "redux-test-store": "^0.5.0"
   }
 }

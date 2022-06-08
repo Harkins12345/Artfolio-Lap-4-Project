@@ -26,7 +26,7 @@ const Footer = () => {
             <hr className="footer-line"></hr>
           </div>
 
-          <div className="footer-sitemap-1">
+          <div className="footer-sitemap-1" data-testid="footer-sitemap">
             <div
               onClick={() => navigate("/")}
               className="footer-menu-link"
@@ -38,7 +38,7 @@ const Footer = () => {
             <div
               onClick={() => navigate("/artists")}
               className="footer-menu-link"
-              data-testid="footer-artists-link"
+              data-testid="footer-artists-btn"
             >
               All Artists
             </div>
@@ -46,12 +46,12 @@ const Footer = () => {
             <div
               onClick={() => navigate("/demo")}
               className="footer-menu-link"
-              data-testid="footer-artists-link"
+              data-testid="footer-about-btn"
             >
               About us
             </div>
           </div>
-          <div className="footer-sitemap-2">
+          <div className="footer-sitemap-2" data-testid="footer-sitemap">
             <div
               onClick={() => navigate("/demo")}
               className="footer-menu-link"
