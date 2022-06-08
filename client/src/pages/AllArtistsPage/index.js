@@ -8,116 +8,72 @@ const AllArtistsPage = () => {
 
   // get the artists api (with a placeholder)
   useEffect(() => {
-    async function getArtists() {
-      try {
-        const { data } = await axios.get(
-          `https://jsonplaceholder.typicode.com/todos/1`
-        );
-        let arr = [];
-        for (let i = 0; i < data.length; i++) {
-          arr.push(data[i]);
-        }
-        setArtistList(arr);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    
+      axios.get(`https://jsonplaceholder.typicode.com/todos`)
+      .then(resp => resp.data)
+      .then(data => setArtistList([...data]))
+      .catch(err => console.log(err))
+      
+  }, [])
+
     // render artists
     const renderArtists = () => {
+      // get genre, get audio, get name, get location, get description, get price, get link to the artist
+      const genre = artistList;
+      const audioDemo = artistList;
+      const artistName = artistList;
+      const artistLocation = artistList;
+      const artistDescription = artistList;
+      const artistPrice = artistList;
 
-        // get genre, get audio, get name, get location, get description, get price, get link to the artist
-        const genre = artistList;
-        const audioDemo = artistList;
-        const artistName = artistList;
-        const artistLocation = artistList;
-        const artistDescription = artistList;
-        const artistPrice = artistList;
-
-        return (
-            <div className="artist-card" data-testid="artist-card">
-                <div className="artist-image-card" data-testid="artist-image">
-                    <div className="play-button">
-                        <audio id="audio">
-                            <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg"></source>
-                            <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg"></source>
-                        </ audio>
-                        <button type="button" className="no-effect-btn">
-                            <div className="play-btn">
-                                <h1 class="bi bi-play-circle-fill"></h1>
-                                {/* <h1 class="bi bi-pause-circle-fill"></h1> */}
-                            </div>
-                        </button>
-                    </div>
-                    <div className="flair-section" data-testid="flair-section">
-                        <p>Rock</p>
-                    </div>
+      return (
+        <div className="artist-card" data-testid="artist-card">
+          <div className="artist-image-card" data-testid="artist-image">
+            <div className="play-button">
+              <audio id="audio">
+                <source
+                  src="https://www.w3schools.com/html/horse.mp3"
+                  type="audio/mpeg"
+                ></source>
+                <source
+                  src="https://www.w3schools.com/html/horse.ogg"
+                  type="audio/ogg"
+                ></source>
+              </audio>
+              <button type="button" className="no-effect-btn">
+                <div className="play-btn">
+                  <h1 class="bi bi-play-circle-fill"></h1>
+                  {/* <h1 class="bi bi-pause-circle-fill"></h1> */}
                 </div>
-                <div className="artist-information">
-                    <h3>Incredible Singer John</h3>
-                    <h4>Location: London</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed ante efficitur, consectetur arcu et, tincidunt sem. Aenean varius velit ex, non venenatis lorem porta ut. Donec vitae tellus ornare, sagittis metus vel, fringilla mauris. Donec sodales diam interdum, pretium est eget, tristique diam. Quisque sed nisi tortor. Aliquam non pellentesque arcu, a venenatis odio. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-                    <div className="artist-info-box">
-                        <div className="artist-pricing">
-                            £50-60/hour
-                        </div>
-                        <div className="artist-view-more">
-                            <a href="artists/prop">View more</a>
-                        </div>
-                    </div>
-                </div>
+              </button>
             </div>
-        )
-    }
-
-    return (
-      <div className="artist-card" data-testid="artist-card">
-        <div className="artist-image-card" data-testid="artist-image">
-          <div className="play-button">
-            <audio id="audio">
-              <source
-                src="https://www.w3schools.com/html/horse.mp3"
-                type="audio/mpeg"
-              ></source>
-              <source
-                src="https://www.w3schools.com/html/horse.ogg"
-                type="audio/ogg"
-              ></source>
-            </audio>
-            <button type="button" className="no-effect-btn">
-              <div className="play-btn">
-                <h1 class="bi bi-play-circle-fill"></h1>
-                {/* <h1 class="bi bi-pause-circle-fill"></h1> */}
+            <div className="flair-section" data-testid="flair-section">
+              <p>Rock</p>
+            </div>
+          </div>
+          <div className="artist-information">
+            <h3>Incredible Singer John</h3>
+            <h4>Location: London</h4>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed
+              ante efficitur, consectetur arcu et, tincidunt sem. Aenean varius
+              velit ex, non venenatis lorem porta ut. Donec vitae tellus ornare,
+              sagittis metus vel, fringilla mauris. Donec sodales diam interdum,
+              pretium est eget, tristique diam. Quisque sed nisi tortor. Aliquam
+              non pellentesque arcu, a venenatis odio. Pellentesque habitant
+              morbi tristique senectus et netus et malesuada fames ac turpis
+              egestas.
+            </p>
+            <div className="artist-info-box">
+              <div className="artist-pricing">£50-60/hour</div>
+              <div className="artist-view-more">
+                <a href="artists/prop">View more</a>
               </div>
-            </button>
-          </div>
-          <div className="flair-section" data-testid="flair-section">
-            <p>Rock</p>
-          </div>
-        </div>
-        <div className="artist-information">
-          <h3>Incredible Singer John</h3>
-          <h4>Location: London</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed
-            ante efficitur, consectetur arcu et, tincidunt sem. Aenean varius
-            velit ex, non venenatis lorem porta ut. Donec vitae tellus ornare,
-            sagittis metus vel, fringilla mauris. Donec sodales diam interdum,
-            pretium est eget, tristique diam. Quisque sed nisi tortor. Aliquam
-            non pellentesque arcu, a venenatis odio. Pellentesque habitant morbi
-            tristique senectus et netus et malesuada fames ac turpis egestas.
-          </p>
-          <div className="artist-info-box">
-            <div className="artist-pricing">£50-60/hour</div>
-            <div className="artist-view-more">
-              <a href="artists/prop">View more</a>
             </div>
           </div>
         </div>
-      </div>
-    );
-  };
-
+      );
+    };
+    
   return (
     <div>
       {/* section for description */}
@@ -155,7 +111,7 @@ const AllArtistsPage = () => {
         {/* {sortingArtist()} */}
         <div className="sort-drop">
           <form id="sort-drop">
-            <label for="sort-drop">Sort by: </label>
+            <label htmlFor="sort-drop">Sort by: </label>
             <select name="sort-drop" id="sort-drop-list">
               <option value="new">New artists</option>
               <option value="alphabet">Alphabet</option>
@@ -164,14 +120,6 @@ const AllArtistsPage = () => {
             </select>
           </form>
         </div>
-
-        {renderArtists()}
-        {/* place holder */}
-        {renderArtists()}
-        {renderArtists()}
-        {renderArtists()}
-        {renderArtists()}
-        {/* place holder */}
       </div>
     </div>
   );
