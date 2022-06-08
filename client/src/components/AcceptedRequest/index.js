@@ -1,7 +1,9 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
+import ChatModal from "./../ChatModal";
 
 const AcceptedRequest = () => {
+
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <a
       ref={ref}
@@ -41,7 +43,7 @@ const AcceptedRequest = () => {
               sagittis metus vel, fringilla mauris.
             </p>
             <button className="edit-button">
-              <i className="fa-solid fa-message"></i> Chat
+              <i className="fa-solid fa-message"></i> Chat <ChatModal/>
             </button>
           </div>
         </div>
