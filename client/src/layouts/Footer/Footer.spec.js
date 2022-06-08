@@ -19,9 +19,6 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("Footer", () => {
-  //   store = createTestStore();
-  //   const store = createStore(rootReducer);
-
   beforeEach(() => {
     const store = mockStore({});
 

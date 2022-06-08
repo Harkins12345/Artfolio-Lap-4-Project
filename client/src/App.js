@@ -12,6 +12,7 @@ import {
   AllArtistsPage,
   DashboardPage,
   DemoPage,
+  YourPortfolioPage,
 } from "./pages";
 import Layout from "./layouts";
 
@@ -55,6 +56,7 @@ const App = () => {
           </Route>
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/demo" element={<DemoPage />} />
+          <Route path="/portfolio" element={<YourPortfolioPage />} />
         </Route>
       </Routes>
     </>
