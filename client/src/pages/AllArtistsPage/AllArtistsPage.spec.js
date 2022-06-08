@@ -3,13 +3,23 @@ import React from "react";
 import { screen, render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import AllArtistsPage from "./index.js";
+import { Provider } from "react-redux";
+import store from ".";
+import configureStore from "redux-mock-store";
+
+const middlewares = [];
+const mockStore = configureStore(middlewares);
 
 describe("All Artists Page", () => {
   beforeEach(() => {
+    const store = mockStore({});
+
     render(
-      <Router>
-        <AllArtistsPage />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <AllArtistsPage />
+        </Router>
+      </Provider>
     );
   });
 
@@ -41,10 +51,5 @@ describe("All Artists Page", () => {
   test("it renders a Main section", () => {
     let main = screen.getAllByTestId("main-section");
     expect(main).toBeTruthy();
-  });
-
-  test("it renders an Artist list", () => {
-    let list = screen.getAllByTestId("artist-list");
-    expect(list).toBeTruthy();
   });
 });

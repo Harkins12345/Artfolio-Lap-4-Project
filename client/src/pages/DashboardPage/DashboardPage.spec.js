@@ -3,6 +3,13 @@ import React from "react";
 import { screen, render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import DashboardPage from "./index.js";
+import userEvent from "@testing-library/user-event";
+
+const mockedUsedNavigate = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockedUsedNavigate,
+}));
 
 describe("Dashboard Page", () => {
   beforeEach(() => {
@@ -11,6 +18,13 @@ describe("Dashboard Page", () => {
         <DashboardPage />
       </Router>
     );
+  });
+
+  test("it renders a button and navigates to /portfolio upon click", async () => {
+    let button = screen.getByTestId("portfolio-btn");
+    await userEvent.click(button);
+    expect(button).toBeInTheDocument();
+    expect(mockedUsedNavigate).toHaveBeenCalledWith("/portfolio");
   });
 
   test("it renders a Welcome Section", () => {
@@ -38,19 +52,9 @@ describe("Dashboard Page", () => {
     expect(gig).toBeTruthy();
   });
 
-  test("it renders an Upcoming gigs section", () => {
-    let gigs = screen.getAllByTestId("upcoming-gigs");
-    expect(gigs).toBeTruthy();
-  });
-
   test("it renders an Artist card section", () => {
     let artist = screen.getAllByTestId("artist-card");
     expect(artist).toBeTruthy();
-  });
-
-  test("it renders a Create Gig button", () => {
-    let btn = screen.getByTestId("create-gig-btn");
-    expect(btn).toBeTruthy();
   });
 
   test("it renders an Attending Gig component", () => {
