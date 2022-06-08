@@ -1,17 +1,27 @@
-import React, {useState} from "react";
+import React, { useEffect, useState } from "react";
 
 const ArtistAudio = ({ media }) => {
 
   const [paused, changePaused] = useState();
-  const [song, setSong] = useState();
+  const [audioPlayer, setAudioPlayer] = useState();
 
-  function togglePause(e){
-    if (paused){
+  useEffect(() => {
+    if (media){
+      setAudioPlayer(prev => {
+        const song = new Audio(`${window.origin}/media/${media['filename']}`)
+        return song
+      })
+    }
+  }, [])
+
+  function togglePause(e) {
+    if (paused) {
       changePaused(false)
+      audioPlayer.pause()
     } else {
       changePaused(true)
+      audioPlayer.play()
     }
-    paused ? changePaused(false) : changePaused(true)
   }
 
   return (
@@ -19,16 +29,11 @@ const ArtistAudio = ({ media }) => {
       <div className="row ">
         <div className="col-2">
           <div className="play-pause-btn">
-            <i className="bi bi-play-circle-fill"></i>
-            <i className="bi bi-pause-circle-fill"></i>
+            <i className={paused ? "bi bi-pause-circle-fill" : "bi bi-play-circle-fill"} onClick={togglePause}></i>
           </div>
         </div>
         <div className="col-10 audio-name" data-testid="audio-name">
-          <audio controls>
-            <source src={media ? `/media/${media['filename']}` : ''}
-             type={media ? media['contentType'] : ''} />
-            Your browser does not support the audio element.
-          </audio>
+          Sample Audio
         </div>
       </div>
 
