@@ -3,7 +3,12 @@ import React from "react";
 import { screen, render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import DashboardPage from "./index.js";
+import { Provider } from "react-redux";
 import userEvent from "@testing-library/user-event";
+import configureStore from "redux-mock-store";
+
+const middlewares = [];
+const mockStore = configureStore(middlewares);
 
 const mockedUsedNavigate = jest.fn();
 jest.mock("react-router-dom", () => ({
@@ -13,10 +18,14 @@ jest.mock("react-router-dom", () => ({
 
 describe("Dashboard Page", () => {
   beforeEach(() => {
+    const store = mockStore({});
+
     render(
-      <Router>
-        <DashboardPage />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <DashboardPage />
+        </Router>
+      </Provider>
     );
   });
 
