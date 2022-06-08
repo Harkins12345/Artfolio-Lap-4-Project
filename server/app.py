@@ -264,8 +264,8 @@ def page_not_found(e):
 
 @app.errorhandler(500)
 def page_not_found(e):
-    return send_from_directory(app.static_folder, 'index.html'), 500
+    return send_from_directory(app.static_folder, 'index.html'), 500 # pragma: no cover
 
+if __name__ == "__main__": # pragma: no cover
+    app.run(debug=True)
 
-if __name__ == "__main__":
-    socketio.run(app)

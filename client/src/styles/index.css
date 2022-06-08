@@ -795,6 +795,10 @@ AllArtistsPage
   border-radius: 25px;
   margin-top: 10px;
   margin-bottom: 10px;
+  display: flex;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .play-pause-btn {
@@ -808,6 +812,7 @@ AllArtistsPage
 .audio-name {
   display: flex;
   align-items: center;
+  margin-left: 10px;
 }
 
 .artist-review-section {
