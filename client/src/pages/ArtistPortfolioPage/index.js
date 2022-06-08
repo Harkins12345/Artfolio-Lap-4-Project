@@ -71,7 +71,7 @@ const ArtistPortfolioPage = () => {
           <h2 className="artist-media-title">Check out some of my work</h2>
           <div className="row">
             <div className="col">
-              <ul className="gallery-list has-scrollbar">
+              <ul className="gallery-list has-scrollbar mb-2">
                 <ArtistMedia />
                 <ArtistMedia />
                 <ArtistMedia />

@@ -3,13 +3,23 @@ import React from "react";
 import { screen, render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Layout from "../index.js";
+import { Provider } from "react-redux";
+import store from ".";
+import configureStore from "redux-mock-store";
+
+const middlewares = [];
+const mockStore = configureStore(middlewares);
 
 describe("Header", () => {
   beforeEach(() => {
+    const store = mockStore({});
+
     render(
-      <Router>
-        <Layout />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <Layout />
+        </Router>
+      </Provider>
     );
   });
 
@@ -23,9 +33,9 @@ describe("Header", () => {
     expect(logo).toBeInTheDocument();
   });
 
-  test("it renders a dashboard", () => {
-    let dashboard = screen.getByTestId("dashboard");
-    expect(dashboard).toBeInTheDocument();
+  test("it renders Navbar Buttons", () => {
+    let btns = screen.getByTestId("navbar-btns");
+    expect(btns).toBeInTheDocument();
   });
 
   test("it renders a Sign In Button", () => {
