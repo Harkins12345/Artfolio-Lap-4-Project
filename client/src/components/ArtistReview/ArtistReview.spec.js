@@ -1,16 +1,8 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import ArtistReview, { default as FooterCTA } from "./index.js";
+import ArtistReview from "./index.js";
 import { screen, render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import * as router from "react-router";
-import userEvent from "@testing-library/user-event";
-
-const mockedUsedNavigate = jest.fn();
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  useNavigate: () => mockedUsedNavigate,
-}));
 
 describe("Artist Review", () => {
   beforeEach(() => {
