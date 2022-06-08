@@ -87,7 +87,7 @@ const ArtistPortfolioPage = () => {
               </ul>
             </div>
           </div>
-          {artistData ? artistData['portfolio']['media'].filter(media => media['contentType'].split('/')[0] === 'audio').map(media => <ArtistAudio media={media} />) : null}
+          {artistData ? artistData['portfolio']['media'].filter(media => media['contentType'].split('/')[0] === 'audio').map((media, index) => <ArtistAudio media={media} player={index} />) : null}
         </div>
       </section>
       <section id="artist-reviews">
