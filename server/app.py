@@ -137,11 +137,17 @@ def login():
 def get_all():
     try:
         users = User.get_all_users(db)
-        print(type(users))
         for user in users:
-            del user['active_chats']
+            del user['_id']
+            del user['email']
+            del user['username']
+            del user['password']
+            del user['pending_requests']
+            del user['sent_requests']
+            del user['active_gigs']
+
         artists = [a for a in users if len(a['portfolio']['media']) != 0]
-        return jsonify({'artists': artists})
+        return jsonify(artists)
 
     except UserException as e:
         return jsonify({'error': str(e)}), 404
@@ -155,7 +161,13 @@ def get_all():
 def get_user(username):
     try:
         user = User.get_by_username(db, username)
-        del user['active_chats']
+        del user['_id']
+        del user['email']
+        del user['username']
+        del user['password']
+        del user['pending_requests']
+        del user['sent_requests']
+        del user['active_gigs']
         return jsonify(user)
 
     except UserException as e:

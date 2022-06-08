@@ -49,12 +49,13 @@ class User:
 
     @staticmethod
     def get_by_username(db, username):
-        user = db.users.find_one({'username': username.lower()})
 
-        if user:
+        try:
+            user = dict(db.users.find_one({'username': username.lower()}))
             return user
-
-        raise UserException("User not found.")
+        
+        except TypeError:
+            raise UserException("User not found.")
 
     @staticmethod
     def get_by_email(db, email):

@@ -1,6 +1,6 @@
 import React from "react";
 
-const ArtistAudio = () => {
+const ArtistAudio = ({ media }) => {
   return (
     <div className="media-audio" data-testid="media-audio">
       <div className="row ">
@@ -10,7 +10,11 @@ const ArtistAudio = () => {
           </div>
         </div>
         <div className="col-10 audio-name" data-testid="audio-name">
-          Name of audio
+          <audio controls>
+            <source src={media ? `/media/${media['filename']}` : ''}
+             type={media ? media['contentType'] : ''} />
+            Your browser does not support the audio element.
+          </audio>
         </div>
       </div>
     </div>

@@ -1,6 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 
-const ArtistCard = () => {
+const ArtistCard = ({artistData}) => {
+
+  const navigate = useNavigate();
+
+  function navigateToUser(e){
+    navigate(`/artists/${artistData['display_username'].toLowerCase()}`)
+  }
+
   return (
 
     <div className="gallery-item-artist" data-testid="artist-card">
@@ -12,15 +20,12 @@ const ArtistCard = () => {
       <div className="gallery-content">
         <div className="play-genre-container">
           <div className="play-button">
-            <audio id="audio">
+            <audio controls id="audio">
               <source
-                src="https://www.w3schools.com/html/horse.mp3"
-                type="audio/mpeg"
+                src={artistData ? `/media/${artistData['portfolio']['media'].find(media => media['contentType'].split('/')[0] === 'audio')['filename']}` : ""}
+                type={artistData ? artistData['portfolio']['media'].find(media => media['contentType'].split('/')[0] === 'audio')['contentType'] : ""}
               ></source>
-              <source
-                src="https://www.w3schools.com/html/horse.ogg"
-                type="audio/ogg"
-              ></source>
+              Your browser does not support the audio tag.
             </audio>
 
             <div className="play-pause-btn">
@@ -33,17 +38,17 @@ const ArtistCard = () => {
           </div>
         </div>
 
-        <h3 className="gallery-item-title" data-testid="artist-title">Lorem ipsum dolor sit amet.</h3>
+        <h3 className="gallery-item-title" data-testid="artist-title">{artistData ? artistData['portfolio']['name'] : ''}</h3>
         <p className="gallery-item-description" data-testid="artist-desc">
-          Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+          {artistData ? artistData['portfolio']['description'] : ''}
         </p>
         <div className="gallery-rating-price-row row">
           <div className="col">
             <div className="gallery-item-rating">4.9/5</div>
-            <div className="gallery-item-price">£00.00</div>
+            <div className="gallery-item-price">£{artistData ? artistData['portfolio']['price'] : ''}</div>
           </div>
           <div className="col d-flex align-items-end justify-content-end">
-            <div className="gallery-item-view-more-link">View more</div>
+            <div onClick={navigateToUser} className="gallery-item-view-more-link">View more</div>
           </div>
         </div>
       </div>

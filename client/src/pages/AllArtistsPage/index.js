@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { ArtistCard } from "../../components";
+import { useNavigate } from "react-router-dom";
 
 const AllArtistsPage = () => {
   const username = useSelector((state) => state.username);
@@ -12,10 +13,8 @@ const AllArtistsPage = () => {
     axios
       .post(`${window.origin}/artists`)
       .then((resp) => resp.data)
-      .then((data) => setArtistList([...data]))
+      .then((data) => setArtistList(data))
       .catch((err) => console.log(err))
-    
-    console.log(artistList)
   }, []);
 
 
