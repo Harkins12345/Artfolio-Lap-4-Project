@@ -5,4 +5,7 @@ export { default as ArtistMedia } from "./ArtistMedia";
 export { default as ArtistCard } from "./ArtistCard";
 export { default as AcceptedRequest } from "./AcceptedRequest";
 export { default as ChatModal } from "./ChatModal";
+export { default as ChatBalloonSend } from "./ChatBalloonSend";
+export { default as ChatBalloonReceived } from "./ChatBalloonReceived";
 export { default as RequestCard } from "./RequestCard";
+
