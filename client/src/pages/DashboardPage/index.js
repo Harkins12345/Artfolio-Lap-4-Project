@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./style.css";
 import AcceptedRequest from "../../components/AcceptedRequest";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
