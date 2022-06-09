@@ -25,7 +25,7 @@ const LandingPage = () => {
       <section className="hero-section" data-testid="hero-section">
         <div className="container-xl hero-container" data-testid="hero-section">
           <img
-            src="https://s2.r29static.com/bin/public/be6/0,0,2000,1050/x,80/1501654/image.jpg"
+            src="https://images.pexels.com/photos/8043841/pexels-photo-8043841.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             alt=""
             className="hero-image my-3"
           />
@@ -48,7 +48,11 @@ const LandingPage = () => {
             </div>
             <div className="hero-btn-microcopy" data-testid="noAccount">
               Haven't got an account?&nbsp;
-              <span onClick={() => navigate("/sign-in")} className="createAccountNow" data-testid="createAccBtn">
+              <span
+                onClick={() => navigate("/sign-in")}
+                className="createAccountNow"
+                data-testid="createAccBtn"
+              >
                 Create one now!
               </span>
             </div>

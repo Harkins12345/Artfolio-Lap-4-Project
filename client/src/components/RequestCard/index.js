@@ -11,7 +11,7 @@ const RequestCard = ({ requestData, refreshRequests }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  function handleAccept() {
+  function handleAccept(e) {
     const data = {
       request_type: "accept_request",
       request_data: requestData,
@@ -19,11 +19,11 @@ const RequestCard = ({ requestData, refreshRequests }) => {
 
     axios.post("/request", data).catch((err) => console.log(err));
 
+    refreshRequests(e);
     handleClose();
-    refreshRequests();
   }
 
-  function handleDenie() {
+  function handleDenie(e) {
     const data = {
       request_type: "denie_request",
       request_data: requestData,
@@ -31,8 +31,8 @@ const RequestCard = ({ requestData, refreshRequests }) => {
 
     axios.post("/request", data).catch((err) => console.log(err));
 
+    refreshRequests(e);
     handleClose();
-    refreshRequests();
   }
 
   return (

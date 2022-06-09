@@ -33,7 +33,7 @@ const AuthPage = () => {
       .then((resp) => resp.data)
       .then((data) => {
         dispatch(setUsername(data["username"]));
-        navigate("/", { replace: true });
+        navigate("/dashboard", { replace: true });
       })
       .catch((err) => console.log(err));
   };

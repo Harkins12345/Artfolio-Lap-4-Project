@@ -12,6 +12,7 @@ class Chat:
         self.create()
 
     def create(self):
+        print(self.username)
 
         self.db.chats.insert_one({
             "chatId": self.chatId,
