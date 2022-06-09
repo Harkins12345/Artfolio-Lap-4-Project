@@ -35,8 +35,8 @@ const ArtistCard = ({artistData}) => {
 
     <div className="gallery-item-artist" data-testid="artist-card">
       <img
-        src="https://heavy.com/wp-content/uploads/2016/02/martin_super_bowl-e1454699147664.jpg"
-        alt=""
+        src={artistData['portfolio']['media'].find(media => media['contentType'].split('/')[0] === 'image') ? `/media/${artistData['portfolio']['media'].find(media => media['contentType'].split('/')[0] === 'image')['filename']}` : ''}
+        alt="Artist Photo"
       />
 
       <div className="gallery-content">
@@ -47,7 +47,7 @@ const ArtistCard = ({artistData}) => {
             </div>
           </div>
           <div className="artist-genre-container">
-            <span className="artist-genre">Rock</span>
+            <span className="artist-genre">{artistData ? artistData['portfolio']['genre'] : ''}</span>
           </div>
         </div>
 

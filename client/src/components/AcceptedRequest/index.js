@@ -4,8 +4,10 @@ import { setSocket } from "../../actions";
 import io from "socket.io-client";
 import Dropdown from "react-bootstrap/Dropdown";
 import { ChatModal } from "../../components";
+import axios from "axios";
 
-const AcceptedRequest = ({ gigData }) => {
+const AcceptedRequest = ({gigData, refresh}) => {
+
   const dispatch = useDispatch();
   const username = useSelector((state) => state.username);
 
@@ -25,23 +27,31 @@ const AcceptedRequest = ({ gigData }) => {
   // open modal operators
   const [showModal, setShowModal] = useState(false);
 
+  function handleDelete(e){
+    const data = {
+      request_type: 'delete_request',
+      request_data: gigData
+    }
+
+    axios.post('/request', data)
+    .catch(err => console.log(err))
+
+    refresh()
+  }
+
   const openModal = () => {
     setShowModal((prev) => !prev);
   };
 
   useEffect(() => {
-    if (showModal) {
-      const socket = io();
-      socket.on("connect", () => {
-        socket.emit("openChat", gigData["request_id"]);
-        dispatch(setSocket(socket));
-      });
-    } else {
-      const socket = useSelector((state) => state.socket);
-      if (socket) {
-        socket.disconnect();
-      }
-      dispatch(setSocket(null));
+    if (showModal){
+      const socket = io()
+      socket.on('connect', () => {
+        socket.emit('openChat', gigData['request_id'])
+        dispatch(setSocket(socket))
+      })
+    }  else {
+      dispatch(setSocket(null))
     }
   }, [showModal]);
 
@@ -60,7 +70,7 @@ const AcceptedRequest = ({ gigData }) => {
           <Dropdown>
             <Dropdown.Toggle as={CustomToggle} />
             <Dropdown.Menu size="sm" title="">
-              <Dropdown.Item>Delete</Dropdown.Item>
+              <Dropdown.Item onClick={handleDelete} >Delete</Dropdown.Item>
               <Dropdown.Item>Report</Dropdown.Item>
               <Dropdown.Item>Block</Dropdown.Item>
             </Dropdown.Menu>

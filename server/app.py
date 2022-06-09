@@ -1,3 +1,4 @@
+from distutils import extension
 import requests as r
 from datetime import timedelta
 from flask import Flask, request, send_file, send_from_directory, jsonify, session
@@ -263,17 +264,9 @@ def update():
 @app.route('/artists/delete', methods=['POST'])
 @authenticate
 def delete():
-    username = request.json.get('username', None)
+    User.delete(db, session['username'])
 
-    if not username:
-        return jsonify({'error': 'username is required.'}), 400
-
-    if username == session['username']:
-        User.delete(db, username)
-
-        return jsonify({'message': f'User {username} deleted successfully.'}), 204
-
-    return jsonify({'error': 'Authentication required.'}), 401
+    return jsonify({'message': f'User {session["username"]} deleted successfully.'}), 204
 
 
 @app.route('/media/<filename>')
@@ -291,18 +284,19 @@ def upload():
         files = request.files
         file_keys = request.files.keys()
         for k in file_keys:
-            print(f'Sending file {files[k].filename}')
-            if files[k].filename.split('.')[1] not in VALID_FILES:
+            if not any(valid for valid in VALID_FILES if files[k].filename.endswith(valid)):
                 continue
+
+            file_extension = ''.join([valid for valid in VALID_FILES if files[k].filename.endswith(valid)])
 
             file_upload = files[k]
 
             new_filename = session['username'] + '_' + \
-                str(uuid4()) + '.' + file_upload.filename.split('.')[1]
+                str(uuid4()) + '.' + file_extension
 
             while db.fs.files.find_one({'filename': new_filename}):
                 new_filename = session['username'] + '_' + \
-                    str(uuid4()) + '.' + file_upload.filename.split('.')[1]
+                    str(uuid4()) + '.' + file_extension
 
             file_id = mongo.save_file(new_filename, file_upload)
             saved_file = db.fs.files.find_one({'_id': file_id})
