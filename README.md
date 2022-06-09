@@ -1,10 +1,10 @@
 # Artfolio - https://artfol-io.herokuapp.com/
 
 Mobile Version
-![Mobile Landing Page](/mobile-landing.PNG)
+![mobile-landing-page](/mobile-landing.png)
 
 Desktop Version
-![Desktop Landing Page](/desktop-landing.PNG)
+![desktop-landing-page](/desktop-landing.png)
 
 ## Description
 
