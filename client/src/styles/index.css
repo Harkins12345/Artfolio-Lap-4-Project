@@ -91,6 +91,12 @@ body {
   color: var(--text-light) !important;
 }
 
+.navbar-btns {
+  width: auto;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
 /************************************************************************/
 /* LAYOUTS */
 /************************************************************************/
@@ -582,9 +588,11 @@ footer {
 
 .gallery-item img,
 .gallery-item-artist img {
-  width: 100%;
-  border-radius: 25px 25px 0px 0px;
+  border-radius: 25px 25px 0 0;
   max-height: 175px;
+  width: 100%;
+  object-fit: cover;
+  height: 50%;
 }
 
 .gallery-item-artist-media img {
@@ -600,17 +608,38 @@ footer {
   padding-right: 20px;
 }
 
+.gallery-item-title {
+  font-size: 14px;
+}
+
 .gallery-item-title,
 .gallery-item-price,
 .gallery-item-rating {
   font-weight: 700;
 }
 
-.gallery-item-title,
 .gallery-item-description,
 .gallery-item-price,
 .gallery-item-rating {
-  font-size: 10px;
+  font-size: 12px;
+}
+
+.container-containing-overflow-for-text {
+  height: 95px;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 10px;
+  text-overflow: ellipsis;
+  white-space: normal;
+  position: relative;
+}
+
+.gradient-that-makes-thing-pretty-for-overflow {
+  background-image: linear-gradient(to top, var(--beige-darker), transparent);
+  height: 50%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 }
 
 .gallery-rating-price-row {
@@ -621,7 +650,7 @@ footer {
 .gallery-item-view-more-link {
   cursor: pointer;
   text-decoration: underline;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .gallery-item-view-more-link:hover {
@@ -1608,7 +1637,7 @@ AllArtistsPage
   }
 
   .gallery-all-list .gallery-item-artist {
-    max-width: 20%;
+    max-width: 30%;
   }
 
   .gallery-list .gallery-item-artist {
