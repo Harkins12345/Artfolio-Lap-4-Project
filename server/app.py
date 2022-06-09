@@ -292,8 +292,6 @@ def upload():
         files = request.files
         file_keys = request.files.keys()
         for k in file_keys:
-            print(f'Sending file {files[k].filename}')
-            any(valid for valid in VALID_FILES if files[k].filename.endswith(valid))
             if not any(valid for valid in VALID_FILES if files[k].filename.endswith(valid)):
                 continue
 
