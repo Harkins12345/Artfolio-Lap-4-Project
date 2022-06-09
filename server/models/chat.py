@@ -37,3 +37,7 @@ class Chat:
                 "user": username
             }
         }})
+    
+    @staticmethod
+    def delete_log(db, chatId):
+        db.chats.find_one_and_delete({'chatId': chatId})

@@ -56,13 +56,15 @@ socketio = SocketIO(app)
 @socketio.on('openChat')
 def set_up_chat(chatId):
     join_room(chatId)
-    Chat(db, chatId, "First Message", session['username'])
+    messages = Chat.find_chat_by_id(db, chatId)
+    emit('prevMessages', messages['message_log'], to=chatId)
 
 
 @socketio.on('sendMessage')
 def display_message(message, chatId):
-    Chat.send_message(db, chatId, 'HELLO WORLD', session['username'])
-    emit('displayMessage', f'Hello {session["username"]}', to=chatId)
+    Chat.send_message(db, chatId, message, session['username'])
+    messages = Chat.find_chat_by_id(db, chatId)
+    emit('prevMessages', messages['message_log'], to=chatId)
 
 
 # Endpoints
@@ -132,6 +134,7 @@ def login():
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
+
 @app.route('/logout', methods=['POST'])
 @authenticate
 def logout():
@@ -184,6 +187,7 @@ def get_user(username):
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
+
 @app.route('/dashboard', methods=['POST'])
 @authenticate
 def get_user_dashboard():
@@ -207,6 +211,7 @@ def get_user_dashboard():
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
+
 @app.route('/dashboard/refresh', methods=['POST'])
 @authenticate
 def refresh_requests():
@@ -214,17 +219,22 @@ def refresh_requests():
 
     try:
         user = User.get_by_username(db, username)
-        
-        return jsonify({'requests' : user['pending_requests']})
+
+        return jsonify({
+            'requests': user['pending_requests'],
+            'active_gigs': user['active_gigs']
+        })
 
     except Exception as e:
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
+
 @app.route('/artists/update', methods=['POST'])
 @authenticate
 def update():
-    VALID_INPUTS = ['email', 'name', 'password', 'genre', 'price', 'description']
+    VALID_INPUTS = ['email', 'name', 'password',
+                    'genre', 'price', 'description']
     username = session['username']
     data_types = request.json.get('data_types', None)
     new_data = request.json.get('new_data', None)
@@ -265,14 +275,17 @@ def delete():
 
     return jsonify({'error': 'Authentication required.'}), 401
 
+
 @app.route('/media/<filename>')
 def serve_media(filename):
     return mongo.send_file(filename)
 
+
 @app.route('/upload', methods=['POST'])
 @authenticate
 def upload():
-    VALID_FILES = ['jpg','jpeg','jfif','pjpeg','pjp','png','gif','webm','mp4','mp3','wav','ogg']
+    VALID_FILES = ['jpg', 'jpeg', 'jfif', 'pjpeg', 'pjp',
+                   'png', 'gif', 'webm', 'mp4', 'mp3', 'wav', 'ogg']
 
     try:
         files = request.files
@@ -300,7 +313,7 @@ def upload():
             })
 
         return jsonify({'message': f'Files saved.'}), 201
-    
+
     except Exception as e:
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
@@ -313,11 +326,9 @@ def handle_request():
     request_data = request.json.get('request_data', None)
 
     if request_type and request_data:
-        if request_data['from_username'] != session['username']:
-            return jsonify({'error': 'Authentication required.'}), 401
-
         if request_type == 'create_request':
             if User.verify_single_sent_request(db, request_data['to_username'], session['username']):
+                request_data['from_username'] = session['username']
                 User.create_request(db, request_data, session['username'])
                 return jsonify({'message': 'Sent request.'})
 
@@ -330,6 +341,10 @@ def handle_request():
         if request_type == 'denie_request':
             User.denie_request(db, request_data, session['username'])
             return jsonify({'message': 'Request denied.'})
+        
+        if request_type == 'delete_request':
+            User.delete_request(db, request_data, session['username'])
+            return jsonify({'message': 'Request deleted.'})
 
     return jsonify({'error': 'Bad request.'}), 400
 
@@ -346,8 +361,8 @@ def page_not_found(e):
 
 @app.errorhandler(500)
 def page_not_found(e):
-    return send_from_directory(app.static_folder, 'index.html'), 500 # pragma: no cover
+    return send_from_directory(app.static_folder, 'index.html'), 500  # pragma: no cover
 
-if __name__ == "__main__": # pragma: no cover
+
+if __name__ == "__main__":  # pragma: no cover
     socketio.run(app)
-
