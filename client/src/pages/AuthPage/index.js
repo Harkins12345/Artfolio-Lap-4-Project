@@ -7,7 +7,6 @@ import classnames from "classnames";
 import { useState } from "react";
 
 const AuthPage = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -78,7 +77,7 @@ const AuthPage = () => {
             onSubmit={register}
             data-testid="auth-form"
           >
-            <h1 className="header-authpage" data-testid="header-authpage">
+            <h1 className="sign-up-title" data-testid="header-authpage">
               Sign up
             </h1>
             <div className="social-container" data-testid="social">
@@ -124,7 +123,7 @@ const AuthPage = () => {
               placeholder="Confirm Password"
             />
             <button
-              className="btn auth-btn"
+              className="btn primary-cta-btn"
               data-testid="auth-btn"
               type="submit"
               placeholder="Sign up"
@@ -141,7 +140,7 @@ const AuthPage = () => {
             id="SignIn"
             onSubmit={login}
           >
-            <h1>Sign in</h1>
+            <h1 className="sign-in-title">Sign in</h1>
 
             <div className="social-container">
               <a href="/" className="social">
@@ -173,28 +172,37 @@ const AuthPage = () => {
               Forgot your password?
             </a>
 
-            <button className="btn auth-btn" type="sumbit">
-              Sign in
+            <button className="btn primary-cta-btn" type="sumbit">
+              <i className="fa-regular fa-user"></i>Sign in
             </button>
           </form>
         </div>
         <div className="overlay-container">
           <div className="overlay" data-testid="overlay">
             <div className="overlay-panel overlay-left" data-testid="overlay">
-              <h1>Welcome Back!</h1>
-              <button className="ghost" id="signIn" onClick={toggleBtn}>
+              <h1 className="sign-up-title">Welcome Back!</h1>
+              <button
+                className="btn secondary-cta-btn"
+                id="signIn"
+                onClick={toggleBtn}
+              >
                 Sign In
               </button>
             </div>
             <div className="overlay-panel overlay-right" data-testid="overlay">
-              <h1>Don't have an account?</h1>
-              <button className="ghost" id="signUp" onClick={toggleBtn}>
+              <h1 className="sign-in-title">Don't have an account?</h1>
+              <button
+                className="btn secondary-cta-btn"
+                id="signUp"
+                onClick={toggleBtn}
+              >
                 Sign Up
               </button>
             </div>
           </div>
         </div>
       </div>
+      <div className=""></div>
     </>
   );
 };
