@@ -56,13 +56,13 @@ socketio = SocketIO(app)
 @socketio.on('openChat')
 def set_up_chat(chatId):
     join_room(chatId)
-    Chat(db, chatId, "First Message", session['username'])
 
 
 @socketio.on('sendMessage')
 def display_message(message, chatId):
-    Chat.send_message(db, chatId, 'HELLO WORLD', session['username'])
-    emit('displayMessage', f'Hello {session["username"]}', to=chatId)
+    Chat.send_message(db, chatId, message, session['username'])
+    messages = Chat.find_chat_by_id(db, chatId)
+    emit('prevMessages', messages['message_log'], to=chatId)
 
 
 # Endpoints
@@ -132,6 +132,7 @@ def login():
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
+
 @app.route('/logout', methods=['POST'])
 @authenticate
 def logout():
@@ -184,6 +185,7 @@ def get_user(username):
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
+
 @app.route('/dashboard', methods=['POST'])
 @authenticate
 def get_user_dashboard():
@@ -207,6 +209,7 @@ def get_user_dashboard():
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
+
 @app.route('/dashboard/refresh', methods=['POST'])
 @authenticate
 def refresh_requests():
@@ -214,37 +217,44 @@ def refresh_requests():
 
     try:
         user = User.get_by_username(db, username)
-        
-        return jsonify({'requests' : user['pending_requests']})
+
+        return jsonify({
+            'requests': user['pending_requests'],
+            'active_gigs': user['active_gigs']
+        })
 
     except Exception as e:
         print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
+
 @app.route('/artists/update', methods=['POST'])
 @authenticate
 def update():
+    VALID_INPUTS = ['email', 'name', 'password',
+                    'genre', 'price', 'description']
     username = session['username']
-    data_type = request.json.get('data_type', None)
+    data_types = request.json.get('data_types', None)
     new_data = request.json.get('new_data', None)
 
-    if not data_type:
-        return jsonify({'error': 'data_type is required.'}), 400
+    if not data_types:
+        return jsonify({'error': 'Bad request.'}), 400
 
     if not new_data:
-        return jsonify({'error': 'new_data is required.'}), 400
+        return jsonify({'error': 'Bad request.'}), 400
 
-    if data_type not in ['email', 'password']:
+    if not any(data_type for data_type in data_types if data_type in VALID_INPUTS):
         return jsonify({'error': 'invalid data_type.'}), 400
 
     try:
-        User.update(db, username, data_type, new_data)
-        return jsonify({'message': f'{data_type.capitalize()} updated successfully.'})
+        User.update(db, username, data_types, new_data)
+        return jsonify({'message': 'User updated successfully.'})
 
     except UserException as e:
         return jsonify({'error': str(e)}), 400
 
     except Exception as e:
+        print(e)
         return jsonify({'error': 'An unexpected error occurred.'}), 500
 
 
@@ -263,35 +273,48 @@ def delete():
 
     return jsonify({'error': 'Authentication required.'}), 401
 
+
 @app.route('/media/<filename>')
 def serve_media(filename):
     return mongo.send_file(filename)
 
+
 @app.route('/upload', methods=['POST'])
 @authenticate
 def upload():
-    print(request.files)
-    if 'inputFile' in request.files:
-        file_upload = request.files['inputFile']
+    VALID_FILES = ['jpg', 'jpeg', 'jfif', 'pjpeg', 'pjp',
+                   'png', 'gif', 'webm', 'mp4', 'mp3', 'wav', 'ogg']
 
-        new_filename = session['username'] + '_' + \
-            str(uuid4()) + '.' + file_upload.filename.split('.')[1]
+    try:
+        files = request.files
+        file_keys = request.files.keys()
+        for k in file_keys:
+            print(f'Sending file {files[k].filename}')
+            if files[k].filename.split('.')[1] not in VALID_FILES:
+                continue
 
-        while db.fs.files.find_one({'filename': new_filename}):
+            file_upload = files[k]
+
             new_filename = session['username'] + '_' + \
                 str(uuid4()) + '.' + file_upload.filename.split('.')[1]
 
-        file_id = mongo.save_file(new_filename, file_upload)
-        saved_file = db.fs.files.find_one({'_id': file_id})
+            while db.fs.files.find_one({'filename': new_filename}):
+                new_filename = session['username'] + '_' + \
+                    str(uuid4()) + '.' + file_upload.filename.split('.')[1]
 
-        User.upload_portfolio(db, session['username'], {
-            'filename': saved_file['filename'],
-            'contentType': saved_file['contentType']
-        })
+            file_id = mongo.save_file(new_filename, file_upload)
+            saved_file = db.fs.files.find_one({'_id': file_id})
 
-        return jsonify({'message': f'File {file_upload.filename} saved.'}), 201
+            User.upload_portfolio(db, session['username'], {
+                'filename': saved_file['filename'],
+                'contentType': saved_file['contentType']
+            })
 
-    return jsonify({'error': 'Bad request.'}), 400
+        return jsonify({'message': f'Files saved.'}), 201
+
+    except Exception as e:
+        print(e)
+        return jsonify({'error': 'An unexpected error occurred.'}), 500
 
 
 @app.route('/request', methods=['POST'])
@@ -301,11 +324,9 @@ def handle_request():
     request_data = request.json.get('request_data', None)
 
     if request_type and request_data:
-        if request_data['from_username'] != session['username']:
-            return jsonify({'error': 'Authentication required.'}), 401
-
         if request_type == 'create_request':
             if User.verify_single_sent_request(db, request_data['to_username'], session['username']):
+                request_data['from_username'] = session['username']
                 User.create_request(db, request_data, session['username'])
                 return jsonify({'message': 'Sent request.'})
 
@@ -318,6 +339,10 @@ def handle_request():
         if request_type == 'denie_request':
             User.denie_request(db, request_data, session['username'])
             return jsonify({'message': 'Request denied.'})
+        
+        if request_type == 'delete_request':
+            User.delete_request(db, request_data, session['username'])
+            return jsonify({'message': 'Request deleted.'})
 
     return jsonify({'error': 'Bad request.'}), 400
 
@@ -334,8 +359,8 @@ def page_not_found(e):
 
 @app.errorhandler(500)
 def page_not_found(e):
-    return send_from_directory(app.static_folder, 'index.html'), 500 # pragma: no cover
+    return send_from_directory(app.static_folder, 'index.html'), 500  # pragma: no cover
 
-if __name__ == "__main__": # pragma: no cover
-    app.run(debug=True)
 
+if __name__ == "__main__":  # pragma: no cover
+    socketio.run(app)

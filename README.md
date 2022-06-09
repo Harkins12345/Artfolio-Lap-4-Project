@@ -1,96 +1,95 @@
-
-# website - artfol.io
-# Artfolio
-# Team Artfol.io:
-- Albert Stoykov
-- Jianli Lin
-- Michael Harkins-Meloy
-- Prishal Makwana
-- Yusra Tahir 
+# Artfolio - https://artfol-io.herokuapp.com/
+(SCREENSHOT OF LANDING PAGE)
 
 ## Description 
-[What does the application do]
-  * Artfolio - Connecting performers to their next big break 
-  * Music Performers Marketplace
-  * - Users can create accounts 
-  * - create gigs to search for artists
-  * - offer services as an artist
-  * - chat to arrange business opportunities 
+A marketplace for artists where they can showcase their talent, connecting them to their next gig. Users can sign up as an artist or looking for an artist. Artists can showcase their work and those looking for one can find someone suitable for their event. Once a request has been made and accepted, they can exchange details via the chatbox to arrange the gig. 
 
 ---
 
 ## Installation & Usage
+1. Clone the repo
+   ```sh
+   git clone https://github.com/Harkins12345/Artfolio-Lap-4-Project.git
+2. Install npm packages in client folder
+   ```sh
+   cd client
+   npm install
+   npm run build
+   npm start
+   ```
+3. Install pipenv packages
+   ```sh
+   pipenv shell
+   pipenv install
+   pipenv run dev
+   ```
+  ---
+## Planning & Delivery
 
-### Installation
+### Defining MVP 
+- Defined the core requirements of the application and added each requirement as tickets in a trello board 
+- Went through each ticket as a team to ensure we are all aligned with the requirments and how we intend to tackle the ticket 
 
-- 
+### Communication
+- We used Slack as the single method of communication on this project
+- Worked on individual branches and merged to main once it was communicated with the rest of the team 
+- Single point of truth for this application was stored on Figma
+- Planned regular catch up sessions throughout the day for updates on tickets and whether we need to re-align/re-distribute work 
 
-## Usage
-# website - artfol.io
-# If ran locally
-- npm install
-- npm start
+### UX/UI Planning
+- Found a few examples of similar journalling websites and took screenshots
+- Using Figma, went through website examples and discussed likes/dislikes as a team
+- Created brand guidelines and designs
+---
 
-# Technologies 
+## Testing
+* Front-end
+(ADD IMAGES)
+* Back-end
+(ADD IMAGES)
 
+### Significant Code 
+(ADD IMAGES)
+
+---
+## Technologies 
 - HTML/CSS
 - JavaScript
 - React 
 - Python
 - MongoDB 
 ---
+## Bugs 
 
-# Process
-
-[How did you go about creating this project]
-
-Agreed on our way of working 
-- Agreed on a single method of communication about this project (slack)
-- Agreed on what branches we will work in and will only merge in main after communicating to the rest of the team via slack 
-- Agreed where our single point of truth for this application will be stored (Figma) 
-- Agreed a rough plan of how we intend the week to go 
-
-Defining and refining  
-- Defined the core requirements of the application and added each requirement as tickets in a trello board  
-- Went through each ticket as a team to ensure we are all aligned with the requirments and how we intend to tackle the ticket 
-
-Design planning 
-- Found a few examples of similar journalling websites and took screenshots
-- Using Figma, went through website examples and discussed likes/dislikes as a team
-- Created brand guidelines and designs
-
-Organising and planning 
-- Assigned a few tickets to each team memeber 
-- Planned regular catch up sessions each day (morning, afternoon, evening) to see how everyone is doing and if we need to re-align/re-distribute work 
-
----
-
-## Bugs during production
-- [] CSS inconsistencies
-- [] Front End Testing - Jest coverage would occasionally stop working
-- []
+[x] CSS inconsistencies
+[x] Front-end testing - jest coverage would occasionally stop working
 
 ## Wins & Challenges
 
 ### Wins
 
-- [x] 100% Front End Testing Coverage 
-- [x] 
+[x] 100% Front End Testing Coverage 
 
 ### Challenges
 
-- Testing
-- Time constraints
+[x] Testing
+[x] Time constraints
 
-# Future features 
+## Future features 
 
-- [] Payment Integration
-- [] Customizable user profiles 
-- [] Chat Bot
-- [] Success Badges for being reliable, quality performer, quality client etc.
+[x] Payment Integration
+[x] Customisable user profiles 
+[x] Chat Bot for FAQ 
+[x] Success Badges for being reliable, quality performer, quality client etc.
 
 ---
-
+## Contributors
+[Albert Stoykov](https://github.com/AlbertStoykov)
+[Jianli Lin](https://github.com/jianli1028)
+[Michael Harkins-Meloy](https://github.com/Harkins12345)
+[Prishal Makwana](https://github.com/PrishalM)
+[Yusra Tahir](https://github.com/yusra-tahir)
+---
 # Licence  
 
 Copyright 2022

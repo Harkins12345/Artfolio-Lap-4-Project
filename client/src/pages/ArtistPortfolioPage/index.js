@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import axios from "axios";
 import {
   FooterCTA,
@@ -12,12 +13,75 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 const ArtistPortfolioPage = () => {
+  const username = useSelector(state => state.username);
   const navigate = useNavigate();
   const [artistData, setArtistData] = useState();
+
+  const [eventDate, setEventDate] = useState("N/a");
+  const [eventLocation, setEventLocation] = useState("N/a");
+  const [eventDuration, setEventDuration] = useState("N/a");
+  const [eventGenre, setEventGenre] = useState("N/a");
+  const [eventBudget, setEventBudget] = useState("N/a");
+  const [eventDescription, setEventDescription] = useState("N/a");
+  
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  function handleDate(e){
+    setEventDate(e.target.value)
+  }
+  function handleLocation(e){
+    setEventLocation(e.target.value)
+  }
+
+  function handleDuration(e){
+    setEventDuration(e.target.value)
+  }
+
+  function handleGenre(e){
+    setEventGenre(e.target.value)
+  }
+
+  function handleBudget(e){
+    setEventBudget(e.target.value)
+  }
+
+  function handleDescription(e){
+    setEventDescription(e.target.value)
+  }
+
+  function handleDisable(){
+    if (username === window.location.pathname.split("/")[2]){
+      return true
+    } else {
+      return false
+    }
+  }
+
+
+  function handleSubmit(e){
+    e.preventDefault()
+
+    const data = {
+      request_type: "create_request",
+      request_data: {
+        date: eventDate,
+        location: eventLocation,
+        duration: eventDuration,
+        genre: eventGenre,
+        budget: eventBudget,
+        description: eventDescription,
+        to_username: `${window.location.pathname.split("/")[2]}`
+      }
+    }
+
+    axios.post('/request', data)
+    .catch(err => console.log(err))
+
+    navigate('/artists')
+  }
 
   // get the artists api (with a placeholder)
   useEffect(() => {
@@ -77,20 +141,21 @@ const ArtistPortfolioPage = () => {
             {artistData ? artistData["portfolio"]["description"] : "Loading"}
           </div>
           <div className="artist-btn-container">
-            <div
+            <Button
               variant="primary"
               onClick={handleShow}
               className="btn primary-cta-btn"
+              disabled={handleDisable()}
             >
               Get in touch
-            </div>
+            </Button>
 
             {/* MODAL ADDITION  */}
 
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton></Modal.Header>
               <Modal.Body>
-                <Form>
+                <Form id="requestForm" onSubmit={handleSubmit} >
                   <Form.Group
                     className="mb-3"
                     controlId="exampleForm.ControlInput1"
@@ -99,6 +164,8 @@ const ArtistPortfolioPage = () => {
                     <Form.Control
                       type="datetime-local"
                       placeholder="name@example.com"
+                      value={eventDate}
+                      onChange={handleDate}
                       autoFocus
                     />
                   </Form.Group>
@@ -107,7 +174,7 @@ const ArtistPortfolioPage = () => {
                     controlId="exampleForm.ControlInput1"
                   >
                     <Form.Label>Location</Form.Label>
-                    <Form.Control as="textarea" rows={1} />
+                    <Form.Control as="textarea" rows={1} value={eventLocation} onChange={handleLocation} />
                   </Form.Group>
 
                   <Form.Group
@@ -115,33 +182,33 @@ const ArtistPortfolioPage = () => {
                     controlId="exampleForm.ControlInput1"
                   >
                     <Form.Label>Duration</Form.Label>
-                    <Form.Control as="textarea" rows={1} />
+                    <Form.Control as="textarea" rows={1} value={eventDuration} onChange={handleDuration} />
                   </Form.Group>
                   <Form.Group
                     className="mb-3"
                     controlId="exampleForm.ControlInput1"
                   >
                     <Form.Label>Genre</Form.Label>
-                    <Form.Control as="textarea" rows={1} />
+                    <Form.Control as="textarea" rows={1} value={eventGenre} onChange={handleGenre} />
                   </Form.Group>
                   <Form.Group
                     className="mb-3"
                     controlId="exampleForm.ControlInput1"
                   >
                     <Form.Label>Budget</Form.Label>
-                    <Form.Control as="textarea" rows={1} />
+                    <Form.Control as="textarea" rows={1} value={eventBudget} onChange={handleBudget} />
                   </Form.Group>
                   <Form.Group
                     className="mb-3"
                     controlId="exampleForm.ControlTextarea1"
                   >
                     <Form.Label>Description</Form.Label>
-                    <Form.Control as="textarea" rows={3} />
+                    <Form.Control as="textarea" rows={3} value={eventDescription} onChange={handleDescription} />
                   </Form.Group>
                 </Form>
               </Modal.Body>
               <Modal.Footer>
-                <Button variant="primary" onClick={handleClose}>
+                <Button type="submit" form="requestForm" variant="primary">
                   SUBMIT REQUEST
                 </Button>
               </Modal.Footer>
