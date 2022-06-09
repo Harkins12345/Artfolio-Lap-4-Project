@@ -131,9 +131,9 @@ class User:
 
         request_data['request_id'] = request_id
 
-        db.users.find_and_update({'username': username}, {
+        db.users.find_one_and_update({'username': username}, {
             '$push': {'sent_requests': request_data}})
-        db.users.find_and_update({'username': request_data['to_username']}, {
+        db.users.find_one_and_update({'username': request_data['to_username']}, {
             '$push': {'pending_requests': request_data}})
 
     @staticmethod

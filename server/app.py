@@ -313,11 +313,9 @@ def handle_request():
     request_data = request.json.get('request_data', None)
 
     if request_type and request_data:
-        if request_data['from_username'] != session['username']:
-            return jsonify({'error': 'Authentication required.'}), 401
-
         if request_type == 'create_request':
             if User.verify_single_sent_request(db, request_data['to_username'], session['username']):
+                request_data['from_username'] = session['username']
                 User.create_request(db, request_data, session['username'])
                 return jsonify({'message': 'Sent request.'})
 
