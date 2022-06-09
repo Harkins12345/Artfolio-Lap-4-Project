@@ -1,4 +1,4 @@
-<a align="center">https://artfol-io.herokuapp.com/</a>
+<p align="center">https://artfol-io.herokuapp.com/</p>
 
 (SCREENSHOT OF LANDING PAGE)
 
