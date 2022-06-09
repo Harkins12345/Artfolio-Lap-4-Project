@@ -71,12 +71,13 @@ A marketplace for artists where they can showcase their talent, connecting them 
 
 ### Back-end
 
-![Image of back-end tests](/backend-testing.PNG)
+![Image of back-end tests](/backend-testing.png)
 
 ### Significant Code
 
 Retrieving the files from the database, we dont have to store the files locally or outsource from another website.
-![significant code](/sig-code.PNG)
+
+![significant code](/sig-code.png)
 
 ---
 
