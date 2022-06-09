@@ -35,7 +35,7 @@ const ArtistCard = ({artistData}) => {
 
     <div className="gallery-item-artist" data-testid="artist-card">
       <img
-        src={`/media/${artistData['portfolio']['media'].find(media => media['contentType'].split('/')[0] === 'image')['filename']}`}
+        src={artistData['portfolio']['media'].find(media => media['contentType'].split('/')[0] === 'image') ? `/media/${artistData['portfolio']['media'].find(media => media['contentType'].split('/')[0] === 'image')['filename']}` : ''}
         alt="Artist Photo"
       />
 
@@ -47,7 +47,7 @@ const ArtistCard = ({artistData}) => {
             </div>
           </div>
           <div className="artist-genre-container">
-            <span className="artist-genre">Rock</span>
+            <span className="artist-genre">{artistData ? artistData['portfolio']['genre'] : ''}</span>
           </div>
         </div>
 
