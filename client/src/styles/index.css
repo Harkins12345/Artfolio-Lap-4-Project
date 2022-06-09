@@ -746,7 +746,7 @@ button.ghost {
 }
 
 .containerF.right-panel-active .sign-in-container {
-  transform: translateX(100%);
+  transform: translateX(0%);
 }
 
 .sign-up-container {
@@ -757,7 +757,7 @@ button.ghost {
 }
 
 .containerF.right-panel-active .sign-up-container {
-  transform: translateY(0%);
+  transform: translatex(100%);
   opacity: 1;
   z-index: 5;
 }
