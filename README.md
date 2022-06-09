@@ -2,7 +2,7 @@
 
 (SCREENSHOT OF LANDING PAGE)
 
-<p align="center">## Description</p>
+## Description
 
 A marketplace for artists where they can showcase their talent, connecting them to their next gig. Users can sign up as an artist or looking for an artist. Artists can showcase their work and those looking for one can find someone suitable for their event. Once a request has been made and accepted, they can exchange details via the chatbox to arrange the gig.
 
