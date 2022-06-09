@@ -113,7 +113,7 @@ const DashboardPage = () => {
           <h2 className="pending-request-title" data-testid="gig-requests">
             Pending Requests
           </h2>
-          <ul className="gallery-list has-scrollbar">
+          <ul className="gallery-list has-scrollbar" data-testid="req-card">
             {pendingRequests.map((request) => (
               <RequestCard
                 requestData={request}

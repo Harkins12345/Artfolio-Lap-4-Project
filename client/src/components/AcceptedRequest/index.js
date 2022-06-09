@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setSocket } from "../../actions"
-import io from 'socket.io-client';
+import { setSocket } from "../../actions";
+import io from "socket.io-client";
 import Dropdown from "react-bootstrap/Dropdown";
 import { ChatModal } from "../../components";
 
-
-const AcceptedRequest = ({gigData}) => {
+const AcceptedRequest = ({ gigData }) => {
   const dispatch = useDispatch();
-  const username = useSelector(state => state.username);
+  const username = useSelector((state) => state.username);
 
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <a
@@ -27,30 +26,35 @@ const AcceptedRequest = ({gigData}) => {
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
-    setShowModal(prev => !prev);
+    setShowModal((prev) => !prev);
   };
 
   useEffect(() => {
-    if (showModal){
-      const socket = io()
-      socket.on('connect', () => {
-        socket.emit('openChat', gigData['request_id'])
-        dispatch(setSocket(socket))
-      })
-    }  else {
-      const socket = useSelector(state => state.socket)
-      if (socket){
-        socket.disconnect()
+    if (showModal) {
+      const socket = io();
+      socket.on("connect", () => {
+        socket.emit("openChat", gigData["request_id"]);
+        dispatch(setSocket(socket));
+      });
+    } else {
+      const socket = useSelector((state) => state.socket);
+      if (socket) {
+        socket.disconnect();
       }
-      dispatch(setSocket(null))
+      dispatch(setSocket(null));
     }
-  }, [showModal])
+  }, [showModal]);
 
   return (
-    <div className="accepted-container my-4">
-      <div className="row name-dropdown">
-        <div className="col-6" data-testid="username">
-          <h3> {gigData['from_username'].toLowerCase() === username.toLowerCase() ? gigData['to_username'] : gigData['from_username']} </h3>
+    <div className="accepted-container my-4" data-testid="username">
+      <div className="row name-dropdown" data-testid="username">
+        <div className="col-6">
+          <h3>
+            {" "}
+            {gigData["from_username"].toLowerCase() === username.toLowerCase()
+              ? gigData["to_username"]
+              : gigData["from_username"]}{" "}
+          </h3>
         </div>
         <div className="col-6 drop-down-tg" data-testid="dropdown">
           <Dropdown>
@@ -66,9 +70,7 @@ const AcceptedRequest = ({gigData}) => {
       <div className="row">
         <div className="col-8">
           <div className="gigs-desc-chat">
-            <p className="requests-desc">
-              {gigData['description']}
-            </p>
+            <p className="requests-desc">{gigData["description"]}</p>
             <button className="edit-button" onClick={openModal}>
               <i className="fa-solid fa-message"></i> Chat
             </button>
@@ -76,14 +78,19 @@ const AcceptedRequest = ({gigData}) => {
         </div>
         <div className="col-4" data-testid="request-details">
           <div className="request-details">
-            <span> Location: {gigData['location']} </span>
-            <span> Date/Time: {gigData['date']} </span>
-            <span> Duration: {gigData['duration']} </span>
-            <span> Genre: {gigData['genre']} </span>
-            <span> Budget: {gigData['budget']} </span>
+            <span> Location: {gigData["location"]} </span>
+            <span> Date/Time: {gigData["date"]} </span>
+            <span> Duration: {gigData["duration"]} </span>
+            <span> Genre: {gigData["genre"]} </span>
+            <span> Budget: {gigData["budget"]} </span>
           </div>
         </div>
-      </div><ChatModal showModal={showModal} setShowModal={setShowModal} chatData={gigData}  />
+      </div>
+      <ChatModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        chatData={gigData}
+      />
     </div>
   );
 };
