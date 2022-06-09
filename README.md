@@ -43,8 +43,10 @@ A marketplace for artists where they can showcase their talent, connecting them 
 ---
 
 ## Testing
-* Front-end
-(ADD IMAGES)
+* Front-end Test Coverage
+
+![Image of tests](/frontend-testing.PNG)
+
 * Back-end
 (ADD IMAGES)
 
