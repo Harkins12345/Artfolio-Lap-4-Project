@@ -38,12 +38,13 @@ const DashboardPage = () => {
   }, [pendingRequests]);
 
   function checkRequests(e) {
+    console.log('Refreshing...')
     axios
       .post("/dashboard/refresh")
       .then((resp) => resp.data)
       .then((data) => {
-        setPendingRequests(data["requests"])
-        setActiveGigs(data['active_gigs'])
+        setPendingRequests([...data["requests"]])
+        setActiveGigs([...data['active_gigs']])
       });
   }
 
@@ -111,7 +112,7 @@ const DashboardPage = () => {
         <div className="container-xl">
           <h2 className="pending-request-title">Pending Requests</h2>
           <ul className="gallery-list has-scrollbar">
-            {pendingRequests.map(request => <RequestCard requestData={request} refreshRequests={checkRequests} />)}
+            {pendingRequests.len !== 0 ? pendingRequests.map(request => <RequestCard requestData={request} refreshRequests={checkRequests} />) : <></>}
           </ul>
         </div>
       </section>
@@ -179,7 +180,7 @@ const DashboardPage = () => {
             {" "}
             Accepted Requests{" "}
           </h2>
-          {activeGigs.map(gig => <AcceptedRequest gigData={gig} refresh={checkRequests} />)}
+          {activeGigs.len !== 0 ? activeGigs.map(gig => <AcceptedRequest gigData={gig} refresh={checkRequests} />) : <></>}
         </div>
       </section>
     </>
