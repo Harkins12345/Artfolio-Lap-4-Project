@@ -729,6 +729,7 @@ button.ghost {
 .hero-container {
   display: flex;
   flex-direction: row-reverse;
+  flex-wrap: wrap;
 }
 
 .auth-info {
@@ -1565,8 +1566,8 @@ AllArtistsPage
   }
 
   .hero-container {
-    display: flex;
     flex-direction: row-reverse;
+    flex-wrap: nowrap;
   }
 }
 
@@ -1575,11 +1576,6 @@ AllArtistsPage
   .hero-section {
     padding-top: 50px;
     padding-bottom: 50px;
-  }
-
-  .hero-container {
-    display: flex;
-    flex-direction: row-reverse;
   }
 
   .hero-image {
