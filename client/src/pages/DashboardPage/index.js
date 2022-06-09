@@ -42,9 +42,10 @@ const DashboardPage = () => {
     axios
       .post("/dashboard/refresh")
       .then((resp) => resp.data)
-      .then((data) =>
-        setPendingRequests((prev) => [...prev, ...data["requests"]])
-      );
+      .then((data) => {
+        setPendingRequests(data["requests"])
+        setActiveGigs(data['active_gigs'])
+      });
   }
 
   // INCOMMING PAGE FOR MODAL
@@ -111,11 +112,7 @@ const DashboardPage = () => {
         <div className="container-xl">
           <h2 className="pending-request-title">Pending Requests</h2>
           <ul className="gallery-list has-scrollbar">
-            <RequestCard />
-            <RequestCard />
-            <RequestCard />
-            <RequestCard />
-            <RequestCard />
+            {pendingRequests.map(request => <RequestCard requestData={request} refreshRequests={checkRequests} />)}
           </ul>
         </div>
       </section>
@@ -173,7 +170,7 @@ const DashboardPage = () => {
       {/* MODAL ENDS */}
 
       {/* The below was the original one - to be used for the request modal  */}
-     
+
 
       {/* ACCEPTED GIGS */}
 
@@ -183,7 +180,7 @@ const DashboardPage = () => {
             {" "}
             Accepted Requests{" "}
           </h2>
-          <AcceptedRequest />
+          {activeGigs.map(gig => <AcceptedRequest gigData={gig} />)}
         </div>
       </section>
     </>

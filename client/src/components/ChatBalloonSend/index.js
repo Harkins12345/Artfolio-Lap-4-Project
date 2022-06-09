@@ -2,24 +2,24 @@ import React, { useState } from "react";
 
 // this is the chat balloon of sent messages
 
-const ChatBalloonSend = () => {
-    
-    const [sentText, setSentText] = useState();
-    const [sentTime, setSentTime] = useState();
+const ChatBalloonSend = ({messageData}) => {
+
+    function covertDate(){
+       const date = new Date(messageData['timestamp'])
+       return date.toLocaleString()
+    }
 
     return (
         <>
             <div className="chat-balloon-send-main">
                 <div className="chat-balloon-send-text-box">
                     <span className="chat-baloon-send-message">
-                        Text can break a singlelongwordtothebeginningwithoutoverflowing
-                        {sentText}
+                        {messageData['msg']}
                     </span>
                 </div>
                 <div className="chat-baloon-send-time">
                     <span className="chat-baloon-time">
-                        12:30am
-                        {sentTime}
+                        {covertDate()}
                     </span>
                 </div>
             </div>
