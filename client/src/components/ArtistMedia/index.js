@@ -1,6 +1,6 @@
 import React from "react";
 
-const RequestCard = ({ media }) => {
+const ArtistMedia = ({ media }) => {
   return (
     <li data-testid="artist-media">
       <div className="gallery-item-artist-media" data-testid="artist-media">
@@ -13,4 +13,4 @@ const RequestCard = ({ media }) => {
   );
 };
 
-export default RequestCard;
+export default ArtistMedia;
