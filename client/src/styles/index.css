@@ -658,7 +658,6 @@ footer {
   font-size: small;
   background-color: var(--beige);
   border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: static;
   overflow: hidden;
   max-width: 700px;
@@ -1084,6 +1083,12 @@ AllArtistsPage
   font-family: "Bebas Neue", cursive;
 }
 
+.your-portfolio-container {
+  max-width: 500px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
 .your-portfolio-form,
 .artist-form {
   display: flex;
@@ -1461,6 +1466,7 @@ AllArtistsPage
     margin-top: 5vh;
     margin-bottom: 5vh;
     position: relative;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
   .sign-in-container {
