@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setUsername } from "../../actions";
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const YourPortfolioPage = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -20,117 +19,114 @@ const YourPortfolioPage = () => {
   const [description, changeDescription] = useState(null);
   const [imageVideo, changeImageVideo] = useState([]);
   const [audio, changeAudio] = useState([]);
-  
-  function handleDelete(e){
-    axios.post('/artists/delete')
-    .catch(err => console.log(err))
 
-    dispatch(setUsername(null))
-    navigate('/')
+  function handleDelete(e) {
+    axios.post("/artists/delete").catch((err) => console.log(err));
+
+    dispatch(setUsername(null));
+    navigate("/");
   }
 
   function handleToggle(e) {
-    artistToggle ? changeArtistToggle(false) : changeArtistToggle(true)
+    artistToggle ? changeArtistToggle(false) : changeArtistToggle(true);
   }
 
   function handleName(e) {
-    changeName(e.target.value)
+    changeName(e.target.value);
   }
 
   function handleEmail(e) {
-    changeEmail(e.target.value)
+    changeEmail(e.target.value);
   }
 
   function handleCurrPass(e) {
-    changeCurrPass(e.target.value)
+    changeCurrPass(e.target.value);
   }
 
   function handleNewPass(e) {
-    changeNewPass(e.target.value)
+    changeNewPass(e.target.value);
   }
 
   function handleGenre(e) {
-    changeGenre(e.target.value)
+    changeGenre(e.target.value);
   }
 
   function handlePrice(e) {
-    changePrice(e.target.value)
+    changePrice(e.target.value);
   }
 
   function handleDescription(e) {
-    changeDescription(e.target.value)
+    changeDescription(e.target.value);
   }
 
   function handleAudio(e) {
-    changeAudio(e.target.files)
+    changeAudio(e.target.files);
   }
 
   function handleImageVideo(e) {
-    changeImageVideo(e.target.files)
+    changeImageVideo(e.target.files);
   }
 
   function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
-    const formData = new FormData()
+    const formData = new FormData();
     const data = {
       new_data: {},
-      data_types: []
-    }
+      data_types: [],
+    };
 
-    const files = Array.from(audio).concat(Array.from(imageVideo))
+    const files = Array.from(audio).concat(Array.from(imageVideo));
 
     if (name) {
-      data['new_data']['name'] = name
-      data['data_types'].push('name')
+      data["new_data"]["name"] = name;
+      data["data_types"].push("name");
     }
 
     if (email) {
-      data['new_data']['email'] = email
-      data['data_types'].push('email')
+      data["new_data"]["email"] = email;
+      data["data_types"].push("email");
     }
 
     if (currPass && newPass) {
-      data['new_data']['old_password'] = currPass
-      data['new_data']['new_password'] = newPass
-      data['data_types'].push('password')
+      data["new_data"]["old_password"] = currPass;
+      data["new_data"]["new_password"] = newPass;
+      data["data_types"].push("password");
     }
 
     if (genre) {
-      data['new_data']['genre'] = genre
-      data['data_types'].push('genre')
+      data["new_data"]["genre"] = genre;
+      data["data_types"].push("genre");
     }
 
     if (price) {
-      data['new_data']['price'] = price
-      data['data_types'].push('price')
+      data["new_data"]["price"] = price;
+      data["data_types"].push("price");
     }
 
     if (description) {
-      data['new_data']['description'] = description
-      data['data_types'].push('description')
+      data["new_data"]["description"] = description;
+      data["data_types"].push("description");
     }
 
-    if (data['data_types'].length !== 0) {
-      axios.post('/artists/update', data)
-        .catch(err => console.log(err))
+    if (data["data_types"].length !== 0) {
+      axios.post("/artists/update", data).catch((err) => console.log(err));
     }
 
     if (files.length !== 0) {
       for (let i = 0; i < files.length; i++) {
-        formData.append(`files[${i}]`, files[i])
+        formData.append(`files[${i}]`, files[i]);
       }
-      axios.post('/upload', formData,
-        {
+      axios
+        .post("/upload", formData, {
           headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }
-      )
-        .catch(err => console.log(err))
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .catch((err) => console.log(err));
     }
 
-    navigate('/dashboard')
+    navigate("/dashboard");
   }
 
   return (
@@ -144,12 +140,17 @@ const YourPortfolioPage = () => {
         </div>
       </section>
       <section className="your-portfolio-body-section">
-        <div className="container-xl">
+        <div className="container-xl your-portfolio-container">
           <form className="your-portfolio-form" onSubmit={handleSubmit}>
             <label htmlFor="name">Name:</label>
             <input type="text" id="name" value={name} onChange={handleName} />
             <label htmlFor="email">Email:</label>
-            <input type="email" id="email" value={email} onChange={handleEmail} />
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={handleEmail}
+            />
             <label htmlFor="current-password">Current Password:</label>
             <input
               type="password"
@@ -158,7 +159,12 @@ const YourPortfolioPage = () => {
               onChange={handleCurrPass}
             />
             <label htmlFor="new-password">New Password:</label>
-            <input type="password" id="new-password" value={newPass} onChange={handleNewPass} />
+            <input
+              type="password"
+              id="new-password"
+              value={newPass}
+              onChange={handleNewPass}
+            />
             <div className="d-flex justify-content-between">
               <label for="artist-checkbox"> I am an Artist</label>
               <input
@@ -173,14 +179,17 @@ const YourPortfolioPage = () => {
               As an artist, your profile will be visible on the All Artist page
               to the public{" "}
             </label>
-            <div className={artistToggle ? "artist-form" : "artist-form hide"} id="artist-form">
+            <div
+              className={artistToggle ? "artist-form" : "artist-form hide"}
+              id="artist-form"
+            >
               <label htmlFor="genre">Genre:</label>
               <select value={genre} onChange={handleGenre} id="genre">
                 <option></option>
-                <option value="pop">Pop</option>
-                <option value="rnb">R&b</option>
-                <option value="rock">Rock</option>
-                <option value="rap">Rap</option>
+                <option value="Pop">Pop</option>
+                <option value="R&B">R&b</option>
+                <option value="Rock">Rock</option>
+                <option value="Rap">Rap</option>
               </select>
 
               <label htmlFor="price">Price:</label>
@@ -223,7 +232,9 @@ const YourPortfolioPage = () => {
               type="submit"
               id="update-portfolio"
               className="btn update-btn"
-            >Update portfolio</button>
+            >
+              Update portfolio
+            </button>
             <input
               type="button"
               value="Delete portfolio"
