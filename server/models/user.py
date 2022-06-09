@@ -155,7 +155,7 @@ class User:
 
     @staticmethod
     def denie_request(db, request_data, username):
-        db.users.find_one_and_update({'username': username}, {
+        db.users.find_one_and_update({'username': username.lower()}, {
             '$pull': {'pending_requests': {'request_id': request_data['request_id']}}})
 
         db.users.find_one_and_update({'username': request_data['from_username']}, {
