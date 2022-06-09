@@ -103,7 +103,7 @@ header {
   position: -webkit-sticky;
   /* Safari */
   top: 0;
-  background-color: var(--beige);
+  background-color: var(--beige) !important;
   height: 100px;
   width: 100%;
   box-shadow: 0px 0px 30px rgba(16, 86, 82, 0.25);
@@ -127,6 +127,43 @@ header {
 .navbar-btns {
   display: flex;
 }
+
+/* .navbar-nav {
+  align-items: center !important;
+}
+
+.container-hamburger {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.navbar-dark .navbar-toggler {
+  border-color: rgb(0 123 255 / 0%);
+}
+
+.bar1,
+.bar2,
+.bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #db0000;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.change .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {
+  opacity: 0;
+}
+
+.change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-8px, -8px);
+  transform: rotate(45deg) translate(-8px, -8px);
+} */
 
 .fa-regular {
   margin-right: 5px;
@@ -154,6 +191,8 @@ footer {
   height: 120px;
   display: flex;
   margin: auto;
+  margin-top: auto;
+  margin-top: 20px;
 }
 
 .footer-slogan {
@@ -242,6 +281,7 @@ footer {
 
 .copyright {
   padding: 10px;
+  margin-bottom: 0;
 }
 
 .copyright a {
@@ -251,10 +291,6 @@ footer {
 .copyright a:hover {
   text-decoration: none;
 }
-
-/************************************************************************/
-/* COMPONENTS */
-/************************************************************************/
 
 /************************************************************************/
 /* Footer-CTA */
@@ -294,6 +330,166 @@ footer {
   text-decoration: none;
 }
 
+/* Chat Modal Component */
+
+.chat-modal-box {
+  position: fixed;
+  bottom: 0;
+  right: 3%;
+  min-width: 300px;
+  min-height: 300px;
+  width: 20vw;
+  height: 50vh;
+  background-color: var(--beige);
+  border-radius: 10px 10px 0px 0px;
+  border-style: solid;
+  border-bottom-style: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  z-index: 2;
+}
+
+.chat-modal-section-top {
+  height: 10%;
+  width: 100%;
+  background-color: var(--beige-darker);
+  border-radius: 10px 10px 0px 0px;
+  position: relative;
+}
+
+.chat-modal-top-close {
+  width: 50px;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.chat-modal-collapse {
+  float: left;
+}
+
+.chat-modal-close {
+  float: right;
+}
+
+.chat-modal-section-middle {
+  height: 75%;
+  margin: auto;
+  position: relative;
+}
+
+.chat-modal-chat-box {
+  background-color: white;
+  width: 96%;
+  height: 96%;
+  padding: 2px;
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #00000023;
+  border-width: 1px;
+}
+
+.chat-modal-section-bottom {
+  height: 15%;
+  width: 100%;
+  overflow: auto;
+  display: inline;
+}
+
+.chat-modal-text-area {
+  padding-left: 8px;
+  height: 100%;
+  width: 85%;
+  display: inline-block;
+}
+
+.chat-modal-send-icon-box {
+  width: 15%;
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+}
+
+.chat-modal-send-button {
+  border: 0px !important;
+  background-color: none !important;
+}
+
+.chat-modal-initialization {
+  font-size: small;
+  color: grey;
+  text-align: center;
+}
+
+/* chat balloon send style */
+
+.chat-balloon-send-main {
+  position: relative;
+  float: right;
+  background-color: var(--beige);
+  min-width: 50%;
+  max-width: 70%;
+  margin-right: 5%;
+  border-radius: 5px;
+  margin-bottom: 12px;
+}
+
+.chat-balloon-send-text-box {
+  position: static;
+  padding: 5px;
+}
+
+.chat-baloon-send-message {
+  word-wrap: break-word;
+  text-align: left;
+  font-size: 1em;
+}
+
+.chat-baloon-send-time {
+  float: right;
+}
+
+.chat-baloon-time {
+  font-size: small;
+  color: grey;
+  padding: 5px;
+}
+
+/* chat balloon received style */
+
+.chat-balloon-received-main {
+  position: relative;
+  float: left;
+  background-color: var(--beige-darker);
+  min-width: 50%;
+  max-width: 70%;
+  margin-left: 5%;
+  border-radius: 5px;
+  margin-bottom: 12px;
+}
+
+.chat-balloon-received-text-box {
+  position: static;
+  padding: 5px;
+}
+
+.chat-baloon-received-message {
+  word-wrap: break-word;
+  text-align: left;
+  font-size: 1em;
+}
+
+.chat-baloon-received-time {
+  float: right;
+}
+
 /************************************************************************/
 /* PAGES */
 /************************************************************************/
@@ -309,7 +505,8 @@ footer {
 
 .hero-title,
 .gigs-title,
-.artists-title {
+.artists-title,
+.pending-request-title {
   font-family: "Bebas Neue", cursive;
 }
 
@@ -458,11 +655,11 @@ footer {
   background-color: var(--beige);
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  position: relative;
+  position: static;
   overflow: hidden;
-  width: 700px;
-  max-width: 100%;
+  max-width: 700px;
   min-height: 480px;
+  margin-bottom: 200px;
 }
 
 .header-authpage {
@@ -483,9 +680,9 @@ footer {
 
 .auth {
   border-radius: 20px;
-  border: #4e0d21 solid;
+  border: 3px solid var(--red);
   background-color: var(--red);
-  color: black;
+  color: var(--text-dark);
   font-weight: bolder;
   padding: 10px 30px;
   width: 50%;
@@ -538,14 +735,13 @@ button.ghost {
 
 .form-container {
   position: absolute;
-  top: 0;
-  height: 100%;
-  transition: all 0.6s ease-in-out;
+  top: 100px;
+  height: 50%;
 }
 
 .sign-in-container {
   left: 0;
-  width: 50%;
+  width: 100%;
   z-index: 2;
 }
 
@@ -555,20 +751,18 @@ button.ghost {
 
 .sign-up-container {
   left: 0;
-  width: 50%;
+  width: 100%;
   opacity: 0;
   z-index: 1;
 }
 
 .containerF.right-panel-active .sign-up-container {
-  transform: translateX(100%);
+  transform: translateY(0%);
   opacity: 1;
   z-index: 5;
-  animation: show 0.6s;
 }
 
 @keyframes show {
-
   0%,
   49.99% {
     opacity: 0;
@@ -584,37 +778,33 @@ button.ghost {
 
 .overlay-container {
   position: absolute;
-  top: 0;
-  left: 50%;
-  width: 50%;
-  height: 100%;
+  top: 545px;
+  left: 0%;
+  width: 100%;
+  height: 40%;
   overflow: hidden;
-  transition: transform 0.6s ease-in-out;
+
   z-index: 100;
 }
 
 .containerF.right-panel-active .overlay-container {
-  transform: translateX(-100%);
+  transform: translateY();
 }
 
 .overlay {
-  background: #edcc84;
-  background: -webkit-linear-gradient(to right, #edcc84, #edcc84);
-  background: linear-gradient(to right, #edcc84, #edcc84);
+  background: var(--yellow);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
-  color: black;
+  color: var(--text-dark);
   position: relative;
   left: -100%;
-  height: 100%;
+  height: 80%;
   width: 200%;
-  transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
 }
 
 .containerF.right-panel-active .overlay {
-  transform: translateX(50%);
+  left: 0;
 }
 
 .overlay-panel {
@@ -628,25 +818,23 @@ button.ghost {
   top: 0;
   height: 100%;
   width: 50%;
-  transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
 }
 
 .overlay-left {
-  transform: translateX(-20%);
+  transform: translateY(-20%);
 }
 
 .containerF.right-panel-active .overlay-left {
-  transform: translateX(0);
+  transform: translateY(0);
 }
 
 .overlay-right {
   right: 0;
-  transform: translateX(0);
+  transform: translateY(0);
 }
 
 .containerF.right-panel-active .overlay-right {
-  transform: translateX(20%);
+  transform: translateX(100%);
 }
 
 .social-container {
@@ -941,11 +1129,306 @@ AllArtistsPage
   color: var(--text-light);
 }
 
+/**********************************************************************/
+/* AuthPage */
+/**********************************************************************/
+
+/* Dashboard Heading */
+
+.welcome-section {
+  background-color: var(--beige-darker);
+}
+.sign-in-title,
+.sign-up-title {
+  font-weight: 700;
+  font-family: "Bebas Neue", cursive;
+}
+.profile-header {
+  width: 100%;
+  display: flex;
+  height: 210px;
+  position: relative;
+  font: var(--font-primary);
+}
+
+.profile-img {
+  float: left;
+  width: 340px;
+  height: 10px;
+}
+
+.profile-img img {
+  border-radius: 50%;
+  height: 230px;
+  width: 230px;
+  border: 5px solid #fff;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 40px;
+  top: 30px;
+  background: #fff;
+}
+
+.profile-nav-info {
+  float: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 60px;
+}
+
+.profile-nav-info h3 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.profile-nav-info .projectStatus {
+  display: flex;
+  font-weight: bold;
+}
+
+.portfolio-button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.profile-option {
+  margin-bottom: 35px;
+  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+  background: var(--red);
+  color: white;
+  text-decoration-line: none;
+}
+
+.fa-pencil {
+  padding-left: 5px;
+}
+
+.profile-option:hover {
+  background: #fff;
+  color: var(--green);
+  border: 1px solid var(--red);
+}
+
+.profile-option:hover span {
+  background: var(--red);
+}
+
+.item-status {
+  display: flex;
+  flex-direction: column;
+  margin-right: 16px;
+}
+
+.item-status .status-type:after {
+  content: "";
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translatey(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid var(--red);
+}
+
+.status-number {
+  font-size: 20px;
+  line-height: 30px;
+  color: var(--green);
+}
+
+.status-type {
+  position: relative;
+  padding-right: 24px;
+  color: var(--green);
+}
+
+/* PENDING REQUESTS */
+
+.pending-requests {
+  margin-top: 10px;
+  width: 300px;
+  padding-block: 10px;
+  text-align: center;
+  background-color: var(--green);
+  border-radius: 15px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 150ms ease-in-out;
+  border-radius: 10px;
+}
+
+.pending-requests:after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 100%;
+  background: #2b8480;
+  z-index: -1;
+  transition: width 200ms ease-in-out;
+}
+
+.pending-requests:hover {
+  color: var(--text-light);
+}
+
+.pending-requests:hover:after {
+  width: 110%;
+}
+
+/* ACCEPTED GIGS */
+
+.name-dropdown {
+  display: flex;
+  justify-content: space-between;
+}
+
+.accepted-container {
+  background-color: var(--beige-darker);
+  border-radius: 25px;
+  width: 83%;
+  padding: 20px;
+}
+
+.fa-message {
+  padding-right: 10px;
+}
+
+.request-details {
+  line-height: 1.8rem;
+  background-color: var(--beige);
+  border-radius: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.request-details span {
+  font-size: 15px;
+}
+
+.threedots:after {
+  content: "...";
+  font-size: 50px;
+}
+
+.drop-down-tg {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-top: -40px !important;
+}
+
+.edit-button {
+  background-color: transparent;
+  border: 2px solid var(--green);
+  color: var(--text-dark);
+  border-radius: 50px;
+  width: 180px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
+
+.edit-button:hover {
+  background-color: var(--green);
+  color: var(--text-light);
+}
+
+/* MODAL  */
+
+.outer-dashBrd {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transform: translate(0, 0);
+  display: none;
+}
+
+.active-dashBrd {
+  display: block;
+}
+
+.inner-dashBrd {
+  position: relative;
+  z-index: 1;
+  transform: translate(0, 0);
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100% - 60px);
+  flex-direction: column;
+  padding: 30px;
+}
+
+.header-dashBrd {
+  line-height: 1;
+  height: 40px;
+  background: #ccc;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.content-dashBrd {
+  z-index: 1;
+  line-height: 1;
+  width: 100%;
+  background: #eee;
+  min-height: 100px;
+  padding: 15px;
+}
+
+.overlay-dashBrd {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  padding: 0;
+  display: block;
+  width: 100%;
+  border: 0;
+}
+
+.pending-request-section {
+  padding-top: 100px;
+}
+
+/************************************************************************/
 /* Media Queries */
 /************************************************************************/
 
 /* responsive larger than 575px */
-@media (min-width: 575px) {}
+@media (min-width: 575px) {
+}
 
 /* responsive larger than 768px */
 @media (min-width: 768px) {
@@ -959,6 +1442,108 @@ AllArtistsPage
 
   .gallery-list .gallery-item-artist {
     min-width: 40%;
+  }
+
+  .containerF {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    position: relative;
+  }
+
+  .sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+  }
+
+  .sign-up-container {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+  }
+
+  .overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+  }
+
+  .form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+  }
+  .footer-logo {
+    height: 120px;
+    display: flex;
+    margin: auto;
+  }
+  /* here
+ */
+  .containerF.right-panel-active .overlay-container {
+    transform: translateX(-100%);
+  }
+
+  .overlay {
+    background: var(--yellow);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    color: var(--text-dark);
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+  }
+
+  .containerF.right-panel-active .overlay {
+    transform: translateX(0%);
+  }
+
+  .overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+  }
+
+  .overlay-left {
+    transform: translateX(0%);
+    left: 0;
+  }
+
+  .containerF.right-panel-active .overlay-left {
+    transform: translateX(0%);
+  }
+
+  .overlay-right {
+    right: 0;
+    transform: translateX(0);
+  }
+
+  .containerF.right-panel-active .overlay-right {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
   }
 }
 
@@ -1012,13 +1597,39 @@ AllArtistsPage
   .footer-sitemap-1 {
     padding-bottom: 20px;
   }
+}
 
-  .containerF {
-    left: 20%;
-    margin: 50px;
-    margin-bottom: 5%;
-    margin-top: 5%;
+@media screen and (max-width: 800px) {
+  .profile-img img {
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    border: 5px solid #fff;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    left: 20px;
+    top: 30px;
+    background: #fff;
+  }
 
+  .profile-option {
+    position: absolute;
+    top: 40%;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    background: var(--red);
+    color: white;
+    text-decoration-line: none;
+    left: 30px;
+  }
+
+  .profile-nav-info {
+    padding-left: 150px;
+    display: block;
+    padding-block: 35px;
   }
 }
 
@@ -1027,6 +1638,8 @@ AllArtistsPage
 .hide {
   display: none;
 }
+
+/* Overriding code - do not put anything below this  */
 
 /* Chat Modal Component */
 
@@ -1043,6 +1656,7 @@ AllArtistsPage
   border-style: solid;
   border-bottom-style: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  z-index: 2;
 }
 
 .chat-modal-section-top {
@@ -1091,6 +1705,7 @@ AllArtistsPage
   border-style: solid;
   border-color: #00000023;
   border-width: 1px;
+  overflow-y: auto;
 }
 
 .chat-modal-section-bottom {
@@ -1117,5 +1732,74 @@ AllArtistsPage
 .chat-modal-send-button {
   border: 0px !important;
   background-color: none !important;
-
 }
+
+.chat-modal-initialization {
+  font-size: small;
+  color: grey;
+  text-align: center;
+}
+
+/* chat balloon send style */
+
+.chat-balloon-send-main {
+  position: relative;
+  float: right;
+  background-color: var(--beige);
+  min-width: 50%;
+  max-width: 70%;
+  margin-right: 5%;
+  border-radius: 5px;
+  margin-bottom: 12px;
+}
+
+.chat-balloon-send-text-box {
+  position: static;
+  padding: 5px;
+}
+
+.chat-baloon-send-message {
+  word-wrap: break-word;
+  text-align: left;
+  font-size: 1em;
+}
+
+.chat-baloon-send-time {
+  float: right;
+}
+
+.chat-baloon-time {
+  font-size: small;
+  color: grey;
+  padding: 5px;
+}
+
+/* chat balloon received style */
+
+.chat-balloon-received-main {
+  position: relative;
+  float: left;
+  background-color: var(--beige-darker);
+  min-width: 50%;
+  max-width: 70%;
+  margin-left: 5%;
+  border-radius: 5px;
+  margin-bottom: 12px;
+}
+
+.chat-balloon-received-text-box {
+  position: static;
+  padding: 5px;
+}
+
+.chat-baloon-received-message {
+  word-wrap: break-word;
+  text-align: left;
+  font-size: 1em;
+}
+
+.chat-baloon-received-time {
+  float: right;
+}
+
+/* create triangoles */

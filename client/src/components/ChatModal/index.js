@@ -1,37 +1,63 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import ChatBalloonReceived from "../ChatBalloonReceived";
+import ChatBalloonSend from "../ChatBalloonSend";
 
-const ChatModal = () => {
 
-    // function to close the chat
-    const showModal = () => {
-        
+const ChatModal = ({ showModal, setShowModal, chatData }) => {
+
+    const username = useSelector(state => state.username)
+    const socket = useSelector(state => state.socket)
+
+    const [messages, setMessages] = useState([]);
+    const [message, setMessage] = useState();
+
+    if (socket) {
+        socket.on('prevMessages', (msgs) => setMessages([...msgs]))
     }
-    // function to minimize the chat
+
+    function handleMessage(e) {
+        setMessage(e.target.value)
+    }
+
+    function sendMessage(e) {
+        e.preventDefault()
+        if (socket) {
+            socket.emit('sendMessage', message, chatData['request_id'])
+        }
+    }
 
     return (
         <>
             {/* show modal if value is true */}
-            {/* {showModal? ( */}
+            {showModal ? (
                 <div className="chat-modal-box ">
                     <div className="chat-modal-section-top">
                         <div className="chat-modal-top-close">
                             <div className="chat-modal-collapse">
-                                <i className="bi bi-arrows-angle-contract"></i>
+                                <i className="bi bi-arrows-angle-contract" id="minimizeChat"></i>
                             </div>
                             <div className="chat-modal-close">
-                                <i className="bi bi-x-square-fill"></i>
+                                <i className="bi bi-x-square-fill" id="closeChat"></i>
                             </div>
                         </div>
                     </div>
                     <div className="chat-modal-section-middle">
                         <div className="chat-modal-chat-box">
-                            hello, this is the chat box for another component
+                            <p className="chat-modal-initialization">conversation started</p>
+                            {messages.map(msgData => {
+                                if (msgData['user'] === username) {
+                                    return <ChatBalloonSend messageData={msgData} />
+                                } else {
+                                    return <ChatBalloonReceived messageData={msgData} />
+                                }
+                            })}
                         </div>
                     </div>
                     <div className="chat-modal-section-bottom">
-                        <form id="chat-modal-box">
+                        <form onSubmit={sendMessage} id="chat-modal-box">
                             <div className="chat-modal-text-area">
-                                <textarea className="form-control" id="chat-box-message"></textarea>
+                                <textarea onChange={handleMessage} value={message} className="form-control" id="chat-box-message"></textarea>
                             </div>
                             <div className="chat-modal-send-icon-box">
                                 <button type="submit" className="chat-modal-send-button">
@@ -41,7 +67,7 @@ const ChatModal = () => {
                         </form>
                     </div>
                 </div>
-            {/* ) : null} */}
+            ) : null}
         </>
     )
 }

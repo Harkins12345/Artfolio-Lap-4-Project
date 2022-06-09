@@ -40,7 +40,10 @@ class User:
             'password': bcrypt.hashpw(self.password.encode('utf-8'), bcrypt.gensalt()),
             'portfolio': {
                 "description": "",
-                "media": []
+                "media": [],
+                "name": "",
+                "price": "",
+                "genre": ""
             },
             'pending_requests': [],
             'sent_requests': [],
@@ -53,7 +56,7 @@ class User:
         try:
             user = dict(db.users.find_one({'username': username.lower()}))
             return user
-        
+
         except TypeError:
             raise UserException("User not found.")
 
@@ -76,12 +79,33 @@ class User:
         raise UserException("No users founds.")
 
     @staticmethod
-    def update(db, username, data_type, new_data):
-        user = User.get_by_username(db, username)
+    def update(db, username, data_types, new_data):
 
-        if data_type == 'email':
+        if 'description' in data_types:
+            db.users.find_one_and_update({'username': username.lower()}, {
+                                         '$set': {'portfolio.description': new_data['description']}})
+
+        if 'name' in data_types:
+            db.users.find_one_and_update({'username': username.lower()}, {
+                                         '$set': {'portfolio.name': new_data['name']}})
+
+        if 'genre' in data_types:
+            db.users.find_one_and_update({'username': username.lower()}, {
+                                         '$set': {'portfolio.genre': new_data['genre']}})
+
+        if 'price' in data_types:
+            db.users.find_one_and_update({'username': username.lower()}, {
+                                         '$set': {'portfolio.price': new_data['price']}})
+
+        if 'password' in data_types:
+            user = User.get_by_username(db, username)
+            if bcrypt.checkpw(new_data['old_password'].encode('utf-8'), user['password']):
+                db.users.find_one_and_update({'username': username.lower()}, {'$set': {
+                    'password': bcrypt.hashpw(new_data['new_password'].encode('utf-8'), bcrypt.gensalt())}})
+
+        if 'email' in data_types:
             try:
-                User.get_by_email(db, new_data)
+                User.get_by_email(db, new_data['email'])
                 raise UserException('Email is already registered')
 
             except UserException as e:
@@ -89,14 +113,10 @@ class User:
                     raise UserException('Email is already registered')
 
                 db.users.find_one_and_update({'username': username.lower()}, {
-                                             '$set': {'email': new_data}})
+                                             '$set': {'email': new_data['email']}})
 
             except Exception as e:
                 print(f'Inner Unexpected error {e}')
-
-        if data_type == 'password':
-            db.users.find_one_and_update({'username': username.lower()}, {'$set': {
-                                         'password': bcrypt.hashpw(new_data.encode('utf-8'), bcrypt.gensalt())}})
 
     @staticmethod
     def delete(db, username):
@@ -111,47 +131,60 @@ class User:
 
         request_data['request_id'] = request_id
 
-        db.users.find_and_update({'username': username}, {
+        db.users.find_one_and_update({'username': username.lower()}, {
             '$push': {'sent_requests': request_data}})
-        db.users.find_and_update({'username': request_data['to_username']}, {
+        db.users.find_one_and_update({'username': request_data['to_username']}, {
             '$push': {'pending_requests': request_data}})
 
     @staticmethod
     def accept_request(db, request_data, username):
-        db.users.find_one_and_update({'username': username}, {
-                                 '$pull': {'pending_requests': {'request_id': request_data['request_id']}}})
+        Chat(db, request_data['request_id'], request_data['description'], request_data['from_username'])
 
-        db.users.find_one_and_update({'username': username}, {
-                                 '$push': {'active_gigs': request_data}})
+        db.users.find_one_and_update({'username': username.lower()}, {
+            '$pull': {'pending_requests': {'request_id': request_data['request_id']}}})
+
+        db.users.find_one_and_update({'username': username.lower()}, {
+            '$push': {'active_gigs': request_data}})
 
         db.users.find_one_and_update({'username': request_data['from_username']}, {
-                                 '$pull': {'sent_requests': {'request_id': request_data['request_id']}}})
+            '$pull': {'sent_requests': {'request_id': request_data['request_id']}}})
 
         db.users.find_one_and_update({'username': request_data['from_username']}, {
-                                 '$push': {'active_gigs': request_data}})
+            '$push': {'active_gigs': request_data}})
 
         Chat(db, request_data['request_id'],
              request_data['description'], request_data['from_username'])
 
     @staticmethod
     def denie_request(db, request_data, username):
-        db.users.find_one_and_update({'username': username}, {
-                                 '$pull': {'pending_requests': {'request_id': request_data['request_id']}}})
-        
+        db.users.find_one_and_update({'username': username.lower()}, {
+            '$pull': {'pending_requests': {'request_id': request_data['request_id']}}})
+
         db.users.find_one_and_update({'username': request_data['from_username']}, {
-                                 '$pull': {'sent_requests': {'request_id': request_data['request_id']}}})
+            '$pull': {'sent_requests': {'request_id': request_data['request_id']}}})
+    
+    @staticmethod
+    def delete_request(db, request_data, username):
+        db.users.find_one_and_update({'username': username.lower()}, {
+            '$pull': {'active_gigs': {'request_id': request_data['request_id']}}})
+
+        db.users.find_one_and_update({'username': request_data['from_username']}, {
+            '$pull': {'active_gigs': {'request_id': request_data['request_id']}}})
+        
+        Chat.delete_log(db, request_data['request_id'])
 
     @staticmethod
     def verify_single_sent_request(db, to_username, from_username):
-        user = db.users.find_one({'username': from_username})
+        user = db.users.find_one({'username': to_username.lower()})
 
-        if user['sent_requests'] != []:
-            for r in user['sent_requests']:
-                if r['to_username'] == to_username:
+        if user['pending_requests'] != []:
+            for r in user['pending_requests']:
+                if r['from_username'] == from_username:
                     return False
-        
+
         return True
-    
+
     @staticmethod
     def upload_portfolio(db, username, file_data):
-        db.users.find_one_and_update({'display_username': username}, {'$push' : {'portfolio.media' : file_data}})
+        db.users.find_one_and_update({'display_username': username}, {
+                                     '$push': {'portfolio.media': file_data}})
