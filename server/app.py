@@ -56,6 +56,8 @@ socketio = SocketIO(app)
 @socketio.on('openChat')
 def set_up_chat(chatId):
     join_room(chatId)
+    messages = Chat.find_chat_by_id(db, chatId)
+    emit('prevMessages', messages['message_log'], to=chatId)
 
 
 @socketio.on('sendMessage')

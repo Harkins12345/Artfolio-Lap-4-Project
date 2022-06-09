@@ -53,7 +53,7 @@ const ArtistPortfolioPage = () => {
   }
 
   function handleDisable(){
-    if (username === window.location.pathname.split("/")[2]){
+    if (!username || username === window.location.pathname.split("/")[2]){
       return true
     } else {
       return false
@@ -147,7 +147,7 @@ const ArtistPortfolioPage = () => {
               className="btn primary-cta-btn"
               disabled={handleDisable()}
             >
-              Get in touch
+              {username ? "Get in touch" : "Please login/sign up"}
             </Button>
 
             {/* MODAL ADDITION  */}
