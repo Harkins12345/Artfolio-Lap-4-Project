@@ -720,7 +720,7 @@ button.ghost {
   justify-content: center;
   flex-direction: column;
   padding: 0 50px;
-  height: 100%;
+  height: 70%;
   text-align: center;
 }
 
@@ -757,7 +757,7 @@ button.ghost {
 }
 
 .containerF.right-panel-active .sign-up-container {
-  transform: translatex(100%);
+  transform: translate(0%);
   opacity: 1;
   z-index: 5;
 }
@@ -799,7 +799,7 @@ button.ghost {
   color: var(--text-dark);
   position: relative;
   left: -100%;
-  height: 80%;
+  height: 50%;
   width: 200%;
 }
 
@@ -1487,7 +1487,7 @@ AllArtistsPage
     display: flex;
     margin: auto;
   }
-  /* here
+  /* Prishal from here
  */
   .containerF.right-panel-active .overlay-container {
     transform: translateX(-100%);
@@ -1545,6 +1545,17 @@ AllArtistsPage
     opacity: 1;
     z-index: 5;
   }
+
+  .auth-form {
+    background-color: var(--beige);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+  }
 }
 
 /* responsive larger than 1024px */
@@ -1596,6 +1607,10 @@ AllArtistsPage
 
   .footer-sitemap-1 {
     padding-bottom: 20px;
+  }
+
+  .containerF.right-panel-active .sign-up-container {
+    transform: translateX(100%);
   }
 }
 
