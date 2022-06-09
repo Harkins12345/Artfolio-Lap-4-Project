@@ -170,6 +170,8 @@ class User:
 
         db.users.find_one_and_update({'username': request_data['from_username']}, {
             '$pull': {'active_gigs': {'request_id': request_data['request_id']}}})
+        
+        Chat.delete_log(db, request_data['request_id'])
 
     @staticmethod
     def verify_single_sent_request(db, to_username, from_username):
