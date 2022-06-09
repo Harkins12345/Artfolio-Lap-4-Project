@@ -37,25 +37,26 @@ const LandingPage = () => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eleifend
               viverra dictumst posuere aliquet sem nullam in diam.
             </p>
-
-            <div
-              onClick={() => navigate("/sign-in")}
-              className="btn primary-cta-btn"
-              data-testid="createAccBtn"
-            >
-              <i className="fa-regular fa-user" data-testid="signIn"></i>
-              Sign In
-            </div>
-            <div className="hero-btn-microcopy" data-testid="noAccount">
-              Haven't got an account?&nbsp;
-              <span
+            {username ? null : <>
+              <div
                 onClick={() => navigate("/sign-in")}
-                className="createAccountNow"
+                className="btn primary-cta-btn"
                 data-testid="createAccBtn"
               >
-                Create one now!
-              </span>
-            </div>
+                <i className="fa-regular fa-user" data-testid="signIn"></i>
+                Sign In
+              </div>
+              <div className="hero-btn-microcopy" data-testid="noAccount">
+                Haven't got an account?&nbsp;
+                <span
+                  onClick={() => navigate("/sign-in")}
+                  className="createAccountNow"
+                  data-testid="createAccBtn"
+                >
+                  Create one now!
+                </span>
+              </div>
+            </>}
           </div>
         </div>
       </section>

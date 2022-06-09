@@ -3,13 +3,24 @@ import "@testing-library/jest-dom";
 import { screen, render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import AcceptedRequest from "./index.js";
+import { Provider } from "react-redux";
+
+import store from ".";
+import configureStore from "redux-mock-store";
+
+const middlewares = [];
+const mockStore = configureStore(middlewares);
 
 describe("Accepted Request Component", () => {
   beforeEach(() => {
+    const store = mockStore({});
+
     render(
-      <Router>
-        <AcceptedRequest />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <AcceptedRequest />
+        </Router>
+      </Provider>
     );
   });
 

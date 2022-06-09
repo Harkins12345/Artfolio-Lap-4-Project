@@ -1,6 +1,7 @@
-<p align="center">https://artfol-io.herokuapp.com/</p>
+# Artfol.io - https://artfol-io.herokuapp.com/
 
-(SCREENSHOT OF LANDING PAGE)
+<img src="mobile-landing.png" width=400>
+<img src="desktop-landing.png" width=600>
 
 ## Description
 
@@ -70,12 +71,13 @@ A marketplace for artists where they can showcase their talent, connecting them 
 
 ### Back-end
 
-![Image of back-end tests](/backend-testing.PNG)
+![Image of back-end tests](/backend-testing.png)
 
 ### Significant Code
 
 Retrieving the files from the database, we dont have to store the files locally or outsource from another website.
-![significant code](/sig-code.PNG)
+
+![significant code](/sig-code.png)
 
 ---
 
@@ -91,9 +93,12 @@ Retrieving the files from the database, we dont have to store the files locally 
 
 ## Bugs
 
-[x] CSS classnames inconsistencies
-[x] Frontend testing
--- jest coverage would occasionally stop working
+- [ ] CSS classnames inconsistencies
+- [ ] Frontend testing
+   -- jest coverage would occasionally stop working
+- [ ] Accepting Request
+   -- does not update the page once this is done, only seen once you leave the page
+- [ ] New users have reviews
 
 ---
 
@@ -101,41 +106,41 @@ Retrieving the files from the database, we dont have to store the files locally 
 
 ### Wins
 
-[x] 100% Front End Testing Coverage
-[x] 65% Back End Testing Coverage
-[x] Python backend
-[x] Created a react-app and connected to database
-[x] App has permanent storage
-[x] Have a live chatroom
-[x] Authentication
-[x] Responsiveness
-[x] Deployed on heroku
-[x] Ability to upload images, videos and audio files
+- 100% Front End Testing Coverage
+- 65% Back End Testing Coverage
+- Python backend
+- Created a react-app and connected to database
+- App has permanent storage
+- Have a live chatroom
+- Authentication
+- Responsiveness
+- Deployed on heroku
+- Ability to upload images, videos and audio files
 
 ### Challenges
 
-[x] Backend testing
--- Setting up the dummy data
--- Running the tests without sending requests to the actual database
-[x] Time constraints
-[x] Uploading files
-[x] Using sockets for the chatroom
-[x] Updating the profile
-[x] Managing users interaction
--- ability to send and accept requests from each other
-[x] Creating the modals for incoming and outgoing requests
-[x] React boostrap overwriting styling
-[x] Styling without the final prototype
-[x] Testing during development
-[x] Undestanding react-bootsrap
-[x] Making SignUp/Login toggle responsive
+- Backend testing
+   -- Setting up the dummy data
+   -- Running the tests without sending requests to the actual database
+- Time constraints
+- Uploading files
+- Using sockets for the chatroom
+- Updating the profile
+- Managing users interaction
+   -- ability to send and accept requests from each other
+- Creating the modals for incoming and outgoing requests
+- React boostrap overwriting styling
+- Styling without the final prototype
+- Testing during development
+- Undestanding react-bootsrap
+- Making SignUp/Login toggle responsive
 
 ## Future features
 
-[x] Payment Integration
-[x] Customisable user profiles
-[x] Chat Bot for FAQ
-[x] Success Badges for being reliable, quality performer, quality client etc.
+- Payment Integration
+- Customisable user profiles
+- Chat Bot for FAQ
+- Success Badges for being reliable, quality performer, quality client etc.
 
 ---
 
