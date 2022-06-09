@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setUsername } from "../../actions";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const YourPortfolioPage = () => {
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [artistToggle, changeArtistToggle] = useState(false);
@@ -17,6 +20,14 @@ const YourPortfolioPage = () => {
   const [description, changeDescription] = useState(null);
   const [imageVideo, changeImageVideo] = useState([]);
   const [audio, changeAudio] = useState([]);
+  
+  function handleDelete(e){
+    axios.post('/artists/delete')
+    .catch(err => console.log(err))
+
+    dispatch(setUsername(null))
+    navigate('/')
+  }
 
   function handleToggle(e) {
     artistToggle ? changeArtistToggle(false) : changeArtistToggle(true)
@@ -218,6 +229,7 @@ const YourPortfolioPage = () => {
               value="Delete portfolio"
               id="delete-portfolio"
               className="btn delete-btn"
+              onClick={handleDelete}
             />
           </form>
         </div>
