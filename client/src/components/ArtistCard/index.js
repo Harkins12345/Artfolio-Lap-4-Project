@@ -35,8 +35,8 @@ const ArtistCard = ({artistData}) => {
 
     <div className="gallery-item-artist" data-testid="artist-card">
       <img
-        src="https://heavy.com/wp-content/uploads/2016/02/martin_super_bowl-e1454699147664.jpg"
-        alt=""
+        src={`/media/${artistData['portfolio']['media'].find(media => media['contentType'].split('/')[0] === 'image')['filename']}`}
+        alt="Artist Photo"
       />
 
       <div className="gallery-content">

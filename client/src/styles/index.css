@@ -371,6 +371,7 @@ footer {
 
 .chat-modal-close {
   float: right;
+  cursor: pointer;
 }
 
 .chat-modal-section-middle {

@@ -20,6 +20,10 @@ const ChatModal = ({ showModal, setShowModal, chatData }) => {
         setMessage(e.target.value)
     }
 
+    function handleCloseModal(e){
+        setShowModal(false)
+    }
+
     function sendMessage(e) {
         e.preventDefault()
         if (socket) {
@@ -34,10 +38,7 @@ const ChatModal = ({ showModal, setShowModal, chatData }) => {
                 <div className="chat-modal-box ">
                     <div className="chat-modal-section-top">
                         <div className="chat-modal-top-close">
-                            <div className="chat-modal-collapse">
-                                <i className="bi bi-arrows-angle-contract" id="minimizeChat"></i>
-                            </div>
-                            <div className="chat-modal-close">
+                            <div className="chat-modal-close" onClick={handleCloseModal}>
                                 <i className="bi bi-x-square-fill" id="closeChat"></i>
                             </div>
                         </div>
