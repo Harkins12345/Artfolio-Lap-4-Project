@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { ArtistCard, FooterCTA } from "../../components";
 
 const LandingPage = () => {
   const username = useSelector((state) => state.username);
 
   const navigate = useNavigate();
+
+  const [artistList, setArtistList] = useState([]);
+
+  // get the artists api (with a placeholder)
+  useEffect(() => {
+    axios
+      .post(`${window.origin}/artists`)
+      .then((resp) => resp.data)
+      .then((data) => setArtistList(data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <>
@@ -53,11 +65,9 @@ const LandingPage = () => {
             className="gallery-list has-scrollbar"
             data-testid="artist-section"
           >
-            <ArtistCard />
-            <ArtistCard />
-            <ArtistCard />
-            <ArtistCard />
-            <ArtistCard />
+            {artistList.map((artist) => (
+              <ArtistCard artistData={artist} />
+            ))}
           </ul>
           <div className="all-artist-btn-container">
             <div

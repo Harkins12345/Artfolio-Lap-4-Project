@@ -7,6 +7,7 @@ import AcceptedRequest from "../../components/AcceptedRequest";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { RequestCard } from "../../components";
 
 const DashboardPage = () => {
   const navigate = useNavigate();
@@ -41,9 +42,10 @@ const DashboardPage = () => {
     axios
       .post("/dashboard/refresh")
       .then((resp) => resp.data)
-      .then((data) =>
-        setPendingRequests((prev) => [...prev, ...data["requests"]])
-      );
+      .then((data) => {
+        setPendingRequests(data["requests"])
+        setActiveGigs(data['active_gigs'])
+      });
   }
 
   // INCOMMING PAGE FOR MODAL
@@ -92,7 +94,7 @@ const DashboardPage = () => {
             </div>
             <div className="col-4 portfolio-button">
               <button
-                onClick={() => navigate("/portfolio")}
+                onClick={() => navigate("/dashboard/edit")}
                 className="profile-option"
                 data-testid="portfolio-btn"
               >
@@ -105,94 +107,82 @@ const DashboardPage = () => {
       </div>
 
       {/* PENDING REQUESTS */}
-      <div className="container-xl dashboard-main">
-        <div className="pending-container">
-          <h2 data-testid="gig-requests"> Pending Requests</h2>
 
-          {/* MODAL ADDITION  */}
-          <button
-            onClick={handleShow}
-            variant="primary"
-            className="pending-requests"
-            gig-requests
-          >
-            Check Requests
-          </button>
-
-          <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title> PENDING REQUESTS </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Form>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
-                >
-                  <Form.Label>Date/Time</Form.Label>
-                  <Form.Control
-                    type="date"
-                    placeholder="name@example.com"
-                    autoFocus
-                  />
-                </Form.Group>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
-                >
-                  <Form.Label>Location</Form.Label>
-                  <Form.Control as="textarea" rows={1} />
-                </Form.Group>
-
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
-                >
-                  <Form.Label>Duration</Form.Label>
-                  <Form.Control as="textarea" rows={1} />
-                </Form.Group>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
-                >
-                  <Form.Label>Genre</Form.Label>
-                  <Form.Control as="textarea" rows={1} />
-                </Form.Group>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
-                >
-                  <Form.Label>Budget</Form.Label>
-                  <Form.Control as="textarea" rows={1} />
-                </Form.Group>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlTextarea1"
-                >
-                  <Form.Label>Description</Form.Label>
-                  <Form.Control as="textarea" rows={3} />
-                </Form.Group>
-              </Form>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="primary" onClick={handleClose}>
-                ACCEPT REQUEST
-              </Button>
-              <Button variant="secondary" onClick={handleClose}>
-                DECLINE REQUEST
-              </Button>
-            </Modal.Footer>
-          </Modal>
-
-          {/* MODAL ENDS */}
+      <section className="pending-request-section">
+        <div className="container-xl">
+          <h2 className="pending-request-title">Pending Requests</h2>
+          <ul className="gallery-list has-scrollbar">
+            {pendingRequests.map(request => <RequestCard requestData={request} refreshRequests={checkRequests} />)}
+          </ul>
         </div>
-        {/* ACCEPTED GIGS */}
-        <h2 className="mt-4" data-testid="gigs-accepted">
-          {" "}
-          Accepted Requests{" "}
-        </h2>
-        <AcceptedRequest />
-      </div>
+      </section>
+
+      {/* MODAL ADDITION  */}
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton></Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Date/Time</Form.Label>
+              <Form.Control
+                type="date"
+                placeholder="name@example.com"
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Location</Form.Label>
+              <Form.Control as="textarea" rows={1} />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Duration</Form.Label>
+              <Form.Control as="textarea" rows={1} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Genre</Form.Label>
+              <Form.Control as="textarea" rows={1} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Budget</Form.Label>
+              <Form.Control as="textarea" rows={1} />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Description</Form.Label>
+              <Form.Control as="textarea" rows={3} />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+            ACCEPT REQUEST
+          </Button>
+          <Button variant="secondary" onClick={handleClose}>
+            DECLINE REQUEST
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* MODAL ENDS */}
+
+      {/* The below was the original one - to be used for the request modal  */}
+
+
+      {/* ACCEPTED GIGS */}
+
+      <section className="accepted-request-section">
+        <div className="container-xl">
+          <h2 className="mt-4" data-testid="gigs-accepted">
+            {" "}
+            Accepted Requests{" "}
+          </h2>
+          {activeGigs.map(gig => <AcceptedRequest gigData={gig} refresh={checkRequests} />)}
+        </div>
+      </section>
     </>
   );
 };
