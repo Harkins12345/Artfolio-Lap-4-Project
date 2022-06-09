@@ -1,4 +1,4 @@
-# Artfolio - https://artfol-io.herokuapp.com/
+<p align="center">https://artfol-io.herokuapp.com/</p>
 
 Mobile Version
 ![Mobile Landing Page](/mobile-landing.PNG)
@@ -147,11 +147,11 @@ Retrieving the files from the database, we dont have to store the files locally 
 
 ## Contributors
 
-[Albert Stoykov](https://github.com/AlbertStoykov)
-[Jianli Lin](https://github.com/jianli1028)
-[Michael Harkins-Meloy](https://github.com/Harkins12345)
-[Prishal Makwana](https://github.com/PrishalM)
-[Yusra Tahir](https://github.com/yusra-tahir)
+- [Albert Stoykov](https://github.com/AlbertStoykov)
+- [Jianli Lin](https://github.com/jianli1028)
+- [Michael Harkins-Meloy](https://github.com/Harkins12345)
+- [Prishal Makwana](https://github.com/PrishalM)
+- [Yusra Tahir](https://github.com/yusra-tahir)
 
 ---
 
