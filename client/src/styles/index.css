@@ -1567,7 +1567,6 @@ AllArtistsPage
 
   .hero-container {
     flex-direction: row-reverse;
-    flex-wrap: nowrap;
   }
 }
 
@@ -1576,6 +1575,11 @@ AllArtistsPage
   .hero-section {
     padding-top: 50px;
     padding-bottom: 50px;
+  }
+
+  .hero-container {
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
   }
 
   .hero-image {
