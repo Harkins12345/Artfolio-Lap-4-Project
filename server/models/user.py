@@ -131,13 +131,15 @@ class User:
 
         request_data['request_id'] = request_id
 
-        db.users.find_one_and_update({'username': username}, {
+        db.users.find_one_and_update({'username': username.lower()}, {
             '$push': {'sent_requests': request_data}})
         db.users.find_one_and_update({'username': request_data['to_username']}, {
             '$push': {'pending_requests': request_data}})
 
     @staticmethod
     def accept_request(db, request_data, username):
+        Chat(db, request_data['request_id'], request_data['description'], request_data['from_username'])
+
         db.users.find_one_and_update({'username': username.lower()}, {
             '$pull': {'pending_requests': {'request_id': request_data['request_id']}}})
 
@@ -160,14 +162,22 @@ class User:
 
         db.users.find_one_and_update({'username': request_data['from_username']}, {
             '$pull': {'sent_requests': {'request_id': request_data['request_id']}}})
+    
+    @staticmethod
+    def delete_request(db, request_data, username):
+        db.users.find_one_and_update({'username': username.lower()}, {
+            '$pull': {'active_gigs': {'request_id': request_data['request_id']}}})
+
+        db.users.find_one_and_update({'username': request_data['from_username']}, {
+            '$pull': {'active_gigs': {'request_id': request_data['request_id']}}})
 
     @staticmethod
     def verify_single_sent_request(db, to_username, from_username):
-        user = db.users.find_one({'username': from_username})
+        user = db.users.find_one({'username': to_username.lower()})
 
-        if user['sent_requests'] != []:
-            for r in user['sent_requests']:
-                if r['to_username'] == to_username:
+        if user['pending_requests'] != []:
+            for r in user['pending_requests']:
+                if r['from_username'] == from_username:
                     return False
 
         return True

@@ -79,6 +79,8 @@ const ArtistPortfolioPage = () => {
 
     axios.post('/request', data)
     .catch(err => console.log(err))
+
+    navigate('/artists')
   }
 
   // get the artists api (with a placeholder)

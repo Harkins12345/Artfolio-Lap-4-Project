@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 
-const RequestCard = ({requestData}) => {
+const RequestCard = ({requestData, refreshRequests}) => {
   const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
@@ -21,7 +21,7 @@ const RequestCard = ({requestData}) => {
     .catch(err => console.log(err))
 
     handleClose()
-    navigate('/dashboard')
+    refreshRequests()
   }
 
   function handleDenie(){
@@ -34,16 +34,15 @@ const RequestCard = ({requestData}) => {
     .catch(err => console.log(err))
 
     handleClose()
-    navigate('/dashboard')
+    refreshRequests()
   }
 
   return (
     <div className="gallery-item-artist">
       <div className="gallery-content">
-        <h3 className="gallery-item-title">Anniversary Party</h3>
+        <h3 className="gallery-item-title">{requestData['from_username']}</h3>
         <p className="gallery-item-description">
-          I love your work, and would like to book you for an upcoming
-          anniversary. I look forward to your response.{" "}
+          {requestData['description']}
         </p>
 
         <div className="col d-flex align-items-end justify-content-end">
