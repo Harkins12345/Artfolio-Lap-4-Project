@@ -1,6 +1,10 @@
 <p align="center">https://artfol-io.herokuapp.com/</p>
 
-(SCREENSHOT OF LANDING PAGE)
+Mobile Version
+![Mobile Landing Page](/mobile-landing.PNG)
+
+Desktop Version
+![Desktop Landing Page](/desktop-landing.PNG)
 
 ## Description
 
@@ -94,6 +98,8 @@ Retrieving the files from the database, we dont have to store the files locally 
 [x] CSS classnames inconsistencies
 [x] Frontend testing
 -- jest coverage would occasionally stop working
+[x] Accepting Request
+-- does not update the page once this is done, only seen once you leave the page
 
 ---
 
