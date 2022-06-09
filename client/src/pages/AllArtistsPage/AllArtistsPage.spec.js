@@ -10,6 +10,9 @@ import configureStore from "redux-mock-store";
 const middlewares = [];
 const mockStore = configureStore(middlewares);
 
+console.log = jest.fn();
+expect(console.log).not.toHaveBeenCalled();
+
 describe("All Artists Page", () => {
   beforeEach(() => {
     const store = mockStore({});
@@ -46,6 +49,11 @@ describe("All Artists Page", () => {
   test("it renders Artist pricing", () => {
     let pricing = screen.getAllByTestId("artist-pricing");
     expect(pricing).toBeTruthy();
+  });
+
+  test("it renders Artist data", () => {
+    let data = screen.getAllByTestId("artist-data");
+    expect(data).toBeTruthy();
   });
 
   test("it renders a Main section", () => {

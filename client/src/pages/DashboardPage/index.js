@@ -42,8 +42,8 @@ const DashboardPage = () => {
       .post("/dashboard/refresh")
       .then((resp) => resp.data)
       .then((data) => {
-        setPendingRequests(data["requests"])
-        setActiveGigs(data['active_gigs'])
+        setPendingRequests(data["requests"]);
+        setActiveGigs(data["active_gigs"]);
       });
   }
 
@@ -107,11 +107,18 @@ const DashboardPage = () => {
 
       {/* PENDING REQUESTS */}
 
-      <section className="pending-request-section">
+      <section className="pending-request-section" data-testid="gig-requests">
         <div className="container-xl">
-          <h2 className="pending-request-title">Pending Requests</h2>
-          <ul className="gallery-list has-scrollbar">
-            {pendingRequests.map(request => <RequestCard requestData={request} refreshRequests={checkRequests} />)}
+          <h2 className="pending-request-title" data-testid="gig-requests">
+            Pending Requests
+          </h2>
+          <ul className="gallery-list has-scrollbar" data-testid="req-card">
+            {pendingRequests.map((request) => (
+              <RequestCard
+                requestData={request}
+                refreshRequests={checkRequests}
+              />
+            ))}
           </ul>
         </div>
       </section>
@@ -170,7 +177,6 @@ const DashboardPage = () => {
 
       {/* The below was the original one - to be used for the request modal  */}
 
-
       {/* ACCEPTED GIGS */}
 
       <section className="accepted-request-section">
@@ -179,7 +185,9 @@ const DashboardPage = () => {
             {" "}
             Accepted Requests{" "}
           </h2>
+
           {activeGigs.map(gig => <AcceptedRequest gigData={gig} refresh={checkRequests} />)}
+
         </div>
       </section>
     </>
