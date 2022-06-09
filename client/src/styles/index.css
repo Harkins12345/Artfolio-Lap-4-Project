@@ -569,6 +569,7 @@ button.ghost {
 }
 
 @keyframes show {
+
   0%,
   49.99% {
     opacity: 0;
@@ -941,12 +942,302 @@ AllArtistsPage
   color: var(--text-light);
 }
 
+/**********************************************************************/
+/* AuthPage */
+/**********************************************************************/
+
+/* Dashboard Heading */
+
+.welcome-section {
+  background-color: var(--beige-darker);
+}
+
+.profile-header {
+  width: 100%;
+  display: flex;
+  height: 210px;
+  position: relative;
+  font: var(--font-primary);
+}
+
+.profile-img {
+  float: left;
+  width: 340px;
+  height: 10px;
+}
+
+.profile-img img {
+  border-radius: 50%;
+  height: 230px;
+  width: 230px;
+  border: 5px solid #fff;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 40px;
+  top: 30px;
+  background: #fff;
+}
+
+.profile-nav-info {
+  float: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 60px;
+}
+
+.profile-nav-info h3 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.profile-nav-info .projectStatus {
+  display: flex;
+  font-weight: bold;
+}
+
+.portfolio-button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.profile-option {
+  margin-bottom: 35px;
+  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+  background: var(--red);
+  color: white;
+  text-decoration-line: none;
+}
+
+.fa-pencil {
+  padding-left: 5px;
+}
+
+.profile-option:hover {
+  background: #fff;
+  color: var(--green);
+  border: 1px solid var(--red);
+}
+
+.profile-option:hover span {
+  background: var(--red);
+}
+
+.item-status {
+  display: flex;
+  flex-direction: column;
+  margin-right: 16px;
+}
+
+.item-status .status-type:after {
+  content: "";
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translatey(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid var(--red);
+}
+
+.status-number {
+  font-size: 20px;
+  line-height: 30px;
+  color: var(--green);
+}
+
+.status-type {
+  position: relative;
+  padding-right: 24px;
+  color: var(--green);
+}
+
+/* PENDING REQUESTS */
+
+.pending-requests {
+  margin-top: 10px;
+  width: 300px;
+  padding-block: 10px;
+  text-align: center;
+  background-color: var(--green);
+  border-radius: 15px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 150ms ease-in-out;
+  border-radius: 10px;
+}
+
+.pending-requests:after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 100%;
+  background: #2b8480;
+  z-index: -1;
+  transition: width 200ms ease-in-out;
+}
+
+.pending-requests:hover {
+  color: var(--text-light);
+}
+
+.pending-requests:hover:after {
+  width: 110%;
+}
+
+/* ACCEPTED GIGS */
+
+.name-dropdown {
+  display: flex;
+  justify-content: space-between;
+}
+
+.accepted-container {
+  background-color: var(--beige-darker);
+  border-radius: 25px;
+  width: 83%;
+  padding: 20px;
+}
+
+.fa-message {
+  padding-right: 10px;
+}
+
+.request-details {
+  line-height: 1.8rem;
+  background-color: var(--beige);
+  border-radius: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.request-details span {
+  font-size: 15px;
+}
+
+.threedots:after {
+  content: "...";
+  font-size: 50px;
+}
+
+.drop-down-tg {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-top: -40px !important;
+}
+
+.edit-button {
+  background-color: transparent;
+  border: 2px solid var(--green);
+  color: var(--text-dark);
+  border-radius: 50px;
+  width: 180px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
+
+.edit-button:hover {
+  background-color: var(--green);
+  color: var(--text-light);
+}
+
+/* MODAL  */
+
+.outer-dashBrd {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transform: translate(0, 0);
+  display: none;
+}
+
+.active-dashBrd {
+  display: block;
+}
+
+.inner-dashBrd {
+  position: relative;
+  z-index: 1;
+  transform: translate(0, 0);
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100% - 60px);
+  flex-direction: column;
+  padding: 30px;
+}
+
+.header-dashBrd {
+  line-height: 1;
+  height: 40px;
+  background: #ccc;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.content-dashBrd {
+  z-index: 1;
+  line-height: 1;
+  width: 100%;
+  background: #eee;
+  min-height: 100px;
+  padding: 15px;
+}
+
+.overlay-dashBrd {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  padding: 0;
+  display: block;
+  width: 100%;
+  border: 0;
+}
+
+.pending-request-section {
+  padding-top: 100px;
+}
+
+
+/************************************************************************/
 /* Media Queries */
 /************************************************************************/
 
 /* responsive larger than 575px */
-@media (min-width: 575px) {
-}
+@media (min-width: 575px) {}
 
 /* responsive larger than 768px */
 @media (min-width: 768px) {
@@ -1019,6 +1310,40 @@ AllArtistsPage
     margin: 50px;
     margin-bottom: 5%;
     margin-top: 5%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .profile-img img {
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    border: 5px solid #fff;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    left: 20px;
+    top: 30px;
+    background: #fff;
+  }
+
+  .profile-option {
+    position: absolute;
+    top: 40%;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    background: var(--red);
+    color: white;
+    text-decoration-line: none;
+    left: 30px;
+  }
+
+  .profile-nav-info {
+    padding-left: 150px;
+    display: block;
+    padding-block: 35px;
   }
 }
 
@@ -1145,7 +1470,7 @@ AllArtistsPage
   padding: 5px;
 }
 
-.chat-baloon-send-message{
+.chat-baloon-send-message {
   word-wrap: break-word;
   text-align: left;
   font-size: 1em;
@@ -1179,7 +1504,7 @@ AllArtistsPage
   padding: 5px;
 }
 
-.chat-baloon-received-message{
+.chat-baloon-received-message {
   word-wrap: break-word;
   text-align: left;
   font-size: 1em;
