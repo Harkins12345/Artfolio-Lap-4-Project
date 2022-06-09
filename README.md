@@ -97,6 +97,7 @@ Retrieving the files from the database, we dont have to store the files locally 
 -- jest coverage would occasionally stop working
 [x] Accepting Request
 -- does not update the page once this is done, only seen once you leave the page
+[x] New users have reviews
 
 ---
 
