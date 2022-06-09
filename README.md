@@ -1,6 +1,8 @@
 # Artfol.io - https://artfol-io.herokuapp.com/
 
-![mobile-landing-page](/mobile-landing.png)
+<img src="mobile-landing.png" width=300 align=right>
+
+![mobile-landing-page](/mobile-landing.png)Ì
 ![desktop-landing-page](/desktop-landing.png)
 
 ## Description
