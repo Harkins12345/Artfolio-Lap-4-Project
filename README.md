@@ -1,4 +1,4 @@
-# Artfolio - https://artfol-io.herokuapp.com/
+<a align="center">https://artfol-io.herokuapp.com/</a>
 
 (SCREENSHOT OF LANDING PAGE)
 
