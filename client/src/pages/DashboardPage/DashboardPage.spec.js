@@ -29,11 +29,11 @@ describe("Dashboard Page", () => {
     );
   });
 
-  test("it renders a button and navigates to /portfolio upon click", async () => {
+  test("it renders a button and navigates to /dashboard/edit upon click", async () => {
     let button = screen.getByTestId("portfolio-btn");
     await userEvent.click(button);
     expect(button).toBeInTheDocument();
-    expect(mockedUsedNavigate).toHaveBeenCalledWith("/portfolio");
+    expect(mockedUsedNavigate).toHaveBeenCalledWith("/dashboard/edit");
   });
 
   test("it renders a Welcome Section", () => {
