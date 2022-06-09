@@ -38,12 +38,13 @@ const DashboardPage = () => {
   }, [pendingRequests]);
 
   function checkRequests(e) {
+    console.log('Refreshing...')
     axios
       .post("/dashboard/refresh")
       .then((resp) => resp.data)
       .then((data) => {
-        setPendingRequests(data["requests"])
-        setActiveGigs(data['active_gigs'])
+        setPendingRequests([...data["requests"]])
+        setActiveGigs([...data['active_gigs']])
       });
   }
 
@@ -107,69 +108,18 @@ const DashboardPage = () => {
 
       {/* PENDING REQUESTS */}
 
-      <section className="pending-request-section">
+      <section className="pending-request-section" data-testid="gig-requests">
         <div className="container-xl">
           <h2 className="pending-request-title">Pending Requests</h2>
           <ul className="gallery-list has-scrollbar">
-            {pendingRequests.map(request => <RequestCard requestData={request} refreshRequests={checkRequests} />)}
+            {pendingRequests.len !== 0 ? pendingRequests.map(request => <RequestCard requestData={request} refreshRequests={checkRequests} />) : <></>}
           </ul>
         </div>
       </section>
 
-      {/* MODAL ADDITION  */}
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton></Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Date/Time</Form.Label>
-              <Form.Control
-                type="date"
-                placeholder="name@example.com"
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Location</Form.Label>
-              <Form.Control as="textarea" rows={1} />
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Duration</Form.Label>
-              <Form.Control as="textarea" rows={1} />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Genre</Form.Label>
-              <Form.Control as="textarea" rows={1} />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Budget</Form.Label>
-              <Form.Control as="textarea" rows={1} />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Description</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
-            ACCEPT REQUEST
-          </Button>
-          <Button variant="secondary" onClick={handleClose}>
-            DECLINE REQUEST
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-      {/* MODAL ENDS */}
+      
 
       {/* The below was the original one - to be used for the request modal  */}
-
 
       {/* ACCEPTED GIGS */}
 
@@ -179,7 +129,7 @@ const DashboardPage = () => {
             {" "}
             Accepted Requests{" "}
           </h2>
-          {activeGigs.map(gig => <AcceptedRequest gigData={gig} refresh={checkRequests} />)}
+          {activeGigs.len !== 0 ? activeGigs.map(gig => <AcceptedRequest gigData={gig} refresh={checkRequests} />) : <></>}
         </div>
       </section>
     </>

@@ -61,13 +61,12 @@ const AllArtistsPage = () => {
               </select>
             </form>
           </div>
-          <div className="gallery-all-list">
+          <div className="gallery-all-list" data-testid="artist-data">
             {artistList.map((artist) => (
               <ArtistCard artistData={artist} />
             ))}
           </div>
         </div>
-
       </section>
       {username ? null : <FooterCTA />}
     </>

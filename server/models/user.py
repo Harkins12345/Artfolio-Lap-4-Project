@@ -138,22 +138,20 @@ class User:
 
     @staticmethod
     def accept_request(db, request_data, username):
+
+        db.users.find_one_and_update({'username': username.lower()}, {
+            '$pull': {'pending_requests': {'request_id': request_data['request_id'].lower()}}})
+
+        db.users.find_one_and_update({'username': username.lower()}, {
+            '$push': {'active_gigs': request_data}})
+
+        db.users.find_one_and_update({'username': request_data['from_username'].lower()}, {
+            '$pull': {'sent_requests': {'request_id': request_data['request_id'].lower()}}})
+
+        db.users.find_one_and_update({'username': request_data['from_username'].lower()}, {
+            '$push': {'active_gigs': request_data}})
+        
         Chat(db, request_data['request_id'], request_data['description'], request_data['from_username'])
-
-        db.users.find_one_and_update({'username': username.lower()}, {
-            '$pull': {'pending_requests': {'request_id': request_data['request_id']}}})
-
-        db.users.find_one_and_update({'username': username.lower()}, {
-            '$push': {'active_gigs': request_data}})
-
-        db.users.find_one_and_update({'username': request_data['from_username']}, {
-            '$pull': {'sent_requests': {'request_id': request_data['request_id']}}})
-
-        db.users.find_one_and_update({'username': request_data['from_username']}, {
-            '$push': {'active_gigs': request_data}})
-
-        Chat(db, request_data['request_id'],
-             request_data['description'], request_data['from_username'])
 
     @staticmethod
     def denie_request(db, request_data, username):

@@ -10,6 +10,9 @@ import configureStore from "redux-mock-store";
 const middlewares = [];
 const mockStore = configureStore(middlewares);
 
+console.log = jest.fn();
+expect(console.log).not.toHaveBeenCalled();
+
 const mockedUsedNavigate = jest.fn();
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
@@ -29,11 +32,11 @@ describe("Dashboard Page", () => {
     );
   });
 
-  test("it renders a button and navigates to /portfolio upon click", async () => {
+  test("it renders a button and navigates to /dashboard/edit upon click", async () => {
     let button = screen.getByTestId("portfolio-btn");
     await userEvent.click(button);
     expect(button).toBeInTheDocument();
-    expect(mockedUsedNavigate).toHaveBeenCalledWith("/portfolio");
+    expect(mockedUsedNavigate).toHaveBeenCalledWith("/dashboard/edit");
   });
 
   test("it renders a Welcome Section", () => {
@@ -49,6 +52,11 @@ describe("Dashboard Page", () => {
   test("it renders a greeting", () => {
     let user = screen.getByTestId("user-welcome");
     expect(user).toBeTruthy();
+  });
+
+  test("it renders a Request Card", () => {
+    let card = screen.getByTestId("req-card");
+    expect(card).toBeTruthy();
   });
 
   test('it renders an "edit" button', () => {
