@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setUsername } from '../../actions'
+import { setUsername } from "../../actions";
 import axios from "axios";
 
 const Header = () => {
@@ -9,12 +9,11 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  function logout(e){
-    axios.post(`${window.origin}/logout`)
-    .catch(err => console.log(err))
+  function logout(e) {
+    axios.post(`${window.origin}/logout`).catch((err) => console.log(err));
 
-    dispatch(setUsername(null))
-    navigate('/')
+    dispatch(setUsername(null));
+    navigate("/");
   }
 
   return (
@@ -34,19 +33,19 @@ const Header = () => {
         <div className="navbar-btns" data-testid="navbar-btns">
           {username ? (
             <>
-            <div
-              onClick={() => navigate("/dashboard")}
-              className="btn primary-cta-btn dashboard-btn"
-            >
-              <i className="fa-regular fa-address-card"></i>Dashboard
-            </div>
-            <div
-              onClick={logout}
-              className="btn primary-cta-btn"
-              data-testid="sign-in-btn"
-            >
-              <i className="fa-regular fa-user"></i>Sign Out
-            </div>
+              <div
+                onClick={() => navigate("/dashboard")}
+                className="btn primary-cta-btn dashboard-btn"
+              >
+                <i className="fa-regular fa-address-card"></i>Dashboard
+              </div>
+              <div
+                onClick={logout}
+                className="btn primary-cta-btn"
+                data-testid="sign-in-btn"
+              >
+                <i className="fa-regular fa-user"></i>Sign Out
+              </div>
             </>
           ) : (
             <div

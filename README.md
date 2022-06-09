@@ -71,6 +71,8 @@ A marketplace for artists where they can showcase their talent, connecting them 
 ### Wins
 
 [x] 100% Front End Testing Coverage 
+[x] 65% Back End Testing Coverage 
+
 
 ### Challenges
 
