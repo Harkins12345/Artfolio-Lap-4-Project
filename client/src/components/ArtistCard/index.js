@@ -47,7 +47,7 @@ const ArtistCard = ({artistData}) => {
             </div>
           </div>
           <div className="artist-genre-container">
-            <span className="artist-genre">Rock</span>
+            <span className="artist-genre">{artistData ? artistData['portfolio']['genre'] : ''}</span>
           </div>
         </div>
 
