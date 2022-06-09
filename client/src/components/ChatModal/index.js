@@ -12,20 +12,18 @@ const ChatModal = ({ showModal, setShowModal, chatId }) => {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState();
 
-    useEffect(() => {
-        if (socket){
-            socket.on('prevMessages', (msgs) => setMessages([...msgs]))
-            socket.emit('openChat', chatId)
-        }
-    }, [])
+    if (socket) {
+        socket.on('prevMessages', (msgs) => setMessages([...msgs]))
+        socket.emit('openChat', chatId)
+    }
 
-    function handleMessage(e){
+    function handleMessage(e) {
         setMessage(e.target.value)
     }
 
-    function sendMessage(e){
+    function sendMessage(e) {
         e.preventDefault()
-        if (socket){
+        if (socket) {
             socket.emit('sendMessage', message, chatId)
         }
     }
@@ -33,7 +31,7 @@ const ChatModal = ({ showModal, setShowModal, chatId }) => {
     return (
         <>
             {/* show modal if value is true */}
-            {showModal? (
+            {showModal ? (
                 <div className="chat-modal-box ">
                     <div className="chat-modal-section-top">
                         <div className="chat-modal-top-close">
@@ -49,7 +47,7 @@ const ChatModal = ({ showModal, setShowModal, chatId }) => {
                         <div className="chat-modal-chat-box">
                             <p className="chat-modal-initialization">conversation started</p>
                             {messages.map(msgData => {
-                                if (msgData['user'] === username){
+                                if (msgData['user'] === username) {
                                     return <ChatBalloonSend messageData={msgData} />
                                 } else {
                                     return <ChatBalloonReceived messageData={msgData} />
