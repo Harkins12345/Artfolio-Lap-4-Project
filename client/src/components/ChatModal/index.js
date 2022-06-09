@@ -4,7 +4,7 @@ import ChatBalloonReceived from "../ChatBalloonReceived";
 import ChatBalloonSend from "../ChatBalloonSend";
 
 
-const ChatModal = ({ showModal, setShowModal, chatId }) => {
+const ChatModal = ({ showModal, setShowModal, chatData }) => {
 
     const username = useSelector(state => state.username)
     const socket = useSelector(state => state.socket)
@@ -14,7 +14,6 @@ const ChatModal = ({ showModal, setShowModal, chatId }) => {
 
     if (socket) {
         socket.on('prevMessages', (msgs) => setMessages([...msgs]))
-        socket.emit('openChat', chatId)
     }
 
     function handleMessage(e) {
@@ -24,7 +23,7 @@ const ChatModal = ({ showModal, setShowModal, chatId }) => {
     function sendMessage(e) {
         e.preventDefault()
         if (socket) {
-            socket.emit('sendMessage', message, chatId)
+            socket.emit('sendMessage', message, chatData['request_id'])
         }
     }
 

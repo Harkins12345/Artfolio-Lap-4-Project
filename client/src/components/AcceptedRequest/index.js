@@ -8,6 +8,7 @@ import { ChatModal } from "../../components";
 
 const AcceptedRequest = ({gigData}) => {
   const dispatch = useDispatch();
+  const username = useSelector(state => state.username);
 
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <a
@@ -33,9 +34,14 @@ const AcceptedRequest = ({gigData}) => {
     if (showModal){
       const socket = io()
       socket.on('connect', () => {
+        socket.emit('openChat', gigData['request_id'])
         dispatch(setSocket(socket))
       })
     }  else {
+      const socket = useSelector(state => state.socket)
+      if (socket){
+        socket.disconnect()
+      }
       dispatch(setSocket(null))
     }
   }, [showModal])
@@ -44,7 +50,7 @@ const AcceptedRequest = ({gigData}) => {
     <div className="accepted-container my-4">
       <div className="row name-dropdown">
         <div className="col-6" data-testid="username">
-          <h3> {gigData['from_username']} </h3>
+          <h3> {gigData['from_username'].toLowerCase() === username.toLowerCase() ? gigData['to_username'] : gigData['from_username']} </h3>
         </div>
         <div className="col-6 drop-down-tg" data-testid="dropdown">
           <Dropdown>
@@ -77,7 +83,7 @@ const AcceptedRequest = ({gigData}) => {
             <span> Budget: {gigData['budget']} </span>
           </div>
         </div>
-      </div><ChatModal showModal={showModal} setShowModal={setShowModal} chatId={gigData['request_id']}  />
+      </div><ChatModal showModal={showModal} setShowModal={setShowModal} chatData={gigData}  />
     </div>
   );
 };
