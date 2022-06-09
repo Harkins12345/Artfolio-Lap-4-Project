@@ -43,7 +43,7 @@ const DashboardPage = () => {
       .post("/dashboard/refresh")
       .then((resp) => resp.data)
       .then((data) =>
-        setPendingRequests((prev) => [...prev, ...data["requests"]])
+        setPendingRequests((prev) => [...data["requests"]])
       );
   }
 
@@ -111,11 +111,7 @@ const DashboardPage = () => {
         <div className="container-xl">
           <h2 className="pending-request-title">Pending Requests</h2>
           <ul className="gallery-list has-scrollbar">
-            <RequestCard />
-            <RequestCard />
-            <RequestCard />
-            <RequestCard />
-            <RequestCard />
+            {pendingRequests.map(request => <RequestCard requestData={request} />)}
           </ul>
         </div>
       </section>
