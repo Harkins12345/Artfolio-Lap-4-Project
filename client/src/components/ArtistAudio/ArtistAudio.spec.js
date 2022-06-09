@@ -19,7 +19,7 @@ describe("Artist Audio Component", () => {
   });
 
   test("it renders an Audio Name", () => {
-    let name = screen.getByTestId("audio-name");
+    let name = screen.getAllByTestId("audio-name");
     expect(name).toBeTruthy();
   });
 });

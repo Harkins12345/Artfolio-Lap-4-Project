@@ -55,7 +55,7 @@ describe("Dashboard Page", () => {
   });
 
   test("it renders a Request Card", () => {
-    let card = screen.getByTestId("req-card");
+    let card = screen.getAllByTestId("req-card");
     expect(card).toBeTruthy();
   });
 
