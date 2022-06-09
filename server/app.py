@@ -264,17 +264,9 @@ def update():
 @app.route('/artists/delete', methods=['POST'])
 @authenticate
 def delete():
-    username = request.json.get('username', None)
+    User.delete(db, session['username'])
 
-    if not username:
-        return jsonify({'error': 'username is required.'}), 400
-
-    if username == session['username']:
-        User.delete(db, username)
-
-        return jsonify({'message': f'User {username} deleted successfully.'}), 204
-
-    return jsonify({'error': 'Authentication required.'}), 401
+    return jsonify({'message': f'User {session["username"]} deleted successfully.'}), 204
 
 
 @app.route('/media/<filename>')
