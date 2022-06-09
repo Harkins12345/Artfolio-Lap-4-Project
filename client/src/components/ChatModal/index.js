@@ -29,6 +29,8 @@ const ChatModal = ({ showModal, setShowModal, chatData }) => {
         if (socket) {
             socket.emit('sendMessage', message, chatData['request_id'])
         }
+
+        setMessage('')
     }
 
     return (

@@ -178,7 +178,7 @@ const YourPortfolioPage = () => {
                 <option></option>
                 <option value="50">£50/hour</option>
                 <option value="100">£100/hour</option>
-                <option value="1550">£150/hour</option>
+                <option value="150">£150/hour</option>
                 <option value="200">£200/hour</option>
               </select>
               <label htmlFor="artist-description">Description:</label>
