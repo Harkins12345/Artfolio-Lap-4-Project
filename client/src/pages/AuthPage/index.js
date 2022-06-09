@@ -7,7 +7,6 @@ import classnames from "classnames";
 import { useState } from "react";
 
 const AuthPage = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -124,7 +123,7 @@ const AuthPage = () => {
               placeholder="Confirm Password"
             />
             <button
-              className="btn auth-btn"
+              className="btn primary-cta-btn"
               data-testid="auth-btn"
               type="submit"
               placeholder="Sign up"
@@ -173,8 +172,8 @@ const AuthPage = () => {
               Forgot your password?
             </a>
 
-            <button className="btn auth-btn" type="sumbit">
-              Sign in
+            <button className="btn primary-cta-btn" type="sumbit">
+              <i className="fa-regular fa-user"></i>Sign in
             </button>
           </form>
         </div>
@@ -182,19 +181,28 @@ const AuthPage = () => {
           <div className="overlay" data-testid="overlay">
             <div className="overlay-panel overlay-left" data-testid="overlay">
               <h1>Welcome Back!</h1>
-              <button className="ghost" id="signIn" onClick={toggleBtn}>
+              <button
+                className="btn secondary-cta-btn"
+                id="signIn"
+                onClick={toggleBtn}
+              >
                 Sign In
               </button>
             </div>
             <div className="overlay-panel overlay-right" data-testid="overlay">
               <h1>Don't have an account?</h1>
-              <button className="ghost" id="signUp" onClick={toggleBtn}>
+              <button
+                className="btn secondary-cta-btn"
+                id="signUp"
+                onClick={toggleBtn}
+              >
                 Sign Up
               </button>
             </div>
           </div>
         </div>
       </div>
+      <div className=""></div>
     </>
   );
 };
