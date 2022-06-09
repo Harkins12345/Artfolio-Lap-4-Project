@@ -77,7 +77,7 @@ const AuthPage = () => {
             onSubmit={register}
             data-testid="auth-form"
           >
-            <h1 className="header-authpage" data-testid="header-authpage">
+            <h1 className="sign-up-title" data-testid="header-authpage">
               Sign up
             </h1>
             <div className="social-container" data-testid="social">
@@ -140,7 +140,7 @@ const AuthPage = () => {
             id="SignIn"
             onSubmit={login}
           >
-            <h1>Sign in</h1>
+            <h1 className="sign-in-title">Sign in</h1>
 
             <div className="social-container">
               <a href="/" className="social">
@@ -180,7 +180,7 @@ const AuthPage = () => {
         <div className="overlay-container">
           <div className="overlay" data-testid="overlay">
             <div className="overlay-panel overlay-left" data-testid="overlay">
-              <h1>Welcome Back!</h1>
+              <h1 className="sign-up-title">Welcome Back!</h1>
               <button
                 className="btn secondary-cta-btn"
                 id="signIn"
@@ -190,7 +190,7 @@ const AuthPage = () => {
               </button>
             </div>
             <div className="overlay-panel overlay-right" data-testid="overlay">
-              <h1>Don't have an account?</h1>
+              <h1 className="sign-in-title">Don't have an account?</h1>
               <button
                 className="btn secondary-cta-btn"
                 id="signUp"
