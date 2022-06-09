@@ -266,7 +266,7 @@ const ArtistPortfolioPage = () => {
           <ArtistReview />
         </div>
       </section>
-      <FooterCTA />
+      {username ? null : <FooterCTA />}
     </>
   );
 };

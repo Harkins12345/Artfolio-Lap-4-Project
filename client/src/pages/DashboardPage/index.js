@@ -180,7 +180,7 @@ const DashboardPage = () => {
             {" "}
             Accepted Requests{" "}
           </h2>
-          {activeGigs.map(gig => <AcceptedRequest gigData={gig} />)}
+          {activeGigs.map(gig => <AcceptedRequest gigData={gig} refresh={checkRequests} />)}
         </div>
       </section>
     </>

@@ -118,6 +118,8 @@ const YourPortfolioPage = () => {
       )
         .catch(err => console.log(err))
     }
+
+    navigate('/dashboard')
   }
 
   return (

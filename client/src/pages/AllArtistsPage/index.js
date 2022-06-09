@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { ArtistCard } from "../../components";
+import { ArtistCard, FooterCTA } from "../../components";
 import { useNavigate } from "react-router-dom";
 
 const AllArtistsPage = () => {
@@ -69,7 +69,7 @@ const AllArtistsPage = () => {
         </div>
 
       </section>
-      {/* {username ? null : <FooterCTA />} */}
+      {username ? null : <FooterCTA />}
     </>
   );
 };
