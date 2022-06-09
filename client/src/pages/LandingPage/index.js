@@ -21,16 +21,16 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <>
-      <section className="hero-section" data-testid="hero-section">
-        <div className="container-xl hero-container" data-testid="hero-section">
+    <div data-testid="hero-section">
+      <section className="hero-section">
+        <div className="container-xl hero-container">
           <img
             src="https://images.pexels.com/photos/8043841/pexels-photo-8043841.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             alt=""
             className="hero-image my-3"
           />
-          <div className="hero-content" data-testid="hero-section">
-            <h1 className="hero-title" data-testid="hero-section">
+          <div className="hero-content">
+            <h1 className="hero-title">
               Artfol.io - The Marketplace for artists
             </h1>
             <p data-testid="hero-section">
@@ -86,7 +86,7 @@ const LandingPage = () => {
         </div>
       </section>
       {username ? null : <FooterCTA />}
-    </>
+    </div>
   );
 };
 
