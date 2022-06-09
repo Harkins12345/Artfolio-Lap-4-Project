@@ -588,6 +588,7 @@ footer {
 .gallery-item-artist-media img {
   width: 100%;
   border-radius: 25px;
+  max-height: 250px;
 }
 
 .gallery-content {
@@ -721,8 +722,13 @@ button.ghost {
   justify-content: center;
   flex-direction: column;
   padding: 0 50px;
-  height: 70%;
+  height: 425px;
   text-align: center;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .auth-info {
@@ -1556,6 +1562,11 @@ AllArtistsPage
     padding: 0 50px;
     height: 100%;
     text-align: center;
+  }
+
+  .hero-container {
+    display: flex;
+    flex-direction: row-reverse;
   }
 }
 
