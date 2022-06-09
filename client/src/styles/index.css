@@ -726,6 +726,11 @@ button.ghost {
   text-align: center;
 }
 
+.hero-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 .auth-info {
   background-color: #dfd8ca;
   border: none;
@@ -1561,7 +1566,7 @@ AllArtistsPage
 
   .hero-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
   }
 }
 
