@@ -1,6 +1,4 @@
-![Artfol.io-logo](/client/public/images/artfolio-red.png)
-
-https://artfol-io.herokuapp.com/
+# Artfol.io - https://artfol-io.herokuapp.com/
 
 ![mobile-landing-page](/mobile-landing.png)
 ![desktop-landing-page](/desktop-landing.png)
