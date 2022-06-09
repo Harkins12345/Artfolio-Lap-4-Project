@@ -567,6 +567,7 @@ footer {
 .gallery-list .gallery-item-artist {
   min-width: 65%;
   scroll-snap-align: center;
+  height: 400px;
 }
 
 .gallery-item {
@@ -583,6 +584,7 @@ footer {
 .gallery-item-artist img {
   width: 100%;
   border-radius: 25px 25px 0px 0px;
+  max-height: 175px;
 }
 
 .gallery-item-artist-media img {
@@ -1450,6 +1452,7 @@ AllArtistsPage
 
   .gallery-list .gallery-item-artist {
     min-width: 40%;
+    height: 400px;
   }
 
   .containerF {
@@ -1604,6 +1607,7 @@ AllArtistsPage
 
   .gallery-list .gallery-item-artist {
     min-width: 25%;
+    height: 400px;
   }
 
   .footer-content {
