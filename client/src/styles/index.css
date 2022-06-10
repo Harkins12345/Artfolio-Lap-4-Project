@@ -553,6 +553,16 @@ footer {
   padding-bottom: 30px;
   padding-left: 15px;
   padding-right: 15px;
+  position: relative;
+}
+
+.gradient-for-gallery {
+  background-image: linear-gradient(to left, var(--beige), transparent);
+  height: 45%;
+  position: absolute;
+  right: 6%;
+  width: 25%;
+  z-index: 1;
 }
 
 .gallery-all-list {
@@ -632,7 +642,6 @@ footer {
   margin-bottom: 10px;
   text-overflow: ellipsis;
   white-space: normal;
-  position: relative;
 }
 
 .gradient-that-makes-thing-pretty-for-overflow {
@@ -802,7 +811,6 @@ button.ghost {
 }
 
 @keyframes show {
-
   0%,
   49.99% {
     opacity: 0;
@@ -1496,7 +1504,8 @@ AllArtistsPage
 /************************************************************************/
 
 /* responsive larger than 575px */
-@media (min-width: 575px) {}
+@media (min-width: 575px) {
+}
 
 /* responsive larger than 768px */
 @media (min-width: 768px) {
