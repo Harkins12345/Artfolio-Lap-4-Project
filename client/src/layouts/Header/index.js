@@ -35,14 +35,14 @@ const Header = () => {
             <>
               <div
                 onClick={() => navigate("/dashboard")}
-                className="btn primary-cta-btn dashboard-btn"
+                className="btn primary-cta-btn navbar-btns"
               >
                 <i className="fa-regular fa-address-card"></i>Dashboard
               </div>
               <div
                 onClick={logout}
-                className="btn primary-cta-btn"
-                data-testid="sign-in-btn"
+                className="btn primary-cta-btn navbar-btns"
+                data-testid="sign-in-btn "
               >
                 <i className="fa-regular fa-user"></i>Sign Out
               </div>

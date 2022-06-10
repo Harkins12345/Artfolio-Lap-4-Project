@@ -34,28 +34,31 @@ const LandingPage = () => {
               Artfol.io - The Marketplace for artists
             </h1>
             <p data-testid="hero-section">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eleifend
-              viverra dictumst posuere aliquet sem nullam in diam.
+              A marketplace for creatives to showcase their talents. Create your
+              portfolio and let your new gig find you!
             </p>
-
-            <div
-              onClick={() => navigate("/sign-in")}
-              className="btn primary-cta-btn"
-              data-testid="createAccBtn"
-            >
-              <i className="fa-regular fa-user" data-testid="signIn"></i>
-              Sign In
-            </div>
-            <div className="hero-btn-microcopy" data-testid="noAccount">
-              Haven't got an account?&nbsp;
-              <span
-                onClick={() => navigate("/sign-in")}
-                className="createAccountNow"
-                data-testid="createAccBtn"
-              >
-                Create one now!
-              </span>
-            </div>
+            {username ? null : (
+              <>
+                <div
+                  onClick={() => navigate("/sign-in")}
+                  className="btn primary-cta-btn"
+                  data-testid="createAccBtn"
+                >
+                  <i className="fa-regular fa-user" data-testid="signIn"></i>
+                  Sign In
+                </div>
+                <div className="hero-btn-microcopy" data-testid="noAccount">
+                  Haven't got an account?&nbsp;
+                  <span
+                    onClick={() => navigate("/sign-in")}
+                    className="createAccountNow"
+                    data-testid="createAccBtn"
+                  >
+                    Create one now!
+                  </span>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </section>
