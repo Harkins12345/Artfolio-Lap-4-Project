@@ -993,15 +993,12 @@ AllArtistsPage
   font-size: 14px;
 }
 
-.artist-image {
-  width: 100px;
-  height: 100px;
-  border-radius: 100px;
-  background-color: var(--beige);
-  color: var(--green);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.artist-image img {
+  border-radius: 50%;
+  border: 5px solid #fff;
+  height: 147px;
+  width: 147px;
+  object-fit: cover;
 }
 
 .artist-icon {
@@ -1052,7 +1049,7 @@ AllArtistsPage
 }
 
 .artist-availability {
-  margin-top: 10px;
+  margin-top: 20px;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 10px;
@@ -1060,6 +1057,7 @@ AllArtistsPage
   background-color: var(--green);
   color: var(--text-light);
   border-radius: 25px;
+  margin-right: 25px;
 }
 
 .artist-review-section {
@@ -1215,7 +1213,9 @@ AllArtistsPage
   left: 40px;
   top: 30px;
   background: #fff;
+  object-fit: cover;
 }
+
 
 .profile-nav-info {
   float: left;
@@ -1702,6 +1702,7 @@ AllArtistsPage
     left: 20px;
     top: 30px;
     background: #fff;
+    object-fit: cover;
   }
 
   .profile-nav-info {
