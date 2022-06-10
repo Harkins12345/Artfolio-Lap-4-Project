@@ -51,9 +51,11 @@ const ArtistPortfolioPage = () => {
     setEventDescription(e.target.value);
   }
 
-  function handleDisable() {
-    if (!username || username === window.location.pathname.split("/")[2]) {
-      return true;
+
+  function handleDisable(){
+    if (!username || username.toLowerCase() === window.location.pathname.split("/")[2]){
+      return true
+
     } else {
       return false;
     }
@@ -128,7 +130,11 @@ const ArtistPortfolioPage = () => {
             <div className="col-4">
               <div className="artist-image-availability d-flex justify-content-end me-2">
                 <span className="artist-image" data-testid="artist-image">
-                  <i className="artist-icon bi bi-person-fill"></i>
+                  {artistData && artistData["portfolio"]["media"]
+                      .find(media => media["contentType"].split("/")[0] === "image")
+                  ? <img width="100%" src={`/media/${artistData["portfolio"]["media"]
+                      .find(media => media["contentType"].split("/")[0] === "image")['filename']}`} />
+                  : <i className="artist-icon bi bi-person-fill"></i>}
                 </span>
                 <div className="artist-availability">Available</div>
               </div>
