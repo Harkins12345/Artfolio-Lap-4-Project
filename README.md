@@ -65,13 +65,9 @@ A marketplace for artists where they can showcase their talent, connecting them 
 
 ## Testing
 
-### Front-end
+- 75% Test Coverage
 
-![Image of front-end tests](/frontend-testing.PNG)
-
-### Back-end
-
-![Image of back-end tests](/backend-testing.png)
+- 80+ Tests
 
 ### Significant Code
 
@@ -95,9 +91,9 @@ Retrieving the files from the database, we dont have to store the files locally 
 
 - [ ] CSS classnames inconsistencies
 - [ ] Frontend testing
-   -- jest coverage would occasionally stop working
+      -- jest coverage would occasionally stop working
 - [ ] Accepting Request
-   -- does not update the page once this is done, only seen once you leave the page
+      -- does not update the page once this is done, only seen once you leave the page
 - [ ] New users have reviews
 
 ---
@@ -120,14 +116,14 @@ Retrieving the files from the database, we dont have to store the files locally 
 ### Challenges
 
 - Backend testing
-   -- Setting up the dummy data
-   -- Running the tests without sending requests to the actual database
+  -- Setting up the dummy data
+  -- Running the tests without sending requests to the actual database
 - Time constraints
 - Uploading files
 - Using sockets for the chatroom
 - Updating the profile
 - Managing users interaction
-   -- ability to send and accept requests from each other
+  -- ability to send and accept requests from each other
 - Creating the modals for incoming and outgoing requests
 - React boostrap overwriting styling
 - Styling without the final prototype
