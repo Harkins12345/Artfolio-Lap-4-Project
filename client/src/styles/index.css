@@ -513,7 +513,8 @@ footer {
 .hero-title,
 .gigs-title,
 .artists-title,
-.pending-request-title {
+.pending-request-title,
+.accepted-request-title {
   font-family: "Bebas Neue", cursive;
 }
 
@@ -752,8 +753,8 @@ button.ghost {
   justify-content: center;
   flex-direction: column;
   padding: 0 50px;
-  height: 425px;
   text-align: center;
+  height: 500px;
 }
 
 .hero-container {
@@ -816,14 +817,13 @@ button.ghost {
 }
 
 .overlay-container {
-  position: absolute;
-  top: 545px;
-  left: 0%;
-  width: 100%;
-  height: 40%;
+  height: 60%;
+  left: 0;
   overflow: hidden;
-
+  position: absolute;
+  width: 100%;
   z-index: 100;
+  top: 580px;
 }
 
 .containerF.right-panel-active .overlay-container {
@@ -1181,7 +1181,7 @@ AllArtistsPage
 
 /* Dashboard Heading */
 
-.welcome-section {
+.dashboard-section {
   background-color: var(--beige-darker);
 }
 
@@ -1235,7 +1235,7 @@ AllArtistsPage
   font-weight: bold;
 }
 
-.portfolio-button {
+.portfolio-button-container {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -1397,6 +1397,27 @@ AllArtistsPage
 
 .edit-button:hover {
   background-color: var(--green);
+  color: var(--text-light);
+}
+
+.portfolio-edit-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+  background-color: transparent;
+  color: var(--text-dark);
+  left: 30px;
+  border: 2px solid var(--green);
+  border-radius: 50px;
+  width: 150px;
+  height: 50px;
+  font-weight: 700;
+}
+
+.portfolio-edit-btn:hover {
+  background-color: var(--green);
+  border: 2px solid var(--green);
   color: var(--text-light);
 }
 
@@ -1681,20 +1702,6 @@ AllArtistsPage
     left: 20px;
     top: 30px;
     background: #fff;
-  }
-
-  .profile-option {
-    position: absolute;
-    top: 40%;
-    border-radius: 15px;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease-in-out;
-    outline: none;
-    background: var(--red);
-    color: white;
-    text-decoration-line: none;
-    left: 30px;
   }
 
   .profile-nav-info {
