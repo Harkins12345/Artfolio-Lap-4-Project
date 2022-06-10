@@ -43,6 +43,7 @@ const DashboardPage = () => {
   }, [activeGigs, pendingRequests])
 
   function checkRequests(e) {
+
     axios
       .post("/dashboard/refresh")
       .then((resp) => {
@@ -51,6 +52,7 @@ const DashboardPage = () => {
         setPendingRequests(prev => data["requests"])
         setActiveGigs(prev => data['active_gigs'])
         console.log(data)
+
       });
   }
 
@@ -59,8 +61,8 @@ const DashboardPage = () => {
   return (
     <>
       {/* HEADER */}
-      <div className="welcome-section" data-testid="welcome-section">
-        <div className="container-xl">
+      <div className="dashboard-section" data-testid="welcome-section">
+        <div className="container-xl pt-4">
           <div className="row">
             <div className="col-8">
               <div className="profile-header" data-testid="main-text">
@@ -90,17 +92,18 @@ const DashboardPage = () => {
                         {activeGigs.length}
                       </span>
                       <span className="status-type" data-testid="attending-gig">
-                        Attending Gigs
+                        Attending requests
                       </span>
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="col-4 portfolio-button">
+
+            <div className="col-4 portfolio-button-container mb-3">
               <button
                 onClick={() => navigate("/dashboard/edit")}
-                className="profile-option"
+                className="btn portfolio-edit-btn"
                 data-testid="portfolio-btn"
               >
                 Edit{" "}
@@ -117,12 +120,12 @@ const DashboardPage = () => {
         <div className="container-xl">
           <h2 className="pending-request-title">Pending Requests</h2>
           <ul className="gallery-list has-scrollbar">
+
             {pendingRequests.length !== 0 ? pendingRequests.map(request => <RequestCard requestData={request} refreshRequests={checkRequests} />) : <></>}
+
           </ul>
         </div>
       </section>
-
-      
 
       {/* The below was the original one - to be used for the request modal  */}
 
@@ -130,11 +133,20 @@ const DashboardPage = () => {
 
       <section className="accepted-request-section">
         <div className="container-xl">
-          <h2 className="mt-4" data-testid="gigs-accepted">
+          <h2
+            className="mt-4 accepted-request-title"
+            data-testid="gigs-accepted"
+          >
             {" "}
             Accepted Requests{" "}
           </h2>
-          {activeGigs.len !== 0 ? activeGigs.map(gig => <AcceptedRequest gigData={gig} refresh={checkRequests} />) : <></>}
+          {activeGigs.len !== 0 ? (
+            activeGigs.map((gig) => (
+              <AcceptedRequest gigData={gig} refresh={checkRequests} />
+            ))
+          ) : (
+            <></>
+          )}
         </div>
       </section>
     </>
