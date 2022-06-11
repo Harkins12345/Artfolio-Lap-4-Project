@@ -513,7 +513,8 @@ footer {
 .hero-title,
 .gigs-title,
 .artists-title,
-.pending-request-title {
+.pending-request-title,
+.accepted-request-title {
   font-family: "Bebas Neue", cursive;
 }
 
@@ -573,7 +574,7 @@ footer {
 .gallery-list .gallery-item-artist {
   min-width: 65%;
   scroll-snap-align: center;
-  height: 400px;
+  height: 100%;
 }
 
 .gallery-item {
@@ -752,8 +753,8 @@ button.ghost {
   justify-content: center;
   flex-direction: column;
   padding: 0 50px;
-  height: 425px;
   text-align: center;
+  height: 500px;
 }
 
 .hero-container {
@@ -801,7 +802,6 @@ button.ghost {
 }
 
 @keyframes show {
-
   0%,
   49.99% {
     opacity: 0;
@@ -816,14 +816,13 @@ button.ghost {
 }
 
 .overlay-container {
-  position: absolute;
-  top: 545px;
-  left: 0%;
-  width: 100%;
-  height: 40%;
+  height: 60%;
+  left: 0;
   overflow: hidden;
-
+  position: absolute;
+  width: 100%;
   z-index: 100;
+  top: 580px;
 }
 
 .containerF.right-panel-active .overlay-container {
@@ -993,15 +992,12 @@ AllArtistsPage
   font-size: 14px;
 }
 
-.artist-image {
-  width: 100px;
-  height: 100px;
-  border-radius: 100px;
-  background-color: var(--beige);
-  color: var(--green);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.artist-image img {
+  border-radius: 50%;
+  border: 5px solid #fff;
+  height: 147px;
+  width: 147px;
+  object-fit: cover;
 }
 
 .artist-icon {
@@ -1052,7 +1048,7 @@ AllArtistsPage
 }
 
 .artist-availability {
-  margin-top: 10px;
+  margin-top: 20px;
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 10px;
@@ -1060,6 +1056,7 @@ AllArtistsPage
   background-color: var(--green);
   color: var(--text-light);
   border-radius: 25px;
+  margin-right: 25px;
 }
 
 .artist-review-section {
@@ -1181,7 +1178,7 @@ AllArtistsPage
 
 /* Dashboard Heading */
 
-.welcome-section {
+.dashboard-section {
   background-color: var(--beige-darker);
 }
 
@@ -1215,6 +1212,7 @@ AllArtistsPage
   left: 40px;
   top: 30px;
   background: #fff;
+  object-fit: cover;
 }
 
 .profile-nav-info {
@@ -1235,7 +1233,7 @@ AllArtistsPage
   font-weight: bold;
 }
 
-.portfolio-button {
+.portfolio-button-container {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -1400,6 +1398,27 @@ AllArtistsPage
   color: var(--text-light);
 }
 
+.portfolio-edit-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+  background-color: transparent;
+  color: var(--text-dark);
+  left: 30px;
+  border: 2px solid var(--green);
+  border-radius: 50px;
+  width: 150px;
+  height: 50px;
+  font-weight: 700;
+}
+
+.portfolio-edit-btn:hover {
+  background-color: var(--green);
+  border: 2px solid var(--green);
+  color: var(--text-light);
+}
+
 /* MODAL  */
 
 .outer-dashBrd {
@@ -1475,7 +1494,8 @@ AllArtistsPage
 /************************************************************************/
 
 /* responsive larger than 575px */
-@media (min-width: 575px) {}
+@media (min-width: 575px) {
+}
 
 /* responsive larger than 768px */
 @media (min-width: 768px) {
@@ -1489,7 +1509,7 @@ AllArtistsPage
 
   .gallery-list .gallery-item-artist {
     min-width: 40%;
-    height: 400px;
+    height: 100%;
   }
 
   .containerF {
@@ -1647,7 +1667,7 @@ AllArtistsPage
 
   .gallery-list .gallery-item-artist {
     min-width: 25%;
-    height: 400px;
+    height: 100%;
   }
 
   .footer-content {
@@ -1681,26 +1701,13 @@ AllArtistsPage
     left: 20px;
     top: 30px;
     background: #fff;
-  }
-
-  .profile-option {
-    position: absolute;
-    top: 40%;
-    border-radius: 15px;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease-in-out;
-    outline: none;
-    background: var(--red);
-    color: white;
-    text-decoration-line: none;
-    left: 30px;
+    object-fit: cover;
   }
 
   .profile-nav-info {
-    padding-left: 150px;
     display: block;
-    padding-block: 35px;
+    padding-left: 150px;
+    padding-top: 5px;
   }
 }
 
