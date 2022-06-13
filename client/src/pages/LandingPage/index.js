@@ -34,8 +34,8 @@ const LandingPage = () => {
               Artfol.io - The Marketplace for artists
             </h1>
             <p data-testid="hero-section">
-              A marketplace for creatives to showcase their talents. Create your
-              portfolio and let your new gig find you!
+              A marketplace for creatives to showcase their talents. <br></br>
+              Create your portfolio and let your new gig find you!
             </p>
             {username ? null : (
               <>

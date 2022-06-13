@@ -513,7 +513,7 @@ footer {
 .hero-title,
 .gigs-title,
 .artists-title,
-.pending-request-title,
+.pending-requests-title,
 .accepted-request-title {
   font-family: "Bebas Neue", cursive;
 }
@@ -759,7 +759,7 @@ button.ghost {
 
 .hero-container {
   display: flex;
-  flex-direction: row-reverse;
+
   flex-wrap: wrap;
 }
 
@@ -1335,6 +1335,35 @@ AllArtistsPage
   width: 110%;
 }
 
+.pending-request-item {
+  border-radius: 25px;
+  background-color: var(--beige-darker);
+}
+
+.pending-request-content {
+  padding: 20px;
+  border: 5px solid var(--red);
+}
+
+.pending-request-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.pending-request-description {
+  font-size: 12px;
+}
+
+.pending-request-view-more-link {
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.pending-request-view-more-link:hover {
+  text-decoration: none;
+}
+
 /* ACCEPTED GIGS */
 
 .name-dropdown {
@@ -1627,10 +1656,6 @@ AllArtistsPage
     height: 100%;
     text-align: center;
   }
-
-  .hero-container {
-    flex-direction: row-reverse;
-  }
 }
 
 /* responsive larger than 1024px */
@@ -1643,6 +1668,7 @@ AllArtistsPage
   .hero-container {
     flex-direction: row-reverse;
     flex-wrap: nowrap;
+    gap: 75px;
   }
 
   .hero-image {

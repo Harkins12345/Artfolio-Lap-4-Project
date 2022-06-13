@@ -16,8 +16,8 @@ const DashboardPage = () => {
   const [hack, setHack] = useState(0);
 
   useEffect(() => {
-    console.log(artistMedia)
-  }, [artistMedia])
+    console.log(artistMedia);
+  }, [artistMedia]);
 
   // MODAL
 
@@ -38,22 +38,18 @@ const DashboardPage = () => {
   }, []);
 
   useEffect(() => {
-    console.log(activeGigs)
-    console.log(pendingRequests)
-  }, [activeGigs, pendingRequests])
+    console.log(activeGigs);
+    console.log(pendingRequests);
+  }, [activeGigs, pendingRequests]);
 
   function checkRequests(e) {
-
-    axios
-      .post("/dashboard/refresh")
-      .then((resp) => {
-        const data = resp.data
-        console.log('Setting state...')
-        setPendingRequests(prev => data["requests"])
-        setActiveGigs(prev => data['active_gigs'])
-        console.log(data)
-
-      });
+    axios.post("/dashboard/refresh").then((resp) => {
+      const data = resp.data;
+      console.log("Setting state...");
+      setPendingRequests((prev) => data["requests"]);
+      setActiveGigs((prev) => data["active_gigs"]);
+      console.log(data);
+    });
   }
 
   // INCOMMING PAGE FOR MODAL
@@ -67,11 +63,23 @@ const DashboardPage = () => {
             <div className="col-8">
               <div className="profile-header" data-testid="main-text">
                 <div className="profile-img" data-testid="user-welcome">
-                {artistMedia.length !== 0 && artistMedia
-                      .find(media => media["contentType"].split("/")[0] === "image")
-                  ? <img alt="Profile Picture" width={200} src={`/media/${artistMedia
-                      .find(media => media["contentType"].split("/")[0] === "image")['filename']}`} />
-                  : <i className="artist-icon bi bi-person-fill"></i>}
+                  {artistMedia.length !== 0 &&
+                  artistMedia.find(
+                    (media) => media["contentType"].split("/")[0] === "image"
+                  ) ? (
+                    <img
+                      alt="Profile Picture"
+                      width={200}
+                      src={`/media/${
+                        artistMedia.find(
+                          (media) =>
+                            media["contentType"].split("/")[0] === "image"
+                        )["filename"]
+                      }`}
+                    />
+                  ) : (
+                    <i className="artist-icon bi bi-person-fill"></i>
+                  )}
                 </div>
                 <div className="profile-nav-info" data-testid="artist-card">
                   <h3 className="user-name" data-testid="artist-card">
@@ -92,7 +100,7 @@ const DashboardPage = () => {
                         {activeGigs.length}
                       </span>
                       <span className="status-type" data-testid="attending-gig">
-                        Attending requests
+                        Accepted Request
                       </span>
                     </p>
                   </div>
@@ -106,8 +114,8 @@ const DashboardPage = () => {
                 className="btn portfolio-edit-btn"
                 data-testid="portfolio-btn"
               >
-                Edit{" "}
                 <i className="fa-solid fa-pencil" data-testid="edit-btn"></i>
+                &nbsp; Edit{" "}
               </button>
             </div>
           </div>
@@ -118,11 +126,18 @@ const DashboardPage = () => {
 
       <section className="pending-request-section" data-testid="gig-requests">
         <div className="container-xl">
-          <h2 className="pending-request-title">Pending Requests</h2>
+          <h2 className="pending-requests-title">Pending Requests</h2>
           <ul className="gallery-list has-scrollbar">
-
-            {pendingRequests.length !== 0 ? pendingRequests.map(request => <RequestCard requestData={request} refreshRequests={checkRequests} />) : <></>}
-
+            {pendingRequests.length !== 0 ? (
+              pendingRequests.map((request) => (
+                <RequestCard
+                  requestData={request}
+                  refreshRequests={checkRequests}
+                />
+              ))
+            ) : (
+              <></>
+            )}
           </ul>
         </div>
       </section>
