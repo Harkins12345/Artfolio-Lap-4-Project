@@ -41,7 +41,11 @@ const Header = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarsExample03">
+        <div
+          className="collapse navbar-collapse 
+        "
+          id="navbarsExample03"
+        >
           <div className="navbar-nav me-auto mb-2 mb-sm-0 ">
             <div className="navbar-btns" data-testid="navbar-btns">
               {username ? (

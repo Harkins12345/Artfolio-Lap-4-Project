@@ -40,7 +40,7 @@ const ArtistAudio = ({ media }) => {
       </div>
 
       <span className=" audio-name" data-testid="audio-name">
-        Listen to this sample Audio
+        Listen to this sample audio
       </span>
     </div>
   );

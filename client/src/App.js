@@ -35,6 +35,7 @@ const App = () => {
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<LandingPage />} />
           <Route path="/dashboard">
+            <Route path="/dashboard" element={<DashboardPage />} />
             <Route
               path="/dashboard"
               element={
@@ -48,7 +49,9 @@ const App = () => {
             <Route path="/dashboard/edit" element={<YourPortfolioPage />} />
           </Route>
 
-          <Route path="/sign-in" element={
+          <Route
+            path="/sign-in"
+            element={
               username ? <Navigate to="/" replace={true} /> : <AuthPage />
             }
           />

@@ -81,13 +81,13 @@ const AuthPage = () => {
               Sign up
             </h1>
             <div className="social-container" data-testid="social">
-              <a href="/" className="social" data-testid="social">
+              <a href="" className="social" data-testid="social">
                 <i className="fab fa-facebook-f"></i>
               </a>
-              <a href="/" className="social">
+              <a href="" className="social">
                 <i className="fab fa-google-plus-g"></i>
               </a>
-              <a href="/" className="social">
+              <a href="" className="social">
                 <i className="fab fa-linkedin-in"></i>
               </a>
             </div>
@@ -123,7 +123,7 @@ const AuthPage = () => {
               placeholder="Confirm Password"
             />
             <button
-              className="btn primary-cta-btn"
+              className="btn primary-cta-btn mt-3"
               data-testid="auth-btn"
               type="submit"
               placeholder="Sign up"

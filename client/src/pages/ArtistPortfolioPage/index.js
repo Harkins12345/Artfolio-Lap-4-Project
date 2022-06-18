@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import axios from "axios";
 import {
   FooterCTA,
@@ -13,7 +13,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 const ArtistPortfolioPage = () => {
-  const username = useSelector(state => state.username);
+  const username = useSelector((state) => state.username);
   const navigate = useNavigate();
   const [artistData, setArtistData] = useState();
 
@@ -23,46 +23,46 @@ const ArtistPortfolioPage = () => {
   const [eventGenre, setEventGenre] = useState("N/a");
   const [eventBudget, setEventBudget] = useState("N/a");
   const [eventDescription, setEventDescription] = useState("N/a");
-  
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  function handleDate(e){
-    setEventDate(e.target.value)
+  function handleDate(e) {
+    setEventDate(e.target.value);
   }
-  function handleLocation(e){
-    setEventLocation(e.target.value)
-  }
-
-  function handleDuration(e){
-    setEventDuration(e.target.value)
+  function handleLocation(e) {
+    setEventLocation(e.target.value);
   }
 
-  function handleGenre(e){
-    setEventGenre(e.target.value)
+  function handleDuration(e) {
+    setEventDuration(e.target.value);
   }
 
-  function handleBudget(e){
-    setEventBudget(e.target.value)
+  function handleGenre(e) {
+    setEventGenre(e.target.value);
   }
 
-  function handleDescription(e){
-    setEventDescription(e.target.value)
+  function handleBudget(e) {
+    setEventBudget(e.target.value);
   }
+
+  function handleDescription(e) {
+    setEventDescription(e.target.value);
+  }
+
 
   function handleDisable(){
-    if (!username || username === window.location.pathname.split("/")[2]){
+    if (!username || username.toLowerCase() === window.location.pathname.split("/")[2]){
       return true
+
     } else {
-      return false
+      return false;
     }
   }
 
-
-  function handleSubmit(e){
-    e.preventDefault()
+  function handleSubmit(e) {
+    e.preventDefault();
 
     const data = {
       request_type: "create_request",
@@ -73,14 +73,13 @@ const ArtistPortfolioPage = () => {
         genre: eventGenre,
         budget: eventBudget,
         description: eventDescription,
-        to_username: `${window.location.pathname.split("/")[2]}`
-      }
-    }
+        to_username: `${window.location.pathname.split("/")[2]}`,
+      },
+    };
 
-    axios.post('/request', data)
-    .catch(err => console.log(err))
+    axios.post("/request", data).catch((err) => console.log(err));
 
-    navigate('/artists')
+    navigate("/artists");
   }
 
   // get the artists api (with a placeholder)
@@ -131,7 +130,11 @@ const ArtistPortfolioPage = () => {
             <div className="col-4">
               <div className="artist-image-availability d-flex justify-content-end me-2">
                 <span className="artist-image" data-testid="artist-image">
-                  <i className="artist-icon bi bi-person-fill"></i>
+                  {artistData && artistData["portfolio"]["media"]
+                      .find(media => media["contentType"].split("/")[0] === "image")
+                  ? <img width="100%" src={`/media/${artistData["portfolio"]["media"]
+                      .find(media => media["contentType"].split("/")[0] === "image")['filename']}`} />
+                  : <i className="artist-icon bi bi-person-fill"></i>}
                 </span>
                 <div className="artist-availability">Available</div>
               </div>
@@ -155,7 +158,7 @@ const ArtistPortfolioPage = () => {
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton></Modal.Header>
               <Modal.Body>
-                <Form id="requestForm" onSubmit={handleSubmit} >
+                <Form id="requestForm" onSubmit={handleSubmit}>
                   <Form.Group
                     className="mb-3"
                     controlId="exampleForm.ControlInput1"
@@ -174,7 +177,12 @@ const ArtistPortfolioPage = () => {
                     controlId="exampleForm.ControlInput1"
                   >
                     <Form.Label>Location</Form.Label>
-                    <Form.Control as="textarea" rows={1} value={eventLocation} onChange={handleLocation} />
+                    <Form.Control
+                      as="textarea"
+                      rows={1}
+                      value={eventLocation}
+                      onChange={handleLocation}
+                    />
                   </Form.Group>
 
                   <Form.Group
@@ -182,28 +190,48 @@ const ArtistPortfolioPage = () => {
                     controlId="exampleForm.ControlInput1"
                   >
                     <Form.Label>Duration</Form.Label>
-                    <Form.Control as="textarea" rows={1} value={eventDuration} onChange={handleDuration} />
+                    <Form.Control
+                      as="textarea"
+                      rows={1}
+                      value={eventDuration}
+                      onChange={handleDuration}
+                    />
                   </Form.Group>
                   <Form.Group
                     className="mb-3"
                     controlId="exampleForm.ControlInput1"
                   >
                     <Form.Label>Genre</Form.Label>
-                    <Form.Control as="textarea" rows={1} value={eventGenre} onChange={handleGenre} />
+                    <Form.Control
+                      as="textarea"
+                      rows={1}
+                      value={eventGenre}
+                      onChange={handleGenre}
+                    />
                   </Form.Group>
                   <Form.Group
                     className="mb-3"
                     controlId="exampleForm.ControlInput1"
                   >
                     <Form.Label>Budget</Form.Label>
-                    <Form.Control as="textarea" rows={1} value={eventBudget} onChange={handleBudget} />
+                    <Form.Control
+                      as="textarea"
+                      rows={1}
+                      value={eventBudget}
+                      onChange={handleBudget}
+                    />
                   </Form.Group>
                   <Form.Group
                     className="mb-3"
                     controlId="exampleForm.ControlTextarea1"
                   >
                     <Form.Label>Description</Form.Label>
-                    <Form.Control as="textarea" rows={3} value={eventDescription} onChange={handleDescription} />
+                    <Form.Control
+                      as="textarea"
+                      rows={3}
+                      value={eventDescription}
+                      onChange={handleDescription}
+                    />
                   </Form.Group>
                 </Form>
               </Modal.Body>
@@ -218,6 +246,7 @@ const ArtistPortfolioPage = () => {
           </div>
         </div>
       </section>
+
       <section id="artist-media">
         <div className="container-xl pt-4">
           <h2 className="artist-media-title">Check out some of my work</h2>
