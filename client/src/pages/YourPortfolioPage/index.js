@@ -131,7 +131,10 @@ const YourPortfolioPage = () => {
 
   return (
     <>
-      <section className="your-portfolio-hero-section">
+      <section
+        className="your-portfolio-hero-section"
+        data-testid="hero-section"
+      >
         <div className="container-xl">
           <div className="your-portfolio-hero-content">
             <h1 className="your-portfolio-title">Your portfolio</h1>
