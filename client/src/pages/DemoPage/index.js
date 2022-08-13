@@ -6,7 +6,7 @@ const DemoPage = () => {
 
   return (
     <>
-      <section className="container-xl py-5">
+      <section className="container-xl py-5" data-testid="demo-page">
         <h1>Artfol.io is a demo app</h1>
         <h2>This page does not currently exist</h2>
         <span className="back-btn" onClick={() => navigate(-1)}>

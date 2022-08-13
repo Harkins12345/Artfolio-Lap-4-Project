@@ -54,11 +54,6 @@ describe("Dashboard Page", () => {
     expect(user).toBeTruthy();
   });
 
-  test("it renders a Request Card", () => {
-    let card = screen.getByTestId("req-card");
-    expect(card).toBeTruthy();
-  });
-
   test('it renders an "edit" button', () => {
     let btn = screen.getAllByTestId("edit-btn");
     expect(btn).toBeTruthy();
