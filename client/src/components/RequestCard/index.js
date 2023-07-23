@@ -36,13 +36,17 @@ const RequestCard = ({ requestData, refreshRequests }) => {
   }
 
   return (
-    <div className="gallery-item-artist">
-      <div className="gallery-content">
-        <h3 className="gallery-item-title">{requestData["from_username"]}</h3>
-        <p className="gallery-item-description">{requestData["description"]}</p>
+    <div className="pending-request-item">
+      <div className="pending-request-content">
+        <h3 className="pending-request-title">
+          {requestData["from_username"]}
+        </h3>
+        <p className="pending-request-description">
+          {requestData["description"]}
+        </p>
 
         <div className="col d-flex align-items-end justify-content-end">
-          <div onClick={handleShow} className="gallery-item-view-more-link">
+          <div onClick={handleShow} className="pending-request-view-more-link">
             View more
           </div>
 

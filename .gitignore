@@ -138,3 +138,5 @@ dmypy.json
 
 # react build
 /server/react-build/
+/server/react-build V1
+/server/react-build V2

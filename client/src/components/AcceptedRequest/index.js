@@ -6,8 +6,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { ChatModal } from "../../components";
 import axios from "axios";
 
-const AcceptedRequest = ({gigData, refresh}) => {
-
+const AcceptedRequest = ({ gigData, refresh }) => {
   const dispatch = useDispatch();
   const username = useSelector((state) => state.username);
 
@@ -27,16 +26,15 @@ const AcceptedRequest = ({gigData, refresh}) => {
   // open modal operators
   const [showModal, setShowModal] = useState(false);
 
-  function handleDelete(e){
+  function handleDelete(e) {
     const data = {
-      request_type: 'delete_request',
-      request_data: gigData
-    }
+      request_type: "delete_request",
+      request_data: gigData,
+    };
 
-    axios.post('/request', data)
-    .catch(err => console.log(err))
+    axios.post("/request", data).catch((err) => console.log(err));
 
-    refresh()
+    refresh();
   }
 
   const openModal = () => {
@@ -44,14 +42,14 @@ const AcceptedRequest = ({gigData, refresh}) => {
   };
 
   useEffect(() => {
-    if (showModal){
-      const socket = io()
-      socket.on('connect', () => {
-        socket.emit('openChat', gigData['request_id'])
-        dispatch(setSocket(socket))
-      })
-    }  else {
-      dispatch(setSocket(null))
+    if (showModal) {
+      const socket = io();
+      socket.on("connect", () => {
+        socket.emit("openChat", gigData["request_id"]);
+        dispatch(setSocket(socket));
+      });
+    } else {
+      dispatch(setSocket(null));
     }
   }, [showModal]);
 
@@ -70,7 +68,7 @@ const AcceptedRequest = ({gigData, refresh}) => {
           <Dropdown>
             <Dropdown.Toggle as={CustomToggle} />
             <Dropdown.Menu size="sm" title="">
-              <Dropdown.Item onClick={handleDelete} >Delete</Dropdown.Item>
+              <Dropdown.Item onClick={handleDelete}>Delete</Dropdown.Item>
               <Dropdown.Item>Report</Dropdown.Item>
               <Dropdown.Item>Block</Dropdown.Item>
             </Dropdown.Menu>
@@ -82,7 +80,7 @@ const AcceptedRequest = ({gigData, refresh}) => {
           <div className="gigs-desc-chat">
             <p className="requests-desc">{gigData["description"]}</p>
             <button className="edit-button" onClick={openModal}>
-              <i className="fa-solid fa-message"></i> Chat
+              Chat &nbsp;<i className="fa-solid fa-message"></i>
             </button>
           </div>
         </div>
